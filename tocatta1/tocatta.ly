@@ -6,6 +6,8 @@
 %
 % http://www.schristiancollins.com/generaluser.php
 % http://www.realmac.info/hpschd2.htm
+%
+% Or search on "Campbells Harpischord tuned"
 
 \version "2.12.3"
 
@@ -100,8 +102,8 @@ secondBitUpper = \relative c' {
 
   a8\( g16  fis g8  d\) f\( ees\) d16\( ees d c\) |
   d8\( ees16 f   a8 g f\) g16   a   <d g,>8\( <c a>8 |
-  <bes bes'>4\) <a f'>8-. r <bes d>-. r <g ees'>\( <f c'> |
-  <d bes'>4\) <ees a>8-. r <g d'>-. r << { <e c'>\( <d g> } \\ { s4 } >> |
+  <bes bes'>4\) <a f'>-. <bes d>-. <g ees'>8\( <f c'> |
+  <d bes'>4\) <ees a>-. <g d'>-. << { <e c'>8\( <d g> } \\ { s4 } >> |
 
   << { c'1\) } \\
      { c,4.. r8 <d aes'>4.. } >> |
@@ -244,6 +246,10 @@ fourthBitUpper = \relative c' {
   <e c'>2.~ |
   <e c'>2 r4
 
+% TODO switch to 5th bit, and modulate through various keys, maybe have
+% lower line cut ahead or across the upper tune? Swell might be inverted,
+% or done across the dotted pattern? Or dotted pattern varied for 3/4 time?
+
   \set Score.tempoHideNote = ##f
 }
 
@@ -262,8 +268,8 @@ fourthBitLower = \relative c {
   c4\)    r8 f,8\( g4\) r8 d'\( |
   \time 3/4 \key c \major
   c4\)    r8 b\(   c4\) \clef bass |
-  <c, c'>2.~ |
-  <c c'>2 r4
+  <c, g' c>2.~ |
+  <c g' c>2 r4
 }
 
 upper = {
