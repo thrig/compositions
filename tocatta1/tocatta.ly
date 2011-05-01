@@ -19,9 +19,9 @@
    (make-justified-lines-markup-list (cons (make-hspace-markup 2) args))))
 
 \header {
-  title = "Tocatta in C — DRAFT"
+  title = "Tocatta in C"
   composer = "Jeremy Mates"
-  subsubtitle = "2011-??-??"
+  subsubtitle = "2011-04-30"
   copyright = "© 2011 Jeremy Mates - Creative Commons Attribution 3.0 United States License"
 }
 
