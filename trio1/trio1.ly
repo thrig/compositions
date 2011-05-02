@@ -1,6 +1,9 @@
 % LilyPond engraving system - http://www.lilypond.org/
 
-\version "2.12.40"
+\version "2.12.3"
+
+% http://www.mail-archive.com/lilypond-user@gnu.org/msg38823.html
+%\include "articulate.ly"
 
 #(define-markup-list-command (paragraph layout props args) (markup-list?)
  (interpret-markup-list layout props
@@ -222,7 +225,8 @@ theFluteCoda = \relative c'' {
   c2 g'4 |
   a2 d,4 |
   b'2.~ |
-  b4 r2 |
+  b4 r2
+  \bar "||"
 }
 theOboeCoda = \relative c' {
   \key e \minor
@@ -245,7 +249,8 @@ theOboeCoda = \relative c' {
   a2 g4 |
   fis2 d4 |
   g2.~ |
-  g4 r2 |
+  g4 r2
+  \bar "||"
 }
 theBassoonCoda = \relative c {
   \key e \minor
@@ -268,7 +273,8 @@ theBassoonCoda = \relative c {
   fis |
   d |
   e~ |
-  e4 bes,2->\ff^"☺" |
+  e4 bes,2->\ff^"☺" 
+  \bar "||"
 }
 
 theFlute = \new Voice {
@@ -347,6 +353,15 @@ theBassoon = \new Voice {
       \new Staff << \theBassoon >>
     >>
     \layout { }
+  }
+  \score {
+    \unfoldRepeats \articulate {
+    \new StaffGroup <<
+      \new Staff << \theFlute >>
+      \new Staff << \theOboe >>
+      \new Staff << \theBassoon >>
+    >>
+    }
     \midi { }
   }
   \markuplines { \paragraph { \tiny	 {
