@@ -5,7 +5,7 @@ share: mp3
 
 mp3: modulus2
 	timidity -Ow modulus2.midi
-	lame --tt "Modulus No.2 – “Istrian”" --ta "Jeremy Mates" --ty 2011 -h -V2 --replaygain-accurate modulus2.wav modulus2.mp3
+	lame --tt "Modulus No.2 - Istrian" --ta "Jeremy Mates" --ty 2011 -h -V2 --replaygain-accurate modulus2.wav modulus2.mp3
 	@-rm *.wav
 
 modulus2.pdf: modulus2.ly voice1.ly voice2.ly
