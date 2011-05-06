@@ -12,9 +12,9 @@
 theFluteThemeOne = \relative c'' {
   \key e \minor
 
-  b2\mf r4 |
   R2. |
-  r8 e( c4) r4 |
+  R2. |
+  r8 e(\mf c4) r4 |
   r4 a8( b c b |
 
   e d b\< c d4 |
