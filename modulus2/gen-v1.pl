@@ -43,8 +43,12 @@ MM: for my $measure_num ( 1 .. $Measures ) {
     }
     $register = q{} if $p =~ m/^[rs]/;
     $p .= $register // '';
-    $p .= $dur;
-    $p .= '->' if $dur < 4;
+
+    if ($dur < 4 and $measure_num < 61) {
+      $p .= '4. r8';
+    } else {
+      $p .= $dur;
+    }
 
     $p .= '\mf' if $note_number == 1;
     $p .= '\mp' if $beat == 1 and $measure_num == 6;
