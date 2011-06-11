@@ -7,9 +7,9 @@
 % http://www.schristiancollins.com/generaluser.php
 % http://www.realmac.info/hpschd2.htm
 %
-% Or search on "Campbells Harpischord tuned"
+% Or search on "Campbells Harpsichord tuned"
 
-\version "2.12.3"
+\version "2.13.58"
 
 % http://www.mail-archive.com/lilypond-user@gnu.org/msg38823.html
 \include "articulate.ly"
@@ -21,7 +21,7 @@
 \header {
   title = "Tocatta in C"
   composer = "Jeremy Mates"
-  subsubtitle = "2011-04-30"
+  subsubtitle = "2011-06-10"
   copyright = "© 2011 Jeremy Mates - Creative Commons Attribution 3.0 United States License"
 }
 
@@ -44,7 +44,7 @@ firstBitUpper = \relative c'' {
   
     d8\( c b a\) e'\( f |
     e d\) g,\( a b c |
-    d\) b\( a g f e\) |
+    d b a g f e\) |
     f4\( g\) a-. |
   
     g8\( f\) a4\( b\) |
@@ -134,6 +134,7 @@ secondBitLower = \relative c {
 }
 
 thirdBitUpper = \relative c' {
+  \pageBreak
   << { g'2 } \\ { c,8\( d ees d\)  g\( aes bes aes\) } >> |
   f8\( g aes g\)  ees\( f g f\) |
   d8\( ees f ees\)  d\( aes' g f\) |
@@ -147,7 +148,7 @@ thirdBitUpper = \relative c' {
 
   \time 3/4
   <ees, c'>4 r16
-  \tempo 4=144 f32[\(_\markup { \italic "gliss." } g a b c d e f]~\)
+  \tempo 4=150 f32[\(_\markup { \italic "gliss." } g a b c d e f]~\)
   \tempo 4=192 f16 ees8 |
   \time 4/4
   d4  f8\( ees f4\)  ees8\( d | 
@@ -227,28 +228,29 @@ thirdBitLower = \relative c' {
 }
 
 fourthBitUpper = \relative c' {
-  <c ees>2~ \set Score.tempoHideNote = ##t
-    \tempo 4=96 <c ees>4\shortfermata \tempo 4=126
-% TODO cannot use [] as previously, as rendering runs off egde of page :(
-                                  ees'8 r16 ees |
-  ees8  f,  ees'  r16 ees ees8 ees, f'  r16 f  |
-  f8    d,  f'    r16 f   f8   ees, d'  r16 d |
-  d8    ees, d'   r16 d   d8   g,   g'  r16 g |
+  <c ees>2~ \set Score.tempoHideNote = ##t <c ees>4
+                                  ees'8[ r16 ees |
+  \time 4/4
+% TODO markup runs off edge of paper if have manual beam across a staff wrap
+% http://article.gmane.org/gmane.comp.gnu.lilypond.bugs/25148
+% or instead use an appropriate Voice.beatStructure ?
+  ees8] f,  ees'[ r16 ees ees8] ees, f'[ r16 f |
+  f8] d,  f'[   r16 f   f8]   ees, d'[ r16 d |
+  d8]   ees, d'[  r16 d   d8]  g,   g'[ r16 g |
 
-  g8    f,  g'    r16 g   g8   ees, f'  r16 f |
-  f8    d,  f'    r16 f   f8   c,   c'  r16 c |
-  c8    d,  c'    r16 c   c8   ees, d'  r16 d  |
-  d8    f,  d'    r16 d   d8   g,  ees' r16 ees |
+  g8]  f,  g'[  r16 g   g8] ees, f'[ r16 f |
+  f8]  d,  f'[  r16 f   f8] c,   c'[ r16 c |
+  c8] d,  c'[  r16 c   c8] ees, d'[ r16 d  |
+  d8]  f,  d'[  r16 d   d8] g,  ees'[ r16 ees |
 
-  ees8  aes, ees' r16 ees ees8 f,   d'  r16 d  |
-  \time 3/4 \key c \major
-  d8    g,  d'    r16 d  d8 f, |
-  <e c'>2.~ |
-  <e c'>2 r4
-
-% TODO switch to 5th bit, and modulate through various keys, maybe have
-% lower line cut ahead or across the upper tune? Swell might be inverted,
-% or done across the dotted pattern? Or dotted pattern varied for 3/4 time?
+  ees8] aes, ees'[ r16 ees ees8] f,   d'[ r16 d  |
+  \time 2/4
+  \key c \major
+  d8]   g,  d'    r16 \tempo 4=70 e\shortfermata |
+% \time 3/4 \key c \major
+% d8    g,  d'    r16 d   d8   f, |
+% \time 2/4
+% <e c'>4~ <e c'>8 e'8 |
 
   \set Score.tempoHideNote = ##f
 }
@@ -265,11 +267,69 @@ fourthBitLower = \relative c {
   b4\)    r8 c\(   d4\) r8 aes'\( |
   g4\)    r8 ees\( f4\) r8 b,\(  |
 
-  c4\)    r8 f,8\( g4\) r8 d'\( |
-  \time 3/4 \key c \major
-  c4\)    r8 b\(   c4\) \clef bass |
-  <c, g' c>2.~ |
-  <c g' c>2 r4
+  c4\)    r8 \clef bass f,8\( g4\) r8 d'\( |
+  \time 2/4
+  \key c \major
+  c4\)    r8 b
+% \time 3/4 \key c \major
+% c4\)    r8 b\( c4\) |
+% \time 2/4
+% <c, g' c>4. r8 |
+}
+
+fifthBitUpper = \relative c'' {
+  c4 b8\( a <g b>4 |
+  <f c'>4\) d'8[\( e]\) f,\( g |
+  a4\) e\( d8 c\) |
+  a'8[ r16 a a8] r a[ r16 a |
+
+  a8] r8 g8[ r16 g g8] r |
+  g8[ r16 g g8] r f8[ r16 f] |
+  d'8[\( c]\) a'[\( g]\) c,\( d\) |
+  g,8[\( f]\) e4 d8\( c\) |
+
+  g'4 a \acciaccatura { b16[ c] } d8\( c8 |
+  b8[\) r16 b b8] r b[ r16 b |
+  b8] r8 c4 e8\( d |
+  e4\) d8\( c b a\) |
+
+  e'8\(  f    e     d\) g,\( a |
+  b8     c    d\)   b\( a    g |
+  f8 e\) f4\( g |
+  a4\) g8\( f\) a4\( |
+
+  b4 c\) b8\( a\) |
+  e4\( f g |
+  a4 b4\) <c g>4~ |
+  <c g>4-> r2
+}
+
+fifthBitLower = \relative c {
+ %<g' c>4_\markup { \italic "Lebhaft" } f d'4\( |
+  <c g' c>2_\markup { \italic "Lebhaft" } d'4\( |
+  c8 b\) a4-. g |
+  c8[\( d]\) g,\( a b4\) |
+  f8[\( g]\) c,[\( d]\) g,\( f\) |
+
+  d8[\( e]\) d'\( c b a\) |
+  g'8[\( f]\) c'\( b a4\) |
+  <b c>4-. <f g>-. <c d>-. |
+  <b f'>4 <c g'> d |
+
+  <e b'>4 <c f c'> r8 b[\( |
+  c8 d e f g e] |
+  d8 c b a g b |
+  c8 d c b a4\) |
+
+  a'8\( g a4\) c,8\( d |
+  c4\) f8\( e f4\) |
+  g4 a g8\( f\) |
+  c4\( d e\) |
+
+  d8\( c b a\) d4\( |
+  e4 d\) b8\( a\) |
+  g'8\( f e d\) <c e c'>4~ |
+  <c e c'>4-> r2
 }
 
 upper = {
@@ -290,7 +350,12 @@ upper = {
 
   \tempo "Allegro" 4=126
   \fourthBitUpper
-  \bar "||"
+
+  \time 3/4
+  \tempo "Vivace" 4=144
+  \fifthBitUpper
+
+  \bar "|."
   \override Score.RehearsalMark #'self-alignment-X = #RIGHT
   \mark "D.C. al Fine"
 }
@@ -303,7 +368,8 @@ lower = {
   \key c \minor
   \thirdBitLower
   \fourthBitLower
-  \bar "||"
+  \fifthBitLower
+  \bar "|."
 }
 
 theMusic = {
@@ -317,6 +383,7 @@ theMusic = {
 
 \book {
   \paper {
+    #(set-paper-size "arch a")
     oddHeaderMarkup = \markup \fill-line {
       "" \fromproperty #'page:page-number-string }
     evenHeaderMarkup = \markup \fill-line {
@@ -327,6 +394,10 @@ theMusic = {
   \layout {
     % as otherwise long instrument name clipped by margin
     indent = 2.3\cm
+    % avoid music running off edge of paper
+    \context {
+      \Score \override Beam #'breakable = ##t
+    }
   }
 }
 \score {
