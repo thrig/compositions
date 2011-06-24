@@ -6,7 +6,7 @@
 % MIDI -> mp3 conversion via the "harmo_bjf.SF2" soundfont:
 % http://www-gmm.insa-toulouse.fr/~guillaum/PIANO/voiced_sfbank.html
 
-\version "2.14.1"
+\version "2.14.0"
 
 % http://www.mail-archive.com/lilypond-user@gnu.org/msg38823.html
 \include "articulate.ly"
@@ -19,13 +19,13 @@
   title = "Ecossaise in A Flat"
   composer = "Jeremy Mates"
   subtitle = "(Mostly just a study of WoO 86)"
-  subsubtitle = "2011-06-22"
+  subsubtitle = "2011-06-24"
   copyright = "© 2011 Jeremy Mates - Creative Commons Attribution 3.0 United States License"
 }
 
 firstBitUpper = \relative c'' {
 
-  aes8-. aes-. bes-. bes-. |
+  aes8-.\f aes-. bes-. bes-. |
 
   \repeat volta 2 {
     ees4 c8-. c-. |
@@ -50,7 +50,7 @@ firstBitLower = \relative c' {
 
   \repeat volta 2 {
     % Double counterpoint at 12th, roughly following upper voice
-    aes4 c |
+    aes4\f c |
     aes4 des |
     % 6-5 motion on f-ees as felt like it
     aes4 f'8-. ees-. |
@@ -69,6 +69,9 @@ firstBitLower = \relative c' {
 
 
 secondBitUpper = \relative c'' {
+
+  \set Score.tempoHideNote = ##t
+
   \repeat volta 2 {
     aes8\( bes\) c-| des-| |
     ees4 g,8\( f\) |
@@ -81,7 +84,8 @@ secondBitUpper = \relative c'' {
   }
   \alternative {
     { c8[\( bes aes g]\) | }
-    { aes2
+    { \tempo 4=108 aes4_\markup { \italic "rit." } \tempo 4=96 bes |
+      \tempo 4=72 aes4 r
        \bar "|." }
   }
 }
@@ -99,7 +103,8 @@ secondBitLower = \relative c' {
   }
   \alternative {
     { aes4 c | }
-    { aes2
+    { aes4 ees |
+      aes4 r
        \bar "|." }
   }
 }
