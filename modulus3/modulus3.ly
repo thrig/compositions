@@ -55,8 +55,8 @@ voiceFour = {
   }
   \bookpart {
     \header {
-      title = "Modulus No.3 - DRAFT"
-      subsubtitle = "2011-??-??"
+      title = "Modulus No.3"
+      subsubtitle = "2011-07-30"
       composer = "Jeremy Mates"
       copyright = "© 2011 Jeremy Mates - Creative Commons Attribution 3.0 United States License"
     }
