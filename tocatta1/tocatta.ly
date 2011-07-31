@@ -8,6 +8,8 @@
 % http://www.realmac.info/hpschd2.htm
 %
 % Or search on "Campbells Harpsichord tuned"
+%
+% http://soundcloud.com/thrig
 
 \version "2.13.58"
 

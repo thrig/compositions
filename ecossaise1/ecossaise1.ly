@@ -5,6 +5,8 @@
 %
 % MIDI -> mp3 conversion via the "harmo_bjf.SF2" soundfont:
 % http://www-gmm.insa-toulouse.fr/~guillaum/PIANO/voiced_sfbank.html
+%
+% http://soundcloud.com/thrig
 
 \version "2.14.0"
 
