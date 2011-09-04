@@ -496,12 +496,12 @@ sixthBitUpper = {
 
   c4) g( |
   a4 b |
-  a2) |
+  c2) |
   s2 |
 
   s2 |
   s2 |
-  e'4 a,( |
+  e4 a,( |
   b4 g) |
  
   d'4( c |
