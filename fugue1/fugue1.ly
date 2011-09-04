@@ -21,6 +21,7 @@
 
 \header {
   title = "Fugue No.1"
+  subtitle = "https://github.com/thrig/compositions/tree/master/fugue1"
   subsubtitle = "2011-09-04"
   composer = "Jeremy Mates"
   copyright = "© 2011 Jeremy Mates - Creative Commons Attribution 3.0 United States License"
