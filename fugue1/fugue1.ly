@@ -501,24 +501,25 @@ sixthBitUpper = {
 
   s2 |
   s2 |
+  s2 |
   e4 a,( |
+
   b4 g) |
- 
   d'4( c |
   b4 c |
   d4) f,( |
-  g4 a |
 
+  g4 a |
   g4) c8( b |
   a8 b cis d |
   e8 d cis e |
-  d8 e) a,( g |
 
+  d8 e) a,( g |
   b8 cis b g |
   a4.) g8 |
   c4. b8( |
-  a8 b c b |
 
+  a8 b c b |
   a4. g8 |
   a2)
 
@@ -537,29 +538,30 @@ sixthBitUpper = {
 
   d,8( c b c |
   d8 e f g |
-  f2) |
-  g2\rest |
+  e4 c) |
+  g'2\rest |
 
+  g2\rest |
   a4 d,( |
   e4 f |
   g4 f |
-  e2)( |
 
+  e2)( |
   f2 |
   g2 |
   a2) |
-  d,2( |
 
+  d,2( |
   e2 |
   fis4 e |
   g4 a) |
-  d,4 e |
 
+  d,4 e |
   d4 e~ |
   e4 d~ |
   d8 e f4~ |
-  f4 e8( d |
 
+  f4 e8( d |
   c8 d e4 |
   f2)
   \bar "|."
@@ -581,30 +583,31 @@ sixthBitLower = \relative d' {
   e8 f g a |
 
   f4 g |
-  f4 d) |
-  d'4 g,( |
-  a4 b |
+  f4 e) |
+  a2 |
+  d4 g,( |
 
+  a4 b |
   c4 b |
   a2) |
   c4( d |
-  c8 b a g |
 
+  c8 b a g |
   a4) d,4( |
   e4 f |
   g4 a |
-  g4 f |
 
+  g4 f |
   e4 f8 g) |
   d4 a'( |
   g2 |
-  a2 |
 
+  a2 |
   b2 |
   c2) |
   f,2( |
-  g2 |
 
+  g2 |
   a2 |
   d,2)
   \bar "|."
