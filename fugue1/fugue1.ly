@@ -492,11 +492,11 @@ sixthBitUpper = {
   d4) g |
   c,4( b8 c |
   d8 e f e |
-  d4 e4 |
+  d4 c4 |
 
-  c4) g( |
+  d4) g,( |
   a4 b |
-  a4) r |
+  a2) |
   s2 |
 
   s2 |
@@ -580,7 +580,7 @@ sixthBitLower = \relative d' {
   f4( e) |
   g4( a |
   b4) d,( |
-  e8 f g a |
+  e8 f e d |
 
   f4 g |
   f4 e) |
