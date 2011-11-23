@@ -1,8 +1,5 @@
 modulus2: modulus2.pdf
 
-share: mp3
-	rsync -az modulus2.* gh:/var/www/site/sial.org/htdocs/tmp/
-
 mp3: modulus2
 	timidity -Ow modulus2.midi
 	lame --tt "Modulus No.2 - Istrian" --ta "Jeremy Mates" --ty 2011 -h -V2 --replaygain-accurate modulus2.wav modulus2.mp3
