@@ -261,13 +261,13 @@ cello = {
   \override Hairpin #'circled-tip = ##t
 
   R1
-  dis1\<
+  << dis1 { s4\< s s s\! } >>
 
-  dis1\!\mp(
+  dis1\mf(
   dis2 dis 
   dis dis 
-  dis4 dis dis dis) 
-  dis( dis dis dis 
+  dis4 dis dis dis 
+  dis dis dis dis 
   \override Hairpin #'circled-tip = ##f
   dis dis\> dis\!) f\mp( 
   f f f f 
@@ -295,8 +295,8 @@ cello = {
   dis1\!\p(
   dis2 dis 
   dis dis 
-  dis4 dis dis dis) 
-  dis( dis dis dis 
+  dis4 dis dis dis
+  dis dis dis dis 
   \override Hairpin #'circled-tip = ##f
   dis dis\> dis\!) f\mp( 
   f f f f 
@@ -325,8 +325,8 @@ urb = {
   \override Hairpin #'circled-tip = ##t
 
   \relative c, {
-    c1~\<
-    c\!\mf |
+    << c1~ { s4\< s s s\! } >>
+    c1\mf |
    \override Hairpin #'circled-tip = ##f
     c~ c c~ c c c c( |
     c'2\mp) c c c c c c1~ c c c c2 c c c c c c c( |
