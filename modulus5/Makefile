@@ -9,4 +9,4 @@ modulus5.pdf: modulus5.ly
 	lilypond --pdf modulus5.ly
 
 clean:
-	@-rm voice*.ly *.midi *.pdf *.mp3 2>/dev/null
+	@-rm *.midi *.pdf *.mp3 2>/dev/null
