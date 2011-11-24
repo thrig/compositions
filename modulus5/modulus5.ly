@@ -16,7 +16,7 @@
   title       = "Modulus No.5"
   subtitle    = "Music::Chord::Positions"
   composer    = "Jeremy Mates"
-  subsubtitle = "2011-11-22"
+  subsubtitle = "2011-11-23"
   copyright   = "© 2011 Jeremy Mates - Creative Commons Attribution 3.0 United States License"
 }
 
@@ -30,7 +30,7 @@ glockenspiel = {
   R1 |
   R1 |
 
-  r16 ais\mp ais c'8 dis'16 f' dis'
+  r16 ais\mf ais c'8 dis'16 f' dis'
   f' g' c' dis' f' dis' f' g' 
   dis' f' g' f' g' ais' g' ais' c'' c' dis' f' dis' f' g' dis' 
   f' g' f' g' ais' g' ais' c'' 
@@ -46,7 +46,7 @@ glockenspiel = {
   ais'' f'' g' g'' f'' g'' dis'' g'' 
   f'' g'' ais' ais'' g'' ais'' f'' ais'' 
   g'' ais'' dis'' ais'' g'' ais'' f'' ais'' 
-  ais8 c' dis'16 f' dis' f' 
+  ais8\p c' dis'16 f' dis' f' 
   g' c' dis' f' dis' f' g' dis' 
   f' g' f' g' ais' g' ais' c'' 
   c' dis' f' dis' f' g' dis' f' 
@@ -54,7 +54,7 @@ glockenspiel = {
   g' ais' g' ais' c'' ais' c'' dis' 
   f' g' f' g' ais' g' ais' c'' 
   f' g' ais' g' ais' c'' ais' c'' 
-  ais8 ais'16 g' ais' ais'' g'' f' 
+  ais8\mf ais'16 g' ais' ais'' g'' f' 
   f'' ais' ais'' f'' g' g'' f'' g'' 
   ais' ais'' g'' ais'' f'' ais'' g'' dis' 
   dis'' ais' ais'' dis'' g' g'' dis'' g'' 
@@ -77,7 +77,7 @@ glockenspiel = {
   f' g' ais' g' ais' c'' ais' c'' 
   dis' f' g' f' g' ais' g' ais' 
   c'' f' g' ais' g' ais' c'' ais' 
-  ais ais ais' g' ais' ais'' g'' f' 
+  ais\mf ais ais' g' ais' ais'' g'' f' 
   f'' ais' ais'' f'' g' g'' f'' g'' 
   ais' ais'' g'' ais'' f'' ais'' g'' dis' 
   dis'' ais' ais'' dis'' g' g'' dis'' g'' 
@@ -86,7 +86,7 @@ glockenspiel = {
   ais'' f'' g' g'' f'' g'' dis'' g'' 
   f'' g'' ais' ais'' g'' ais'' f'' ais'' 
   g'' ais'' dis'' ais'' g'' ais'' f'' ais'' 
-  ais8 c' dis'16 f' dis' f' 
+  ais8\p c' dis'16 f' dis' f' 
   g' c' dis' f' dis' f' g' dis' 
   f' g' f' g' ais' g' ais' c'' 
   c' dis' f' dis' f' g' dis' f' 
@@ -101,11 +101,11 @@ glockenspiel = {
   ais' ais'' g'' ais'' dis'' ais'' g'' f' 
   f'' dis'' f'' ais' ais'' f'' ais'' dis'' 
   ais'' f'' g' g'' f'' g'' dis'' g'' 
-  dis' f' g' f' g' ais' g' ais' c'' f' g' ais' g' ais' c'' ais'
+  dis'\mf f' g' f' g' ais' g' ais' c'' f' g' ais' g' ais' c'' ais'
   g'' ais' ais'' g'' ais'' f'' ais'' g'' 
   ais'' dis'' ais'' g'' ais'' f'' ais'' f'' |
 
-  ais'' r8. r4 r2 
+  g'' r8. r4 r2 
 
  \bar "||"
 }
@@ -140,26 +140,30 @@ vibraphone = {
 }
   s1
 
+
 } \\ {
-  \override Hairpin #'circled-tip = ##t
-
-  g'2\rest g'4.\rest g8\mp |
-
-  f2 f4 f8 g 
-  g2 ais
-  f'2 g'4 ais'8 g 
-  g2 ais2
-  dis'2 g'4 ais'4
-  ais4 ais8 dis' 
-  dis'4 dis'8 f' 
-  f' ais' dis'4
-  dis'4 f'4
-  g'8 dis'' f'4
-  f'4 g'
-  ais'8 f'' g'4
-  ais'8 dis'' ais' dis'' |
+  g'2\rest g'4.\rest g8\mf |
 
   f f f f
+  f f f g 
+  g g g g 
+  ais ais ais ais 
+  f' f' f' f' 
+  g' g' ais' g 
+  g g g g 
+  ais ais ais ais 
+  dis' dis' dis' dis' 
+  g' g' ais' ais 
+  ais ais ais dis' 
+  dis' dis' dis' f' 
+  f' ais' dis' dis' 
+  dis' dis' f' f' 
+  g' dis'' f' f' 
+  f' f' g' g' 
+  ais' f'' g' g' 
+  ais' dis'' ais' dis'' |
+
+  f\mp f f f
   f f f g 
   g g g g 
   ais ais ais ais 
@@ -208,28 +212,32 @@ vibraphone = {
   f'' g'' ais' dis'' 
   dis'' g'' dis'' f'' |
 }
-  s1
+  dis'' s8 s4 s2
+
 
 } \\ {
-  \override Hairpin #'circled-tip = ##t
-
-  g'2\rest g'4.\rest g8\p |
-
-  f2 f4 f8 g 
-  g2 ais
-  f'2 g'4 ais'8 g 
-  g2 ais2
-  dis'2 g'4 ais'4
-  ais4 ais8 dis' 
-  dis'4 dis'8 f' 
-  f' ais' dis'4
-  dis'4 f'4
-  g'8 dis'' f'4
-  f'4 g'
-  ais'8 f'' g'4
-  ais'8 dis'' ais' dis'' |
+  g'2\rest g'4.\rest g8\mp |
 
   f f f f
+  f f f g 
+  g g g g 
+  ais ais ais ais 
+  f' f' f' f' 
+  g' g' ais' g 
+  g\mf g g g 
+  ais ais ais ais 
+  dis' dis' dis' dis' 
+  g' g' ais' ais 
+  ais ais ais dis' 
+  dis' dis' dis' f' 
+  f' ais' dis' dis' 
+  dis' dis' f' f' 
+  g' dis'' f' f' 
+  f' f' g' g' 
+  ais' f'' g' g' 
+  ais' dis'' ais' dis'' |
+
+  f\mf f f f
   f f f g 
   g g g g 
   ais ais ais ais 
@@ -248,7 +256,7 @@ vibraphone = {
   ais' f'' g' g' 
   ais' dis'' ais' dis'' |
 
-  dis''
+  c''
   b'8\rest b'4\rest b'2\rest
 
 } >>
@@ -269,53 +277,52 @@ cello = {
   dis4 dis dis dis 
   dis dis dis dis 
   \override Hairpin #'circled-tip = ##f
-  dis dis\> dis\!) f\mp( 
+  dis dis << dis) { s8\> s\! } >> f4\mp( 
   f f f f 
   f f f f 
   f f f f 
-  f f\> f\!) g\mf( 
+  f f << f) { s8\> s\! } >> g4\mf( 
   g g g g 
   g g g g 
-  g\> g\!) ais(\mp ais 
+  g << g) { s8\> s\! } >> ais4(\mp ais 
   ais ais ais ais 
-  ais\> ais\!) 
+  ais << ais) { s8\> s\! } >>
  \clef treble 
-  dis'(\mp dis' dis' dis' 
-  dis' dis' dis'\> dis'\!) 
-  f'(\mp f' f'\> f'\!) 
-  g'2(\mp |
+  dis'4(\mf dis' dis' dis' 
+  dis' dis' dis' << dis') { s8\> s\! } >>
+  f'4(\mp f' f' << f') { s8\> s\! } >>
+  g'2(\mf |
 
-  << dis'1~) { s8 s\> s4 s s8 s\! } >>
+  dis'1~)
 
-  dis'1\ppp(
+  << dis'1( { s4\> s s s8 s16 s\! } >>
 
  \clef bass
-  dis1~)\<
+  << dis1~) { s4\< s s s\! } >>
 
-  dis1\!\p(
+  dis1\mp(
   dis2 dis 
   dis dis 
   dis4 dis dis dis
   dis dis dis dis 
   \override Hairpin #'circled-tip = ##f
-  dis dis\> dis\!) f\mp( 
+  dis dis << dis) { s8\> s\! } >> f4\mp( 
   f f f f 
   f f f f 
   f f f f 
-  f f\> f\!) g\mf( 
+  f f << f) { s8\> s\! } >> g4\mf( 
   g g g g 
   g g g g 
-  g\> g\!) ais(\mp ais 
+  g << g) { s8\> s\! } >> ais4(\mp ais 
   ais ais ais ais 
-  ais\> ais\!) 
+  ais << ais) { s8\> s\! } >>
  \clef treble 
-  dis'(\mp dis' dis' dis' 
-  dis' dis' dis'\> dis'\!) 
-  f'(\mp f' f'\> f'\!) 
-  g'2\mf |
+  dis'4(\mp dis' dis' dis' 
+  dis' dis' dis' << dis') { s8\> s\! } >>
+  f'4(\mp f' f' << f') { s8\> s\! } >>
+  g'2\f |
 
- \override Hairpin #'circled-tip = ##t
-  << c'1 { s8 s\> s4 s s8 s\! } >>
+  c'2. r4
 
  \bar "||"
 }
@@ -329,18 +336,19 @@ urb = {
     c1\mf |
    \override Hairpin #'circled-tip = ##f
     c~ c c~ c c c c( |
-    c'2\mp) c c c c c c1~ c c c c2 c c c c c c c( |
+    c'2) c c c c c c1~\mp c c\mf c c2 c c c c c c c( |
 
     << c,1~) { s8 s\> s4 s s8 s\! } >>
 
-    c1~\pp\<
-    c\!\mp |
-   \override Hairpin #'circled-tip = ##f
+    << c1~ { s4\< s s s\! } >>
+    c1\mp |
     c~ c c~ c c c c( |
-    c'2\mf) c c c c c c1~ c c c c2 c c c c c c c |
+    c'2\mf) c |
+    c c |
+    c c |
+    c1~\mp c c\mf c c2 c c c c c << c { s4 s8\< s\! } >> c2\f |
 
-   \override Hairpin #'circled-tip = ##t
-    << c1 { s8 s\> s4 s s8 s\! } >>
+    c2. r4
   }
 
  \bar "||"
