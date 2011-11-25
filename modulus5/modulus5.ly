@@ -360,7 +360,7 @@ urb = {
  }
 \bookpart {
 \score {
- <<
+ \new StaffGroup <<
   \new Staff <<
     \set Staff.instrumentName = #"Glock."
     \set Staff.shortInstrumentName = #"Gl."
@@ -412,6 +412,7 @@ California, 94105.
   }
   \score {
    <<
+    \override Score.SystemStartBar #'collapse-height = #1
     \new Staff <<
       \set Staff.instrumentName = #"Glock."
       \set Staff.keySignature = #`((1 . ,SHARP)(5 . ,SHARP))
@@ -425,11 +426,14 @@ California, 94105.
     title = "Modulus No.5 – Vibraphone"
   }
   \score {
+   <<
+    \override Score.SystemStartBar #'collapse-height = #1
     \new Staff <<
       \set Staff.instrumentName = #"Vibes."
       \set Staff.keySignature = #`((1 . ,SHARP)(5 . ,SHARP))
       \vibraphone
     >>
+   >>
   }
 }
 \bookpart {
@@ -437,11 +441,14 @@ California, 94105.
     title = "Modulus No.5 – Cello"
   }
   \score {
+   <<
+    \override Score.SystemStartBar #'collapse-height = #1
     \new Staff <<
       \set Staff.instrumentName = #"Cello"
       \set Staff.keySignature = #`((1 . ,SHARP)(5 . ,SHARP))
       \cello
     >>
+   >>
   }
 }
 \bookpart {
@@ -449,10 +456,13 @@ California, 94105.
     title = "Modulus No.5 – Contrabass"
   }
   \score {
+   <<
+    \override Score.SystemStartBar #'collapse-height = #1
     \new Staff <<
       \set Staff.instrumentName = #"Bass"
       \urb
     >>
+   >>
   }
 }
 
