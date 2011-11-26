@@ -409,6 +409,9 @@ California, 94105.
 \bookpart {
   \header {
     title = "Modulus No.5 – Glockenspiel"
+    subtitle = ""
+    subsubtitle = ""
+    composer = " "
   }
   \score {
    <<
@@ -424,6 +427,9 @@ California, 94105.
 \bookpart {
   \header {
     title = "Modulus No.5 – Vibraphone"
+    subtitle = ""
+    subsubtitle = ""
+    composer = " "
   }
   \score {
    <<
@@ -439,6 +445,9 @@ California, 94105.
 \bookpart {
   \header {
     title = "Modulus No.5 – Cello"
+    subtitle = ""
+    subsubtitle = ""
+    composer = " "
   }
   \score {
    <<
@@ -454,7 +463,13 @@ California, 94105.
 \bookpart {
   \header {
     title = "Modulus No.5 – Contrabass"
+    subtitle = ""
+    subsubtitle = ""
+    composer = " "
   }
+  \markuplines { \paragraph {
+< holstein> the problem with most of the popular music today, and most ambient and video game music is that the harmonic analysis looks like this...
+  } }
   \score {
    <<
     \override Score.SystemStartBar #'collapse-height = #1
