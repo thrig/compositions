@@ -1,4 +1,4 @@
-menuet: fanfare1.pdf
+fanfare: fanfare1.pdf
 
 mp3: fanfare1.pdf
 	timidity -Ow fanfare1.midi
