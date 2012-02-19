@@ -110,7 +110,7 @@ upper = \relative d'' {
     fis8\> e d c b a\!) |
     g4-- r d'8(\mp g |
     fis8\< g-1 a\!-3 ais b)-5 b,( |
-    c8[ d e]) g( fis e) |
+    c8[ d-1 e]) g( fis e) |
 
     a8 aes g e b(\< c |
     d8 e\!\> d-2 c\!) fis( e |
@@ -119,8 +119,8 @@ upper = \relative d'' {
 
     g4\f b,8-.\mp r d-. r |
     g8[( fis e]) c( d e-1 |
-    f8 fis g fis e cis) |
-    d8 c!-. a-. fis-. b d |
+    f8-3 fis g fis e cis-2) |
+    d8-4 c!-. a-. fis-. b-2 d-1 |
   }
 
   \repeat volta 2 {
@@ -222,7 +222,7 @@ lower = \relative g {
     c8( e g, e c' e,) |
 
     d8( fis a fis a fis) |
-    g8-.\<-1 g-. g-.\!-3 g-.\> g-.-5 g-.\!-5 |
+    g8-.\<-2 g-.-1 g-.\! g-.\> g-. g-.\!-5 |
     b8(\mf d a d b d) |
     c8( b c g c e) |
 
