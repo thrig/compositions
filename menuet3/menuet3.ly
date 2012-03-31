@@ -103,48 +103,79 @@ upper = \relative d'' {
 
   \repeat volta 2 {
     g8(\mf fis\< g a\!\> g fis\! |
+\noPageBreak
     e8\< c' b c\! a\> fis |
+\noPageBreak
     g8-3 f e-1 d\!-3 ais\<-2 b |
+\noPageBreak
     c8 b c d-1 dis-3 e\! |
 
+\noPageBreak
     fis8\> e d c b a\!) |
+\noPageBreak
     g4-- r d'8(\mp g |
+\noPageBreak
     fis8\< g-1 a\!-3 ais b)-5 b,( |
+\noPageBreak
     c8[ d-1 e]) g( fis e) |
 
+\noPageBreak
     a8 aes g e b(\< c |
+\noPageBreak
     d8 e\!\> d-2 c\!) fis( e |
+\noPageBreak
     fis8\< g-1 b-3 ais b c\! |
+\noPageBreak
     d8 c\> b bes a aes\!) |
 
+\noPageBreak
     g4\f b,8-.\mp r d-. r |
+\noPageBreak
     g8[( fis e]) c( d e-1 |
+\noPageBreak
     f8-3 fis g fis e cis-2) |
-    d8-4 c!-. a-. fis-. b-2 d-1_\markup { \finger "1" } |
+\noPageBreak
+    d8-4 c!-. a-. fis-. b-2 d-1_\markup { \finger "5" } |
   }
 
   \repeat volta 2 {
-    c8[(-5 b-1 g])-2 e(-1 g cis) |
+\noPageBreak
+    c8[( b g]) e( g cis)-4 |
+\noPageBreak
     \key d \minor
-    d8-.[ c-. bes-.] d( g bes) |
+    d8-.[-5 c-.-1 bes-.]-2 d(-1 g bes) |
+\noPageBreak
     c8( a g a) e( c |
+\noPageBreak
     d8) bes g fis g c |
 
+\noPageBreak
     d8-.\< d-. d-.\! d-.\> d-. d-.\! |
+\noPageBreak
     e( g c, e g e) |
+\noPageBreak
     d8( c bes c) \slurUp f,(\< fis\! |
+\noPageBreak
     g8 gis a g e\> d\!) |
     \slurNeutral
 
+\noPageBreak
     e8( a g f a) e( |
+\noPageBreak
     f8 g a g) d'( c |
+\noPageBreak
     bes8) b c cis d e |
+\noPageBreak
     \key g \major
     g8(\mf fis\< g a\!\> g fis\! |
 
+\noPageBreak
     e8\< c' b c\! a\> fis |
+\noPageBreak
     g8 f e d\! ais\< b |
+\noPageBreak
     c8 b c d dis e\! |
+\noPageBreak
     fis8\> e d c b\!) d\!-5 |
   }
 
@@ -297,8 +328,8 @@ asPiano = {
   \bookpart {
     \header {
       title = "Mad Clown Minuet"
-      subtitle = "w/ Piano Fingerings (more or less what I use)"
-      subsubtitle = ""
+      subtitle = ""
+      subsubtitle = "w/ Piano Fingerings (more or less what I use)"
       composer = " "
     }
     \score {
