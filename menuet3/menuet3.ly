@@ -120,11 +120,11 @@ upper = \relative d'' {
     g4\f b,8-.\mp r d-. r |
     g8[( fis e]) c( d e-1 |
     f8-3 fis g fis e cis-2) |
-    d8-4 c!-. a-. fis-. b-2 d-1 |
+    d8-4 c!-. a-. fis-. b-2 d-1_\markup { \finger "1" } |
   }
 
   \repeat volta 2 {
-    c8[( b g]) e( g cis) |
+    c8[(-5 b-1 g])-2 e(-1 g cis) |
     \key d \minor
     d8-.[ c-. bes-.] d( g bes) |
     c8( a g a) e( c |
@@ -145,7 +145,7 @@ upper = \relative d'' {
     e8\< c' b c\! a\> fis |
     g8 f e d\! ais\< b |
     c8 b c d dis e\! |
-    fis8\> e d c b\!) d\! |
+    fis8\> e d c b\!) d\!-5 |
   }
 
   \relative g' { g2\f r4 }
@@ -234,18 +234,18 @@ lower = \relative g {
     g8-.\< g-. g-.\! g-.\> g-. g-.\! |
     c,8(\mp e g e g e) |
     c8( a' e a e a) |
-    d,8( fis a c a-4 g) |
+    d,8( fis a c a-4_\markup { \finger "2" } g) |
   }
 
   \repeat volta 2 {
     e8( g c g c e,) |
     \key d \minor
     g8( d g bes g d) |
-    a'8( c e c e a,) |
-    bes8( d des c ces bes) |
+    a'8(-2 c-1 e-2 c e a,-5) |
+    bes8(-4 d-1 des-2 c-1 ces-2 bes-3) |
 
-    a4 f8-. r d'-. r |
-    c( bes a g d e) |
+    a4-1 f8-. r d'-. r |
+    c(-2 bes-3 a-1 g-2 d e) |
     f8( a c a c a) |
     e8( g bes g bes g) |
 
@@ -297,7 +297,7 @@ asPiano = {
   \bookpart {
     \header {
       title = "Mad Clown Minuet"
-      subtitle = "w/ Piano Fingerings"
+      subtitle = "w/ Piano Fingerings (more or less what I use)"
       subsubtitle = ""
       composer = " "
     }
