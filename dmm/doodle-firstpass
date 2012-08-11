@@ -1,0 +1,77 @@
+#!/usr/bin/perl
+#
+# First order Markov, variation A.
+
+use strict;
+use warnings;
+use File::Slurp;
+use JSON;
+use List::Util qw(sum);
+
+my $choices = decode_json read_file('base-odds.json');
+normalize_choices($choices);
+
+my @actions = 'g';
+my $count   = 0;
+my $rands   = 0;
+while ( my $choice = next_choice( \@actions, $choices ) ) {
+  if (
+    (    $count == 0
+      or $count == 4 - $rands
+      or $count == 8 - $rands
+      or $count == 12 - $rands
+      or $count == 16 - $rands
+    )
+    and rand > 0.5
+    ) {
+    my @rrs = ('r') x ( 1 + rand 3 );
+    push @actions, @rrs;
+    $rands += @rrs;
+  }
+  push @actions, $choice;
+  last if ++$count > 22;
+}
+push @actions, qw/g r r r/;
+open my $pfh, '>>', "possibles";
+print $pfh "@actions\n";
+print join( ' ', map { $_ eq 'r' ? $_ : $_ . "'" } @actions ), "\n";
+
+sub next_choice {
+  my ( $actions, $choices ) = @_;
+
+  my $consideration;
+  if ( @$actions > 1 ) {
+    $consideration = join '.', @$actions[ -2 .. -1 ];
+  } else {
+    $consideration = $actions[-1];
+  }
+  my $target_ref = $choices->{$consideration};
+  if ( !defined $target_ref ) {
+    $target_ref = $choices->{ $actions[-1] };
+  }
+
+  my $choice;
+  my $rand = rand;
+  for my $target (
+    sort { $target_ref->{$b} <=> $target_ref->{$a} }
+    keys %$target_ref
+    ) {
+    $choice = $target if $target_ref->{$target} >= $rand;
+  }
+  return $choice;
+}
+
+sub normalize_choices {
+  my ($choice_ref) = @_;
+
+  for my $choice ( keys %$choice_ref ) {
+    my $target_sum = sum values %{ $choice_ref->{$choice} };
+    my $factor = ( $target_sum != 1 ) ? 1 / $target_sum : 1;
+
+    my $running_total = 0;
+    for my $target_value ( values %{ $choice_ref->{$choice} } ) {
+      $target_value  = $target_value * $factor + $running_total;
+      $running_total = $target_value;
+    }
+  }
+}
