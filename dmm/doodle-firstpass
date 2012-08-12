@@ -41,13 +41,13 @@ sub next_choice {
 
   my $consideration;
   if ( @$actions > 1 ) {
-    $consideration = join '.', @$actions[ -2 .. -1 ];
+    $consideration = join '.', @{$actions}[ -2 .. -1 ];
   } else {
-    $consideration = $actions[-1];
+    $consideration = $actions->[-1];
   }
   my $target_ref = $choices->{$consideration};
   if ( !defined $target_ref ) {
-    $target_ref = $choices->{ $actions[-1] };
+    $target_ref = $choices->{ $actions->[-1] };
   }
 
   my $choice;
