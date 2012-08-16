@@ -30,54 +30,65 @@ voiceoneone = {
   \tempo "Moderato con rubato" 4=121
 
   \repeat volta 2 {
-    r128 g'8....\mp f'2 \tempo 4=119 r4 |
+    r128 g'8....\mp \tempo 4=117 f'2 \tempo 4=119 r4 |
     g'2 ges'4 d'4\mf |
     a'4\p \tempo 4=116 r2 \tempo 4=86 r128 b'8....~ |
     b'4 \tempo 4=108 f'4\mp f'2 |
 
-    \tempo 4=80 d'2 \tempo 4=108 g'2~ |
+    \tempo 4=80 d'!2 \tempo 4=108 g'!2~ |
     \tempo 4=116 g'2 \tempo 4=119 r128 g'8....\mf g'4~ |
     g'2. \tempo 4=108 r4 |
-    r4 \tempo 4=136 r128 bes'8....\mp( ges'4 \tempo 4=123 d'4)~ |
+    r4 \tempo 4=136 r128 bes'8....\p( ges'4 \tempo 4=123 d'4)~ |
 
-    \tempo 4=96 d'2. \tempo 4=88 bes'4~\mf |
+    \tempo 4=96 d'2. \tempo 4=88 bes'4~\mp |
     bes'4 \tempo 4=119 d'4 a'4\p r128 a'8....~ |
     a'2. ges'4~\mf^( |
     ges'4 a'2.~ |
 
-    a'4 \tempo 4=72 f'2.\mp) |
+    a'4 \tempo 4=59 f'2.\mp\shortfermata) |
   }
-  \tempo 4=109 d'4(\p \tempo 4=71 g'2.) |
+  \tempo 4=111 d'4(\p \tempo 4=92 g'!2.) |
   \bar "||"
 }
 
 voiceonetwo = {
   \set Score.tempoHideNote = ##f
 
-  \tempo "Tempo semplice" 4=120 g'4\mf d' des' g'~ |
-  g'4 a' r2 |
+  \tempo "Tempo semplice" 4=120 g'4\mf d'( des' g'~ |
+  g'4 a') r2 |
   r4 c'4 g'2 |
-  aes'4 d'4 aes'4( f'4 |
+  aes'4 d'!4 aes'4( f'4 |
 
-  g'4) c'4 g'4 r4 |
-  r2 c'4 e'4 |
-  e'1 |
-  f'2 d'4 b'4 |
+  g'4) c'4 g'2 |
+  r2 c'4( e'4 |
+  e'1) |
+  f'2 d'4-. b'4-. |
 
-  d'2 a'4 ees'4~ |
-  ees'4 b'4 g'2 |
-  g'4 g'4 r4 a'4~ |
-  a'4 c'2 c'4 |
+  \set Score.tempoHideNote = ##t
+  d'2( a'4 \tempo 4=116 ees'4~_\markup { \italic "rit." } |
+  \tempo 4=116 ees'4 \tempo 4=108 b'4)\mp \tempo 4=96 g'2 \set Score.tempoHideNote = ##f |
+  \tempo 4=120 g'4\mf-- g'4 r a'4~ |
+  a'4 c'2-- c'4( |
 
-  e'4 r4 des'4 g'4~ |
-  g'4 f'4 d'4( d'4) |
-  g'4( a'4) c'2 |
-  a'4 a'4 a'2 |
+  e'4->) r4 des'4 g'4~ |
+  g'4 f'4( d'!) r |
+  << { g'4( a'2.) } \\ { s2 c'2 } >> |
+  a'4( a'4 a'2 |
 
-  b'2 a'4 e'4 |
-  d'4 a'4 ges'4 r4 |
+  b'2) a'4( e'4 |
+  d'4) a'4( ges'4) r4 |
   des'1 |
-  g'4 r4 r2 |
+  \set Score.tempoHideNote = ##t
+  \time 3/4
+% \tempo 4=132
+    g'!2.->
+%   \tempo 4=152
+%   r8
+%   \tempo 4=120
+%   r2 |
+
+% \tempo 4=144
+  \times 2/3 { aes'4( e'4 c'~) } c'4 |
 }
 
 %                                                                         %
@@ -96,7 +107,7 @@ voicetwoone = {
     f2 aes2\p( |
     b4\mf f4\p aes4 r128 g8....~) |
 
-    g4 f4 a4 r128 a8....~ |
+    g4 f4 a!4 r128 a8....~ |
     a2. f4~\mf |
     f4 ees2 r128 b8.... |
     aes2 g2 |
@@ -108,33 +119,33 @@ voicetwoone = {
 }
 
 voicetwotwo = {
-  g4\mf^"1" g4 r4 a4~ |
-  a4 c2 c4 |
-  e4 r4 des4 g4~ |
-  g4 f4 d4( d4) |
+  g4--\mf g4 r4 a4~ |
+  a4 c2-- c4( |
+  e4->) r4 des4 g4~ |
+  g4 f4( d!) r |
 
-  g4( a4) c2 |
-  a4 a4 a2 |
-  b2 a4 e4 |
-  d4 a4 ges4 r4 |
+  << { g4( a2.) } \\ { s2 c2 } >> |
+  a4( a4 a2 |
+  b2) a4( e4 |
+  d4) a4( ges4) r4 |
 
   des1 |
-  g4 r2. |
-  g4^"2" d des g~ |
-  g4 a r2 |
+  g!1\mp |
+  g4\mf d( des g~ |
+  g4 a) r2 |
 
   r4 c4 g2 |
-  aes4 d4 aes4( f4 |
-  g4) c4 g4 r4 |
-  r2 c4 e4 |
+  aes4 d!4 aes4( f4 |
+  g4) c4 g2 |
+  r2 c4( e4 |
 
-  e1 |
-  f2 d4 b4 |
-  d2 a4 ees4~ |
-  ees4 b4 g2 |
-% XXX these were added, truncate if have a better extension
-% r4\sustainOff\sustainOn d4\sustainOff\sustainOn g2~ |
-% g2 c2
+  e1) |
+  f2 d4-. b4-. |
+  d2( a4 ees4~ |
+  \time 3/4
+  ees8) r8 \times 2/3 { ges4.( a) } |
+
+  \times 2/3 { ees4( ges f~) } f4 |
 }
 
 %                                                                         %
@@ -166,11 +177,11 @@ pedalone = {
 pedaltwo = {
   % 1
   s4\sustainOff s4 s2\sustainOn |
-  s4 s2\sustainOff\sustainOn s4 |
-  s4 s4\sustainOff\sustainOn s2 |
-  s4\sustainOff s2. |
+  s4\sustainOff s2\sustainOn s4\sustainOff\sustainOn |
+  s2\sustainOff s2\sustainOn |
+  s2\sustainOff s2\sustainOn |
 
-  s2 s2\sustainOn |
+  s2\sustainOff s2\sustainOn |
   s4\sustainOff s4 s2\sustainOn |
   s2\sustainOff\sustainOn s2 |
   s4\sustainOff\sustainOn s2 s4\sustainOff |
@@ -179,17 +190,18 @@ pedaltwo = {
   s4 s4\sustainOff\sustainOn s4\sustainOff\sustainOn s4 |
   % 2
   s4\sustainOff s4 s2\sustainOn |
-  s4 s2\sustainOff\sustainOn s4 |
+  s4\sustainOff s2\sustainOn s4\sustainOff\sustainOn |
 
-  s4 s4\sustainOff\sustainOn s2 |
-  s4\sustainOff s2. |
-  s2 s2\sustainOn |
-  s1\sustainOff\sustainOn |
+  s2\sustainOff s2\sustainOn |
+  s2\sustainOff s2\sustainOn |
+  s2\sustainOff s2\sustainOn |
+  s2\sustainOff s2\sustainOn |
 
   s2\sustainOff\sustainOn s2 |
   s4\sustainOff\sustainOn s2 s4\sustainOff |
   s1\sustainOn |
-  s4 s4\sustainOff\sustainOn s4\sustainOff\sustainOn s4 |
+  \time 3/4
+  s8 s8\sustainOff s4 s4 |
 }
 
 %                                                                         %
