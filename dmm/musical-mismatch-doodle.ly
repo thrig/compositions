@@ -188,7 +188,7 @@ pedalone = {
     s2. r128 s8....\sustainOff |
     s1\sustainOn |
 
-    s1
+    s2 s4 s8 s16 s32 s64 s128 s128\sustainOff\sustainOn |
   }
   s4 s2.\sustainOff\sustainOn
 }
