@@ -264,8 +264,8 @@ pedal = {
 theblackdots = {
   <<
     \new PianoStaff <<
-      \override Score.BarNumber #'break-visibility = #'#(#t #t #t)
-      \set Score.barNumberVisibility = #(every-nth-bar-number-visible 4)
+%     \override Score.BarNumber #'break-visibility = #'#(#t #t #t)
+%     \set Score.barNumberVisibility = #(every-nth-bar-number-visible 4)
 
       \set PianoStaff.pedalSustainStyle = #'bracket
 
