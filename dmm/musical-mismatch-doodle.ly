@@ -90,12 +90,12 @@ voiceonethree = {
 
   \set Score.tempoHideNote = ##f
   r4 \tempo 4=168 r128 aes'8....( e'4 c'4~) |
-  \tempo 4=96 c'2. r4
-  \tempo 4=72 r2 g'!4( ees'4 |
+  \tempo 4=96 c'2. aes'4~ |
+  aes'4 r4 \tempo 4=72 g'!4( ees'4 |
   b'!1~) |
 
-  \tempo 4=66 b'1 |
-  g'1~\ppp |
+  b'2 \tempo 4=66 f'2~\p |
+  f'2 g'2~\pp |
   g'1~ |
   g'1 |
 }
@@ -158,10 +158,10 @@ voicetwothree = {
 
   a4 ees4 ges4 r128 f8....)~ |
   f4 d4( ges4 bes4)~ |
-  bes4 r2. |
-  R1 |
+  bes4 r2 a!4~ |
+  a4 r ges4(\mp a4 |
 
-  r2 d2\pp |
+  e!4 c4 d2) |
   R1 |
   R1 |
   R1 |
@@ -230,9 +230,9 @@ pedalthree = {
   s1 |
   s1 |
 
-  s1\sustainOff\sustainOn |
+  s2 s2\sustainOff\sustainOn |
   s1 |
-  s1 |
+  s2 s4 s8 s16 s32 s64 s128 s128\sustainOff |
 }
 
 %                                                                           %
