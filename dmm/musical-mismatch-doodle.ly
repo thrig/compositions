@@ -1,17 +1,17 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      MMD      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                         %
-% LilyPond engraving system - http://www.lilypond.org/                    %
-%                                                                         %
-%  No Markov chains were harmed during the construction of this work.     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      MMD      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                           %
+% LilyPond engraving system - http://www.lilypond.org/                      %
+%                                                                           %
+%  No Markov chains were harmed during the construction of this work.       %
 
 \version "2.14.0"
 
 \header {
-  title       = "Musical Mismatch: Doodle - DRAFT"
+  title       = "Musical Mismatch: Doodle"
   subtitle    = "http://millieho.net/2012/08/06/doodle-musical-mismatch/"
   composer    = "Jeremy Mates"
-  subsubtitle = "2012-??-??"
-% copyright   = "© 2012 CC Attribution 3.0 United States License"
+  subsubtitle = "2012-08-17"
+  copyright   = "© 2012 Creative Commons Attribution 3.0 United States License"
   tagline     = ##f
 }
 
@@ -21,9 +21,9 @@
 
 \include "articulate.ly"
 
-%                                                                         %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     Upper     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                         %
+%                                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     Upper     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                           %
 
 voiceoneone = {
   \set Score.tempoHideNote = ##t
@@ -62,7 +62,8 @@ voiceonetwo = {
   g'4) c'4 g'2 |
   r2 c'4( e'4 |
   e'1) |
-  f'2 d'4-. b'4-. |
+  \set Score.tempoHideNote = ##t
+  f'2 d'4 b'4 |
 
   \set Score.tempoHideNote = ##t
   d'2( a'4 \tempo 4=116 ees'4~_\markup { \italic "rit." } |
@@ -73,27 +74,35 @@ voiceonetwo = {
   e'4->) r4 des'4 g'4~ |
   g'4 f'4( d'!) r |
   << { g'4( a'2.) } \\ { s2 c'2 } >> |
+}
+
+voiceonethree = {
+  \set Score.tempoHideNote = ##t
+  \tempo 4=120
   a'4( a'4 a'2 |
 
   b'2) a'4( e'4 |
+  \set Score.tempoHideNote = ##t
   d'4) a'4( ges'4) r4 |
   des'1 |
   \set Score.tempoHideNote = ##t
-  \time 3/4
-% \tempo 4=132
-    g'!2.->
-%   \tempo 4=152
-%   r8
-%   \tempo 4=120
-%   r2 |
+  g'!2. r4 |
 
-% \tempo 4=144
-  \times 2/3 { aes'4( e'4 c'~) } c'4 |
+  \set Score.tempoHideNote = ##f
+  r4 \tempo 4=168 r128 aes'8....( e'4 c'4~) |
+  \tempo 4=96 c'2. r4
+  \tempo 4=72 r2 g'!4( ees'4 |
+  b'!1~) |
+
+  \tempo 4=66 b'1 |
+  g'1~\ppp |
+  g'1~ |
+  g'1 |
 }
 
-%                                                                         %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     Lower     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                         %
+%                                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     Lower     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                           %
 
 voicetwoone = {
   \repeat volta 2 {
@@ -137,20 +146,30 @@ voicetwotwo = {
   r4 c4 g2 |
   aes4 d!4 aes4( f4 |
   g4) c4 g2 |
+}
+
+voicetwothree = {
   r2 c4( e4 |
 
   e1) |
-  f2 d4-. b4-. |
-  d2( a4 ees4~ |
-  \time 3/4
-  ees8) r8 \times 2/3 { ges4.( a) } |
+  f2 d4 b4 |
+  d2 a4 ees4~ |
+  ees4 e ges2( |
 
-  \times 2/3 { ees4( ges f~) } f4 |
+  a4 ees4 ges4 r128 f8....)~ |
+  f4 d4( ges4 bes4)~ |
+  bes4 r2. |
+  R1 |
+
+  r2 d2\pp |
+  R1 |
+  R1 |
+  R1 |
 }
 
-%                                                                         %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     Pedal     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                         %
+%                                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     Pedal     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                           %
 
 pedalone = {
   \repeat volta 2 {
@@ -195,23 +214,36 @@ pedaltwo = {
   s2\sustainOff s2\sustainOn |
   s2\sustainOff s2\sustainOn |
   s2\sustainOff s2\sustainOn |
+}
+
+pedalthree = {
   s2\sustainOff s2\sustainOn |
 
   s2\sustainOff\sustainOn s2 |
   s4\sustainOff\sustainOn s2 s4\sustainOff |
   s1\sustainOn |
-  \time 3/4
-  s8 s8\sustainOff s4 s4 |
+  s1\sustainOff |
+
+  s1 |
+  s4\sustainOn s4\sustainOff\sustainOn s4 s4 |
+  s2 s2\sustainOff\sustainOn |
+  s1 |
+  s1 |
+
+  s1\sustainOff\sustainOn |
+  s1 |
+  s1 |
 }
 
-%                                                                         %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     Misc.     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                         %
+%                                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     Misc.     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                           %
 
 voiceone = {
   \clef treble
   \voiceoneone
   \voiceonetwo
+  \voiceonethree
   \bar "|."
 }
 
@@ -219,12 +251,14 @@ voicetwo = {
   \clef bass
   \voicetwoone
   \voicetwotwo
+  \voicetwothree
   \bar "|."
 }
 
 pedal = {
   \pedalone
   \pedaltwo
+  \pedalthree
 }
 
 theblackdots = {
@@ -248,7 +282,7 @@ themusic = {
       \set Score.midiChannelMapping = #'instrument
       \new Staff = "upper" \voiceone
       \new Staff = "lower" \voicetwo
-    % as otherwise dynamics are not picked up on by player
+    % as otherwise Dynamics are not picked up on by player
       \new Staff = "pedal" \pedal
     >>
   >>
@@ -263,13 +297,13 @@ themusic = {
   \unfoldRepeats \articulate { \themusic }
   \midi { }
 }
-  \markuplines { \paragraph {
-This work is licensed under the Creative Commons Attribution 3.0 United
-States License. To view a copy of this license, visit
-http://creativecommons.org/licenses/by/3.0/us/ or send a letter to
-Creative Commons, 171 Second Street, Suite 300, San Francisco,
-California, 94105.
-} }
+%  \markuplines { \paragraph {
+%This work is licensed under the Creative Commons Attribution 3.0 United
+%States License. To view a copy of this license, visit
+%http://creativecommons.org/licenses/by/3.0/us/ or send a letter to
+%Creative Commons, 171 Second Street, Suite 300, San Francisco,
+%California, 94105.
+%} }
 
-%                                                                         %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      FIN      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      FIN      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
