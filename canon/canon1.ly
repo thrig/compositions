@@ -80,7 +80,7 @@ timpani = \relative a {
 }
 
 tambourine = {
-  \set DrumStaff.instrumentName = #"Tambourine"
+  \set RhythmicStaff.instrumentName = #"Tambourine"
 
   \drummode {
     \keytempoetc
@@ -124,8 +124,8 @@ theblackdots = {
 
       \new Staff = "upper" \upper
       \new Staff = "lower" \lower
+      \new RhythmicStaff = "tambourine" \tambourine
       \new Staff = "timpani" \timpani
-      \new DrumStaff = "tambourine" \tambourine
     >>
   >>
 }
