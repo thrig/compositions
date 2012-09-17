@@ -1,0 +1,68 @@
+#!/usr/bin/perl
+#
+# Reverse a (simple) line of lilypond notation. Lilypond does have a
+# 'retrograde' function but this is easier for me than dealing with
+# lilypond details. Usage:
+#
+#   perl reverse-voice voice1.ly > voice2.ly
+#
+# And then \include the voice* files via a master lilypond file.
+
+use strict;
+use warnings;
+
+my @music;
+while (<>) {
+  next if m/^\s*(%|$)/;
+  push @music, split;
+}
+
+# Must reverse the direction of any leaps, and offset them to the
+# previous note, so that the music line in the backwards direction
+# behaves properly.
+for my $i ( 1 .. $#music ) {
+  if ( $music[$i] =~ m/([,'])/ ) {
+    $music[$i] =~ tr/,'//d;
+
+    ( my $counterleap = $1 ) =~ tr/,'/',/;
+    for my $j ( reverse 0 .. $i - 1 ) {
+      next if $music[$j] =~ m/^r/;
+      $music[$j] =~ s/^([a-g](?:es|is|eses|isis)?)/$1$counterleap/;
+      last;
+    }
+  }
+
+  if ( $music[ $i - 1 ] =~ m/[~]/
+    and get_note( $music[ $i - 1 ] ) eq get_note( $music[$i] ) ) {
+    $music[ $i - 1 ] =~ tr/~//d;
+    $music[$i] .= '~';
+  }
+
+  $music[$i] =~ tr/()/)(/;
+}
+
+@music = reverse @music;
+for my $i ( 0 .. $#music - 1 ) {
+  if ( defined $music[$i] and $music[$i] eq '}' ) {
+    for my $j ( $i + 1 .. $#music ) {
+      if (  $music[$j] eq '{'
+        and $music[ $j + 1 ] =~ m{\d\/\d}
+        and $music[ $j + 2 ] =~ m/times/ ) {
+        $music[$i]       = join( ' ', @music[ $j + 2, $j + 1 ], '{' );
+        $music[$j]       = '}';
+        $music[ $j + 1 ] = '';
+        $music[ $j + 2 ] = '';
+      }
+    }
+  }
+}
+print join( ' ', @music ), "\n";
+
+sub get_note {
+  my ($spec) = @_;
+  my $note;
+  if ( $spec =~ m/^([a-g](?:es|is|eses|isis)?)/ ) {
+    $note = $1;
+  }
+  return $note;
+}
