@@ -25,8 +25,11 @@ voiceone = \relative g' {
   \clef treble
 
   g1->\mp
+  \bar "||"
   a-> d-> c-> e-> g-> a-> g,->
+  \bar "||"
   a-> d-> c-> e-> g-> a-> g,->
+  \bar "||"
   a-> b-> a->\p g--\pp
 }
 
@@ -36,8 +39,11 @@ voicetwo = \relative c' {
   \clef bass
 
   R1
+  \bar "||"
   c->\p b-> fis-> g-> e-> c-> b->
+  \bar "||"
   c'-> b-> fis-> g-> e-> c-> b->
+  \bar "||"
   
   fis'-> g-> d->\pp g--\ppp
 }
@@ -50,8 +56,11 @@ voicethree = \relative a' {
   \clef treble
 
   R1
+  \bar "||"
   b1->\pp cis1-> b1-> cis-> cis-> d-> e->
+  \bar "||"
   fis1-> cis1-> b1-> cis-> cis-> d-> e->
+  \bar "||"
   d-> cis-> gis->\ppp a--\pppp
 }
 
