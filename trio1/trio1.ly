@@ -2,7 +2,7 @@
 %
 % http://soundcloud.com/thrig
 
-\version "2.12.3"
+\version "2.16.0"
 
 % http://www.mail-archive.com/lilypond-user@gnu.org/msg38823.html
 %\include "articulate.ly"
@@ -366,7 +366,7 @@ theBassoon = \new Voice {
     }
     \midi { }
   }
-  \markuplines { \paragraph { \tiny	 {
+  \markuplist { \paragraph { \tiny	 {
 This work is licensed under the Creative Commons Attribution 3.0 United
 States License. To view a copy of this license, visit
 http://creativecommons.org/licenses/by/3.0/us/ or send a letter to

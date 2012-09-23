@@ -6,7 +6,7 @@
 % reaction to my trill-free (fanfare1) and rhythmically bland (menuet3)
 % prior works.
 
-\version "2.14.0"
+\version "2.16.0"
 
 \include "articulate.ly"
 
@@ -199,7 +199,7 @@ theMusic = {
     }
     \midi { }
   }
-  \markuplines { \paragraph {
+  \markuplist { \paragraph {
 This work is licensed under the Creative Commons Attribution 3.0 United
 States License. To view a copy of this license, visit
 http://creativecommons.org/licenses/by/3.0/us/ or send a letter to

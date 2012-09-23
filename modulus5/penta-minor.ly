@@ -1,4 +1,4 @@
-\version "2.12.0"
+\version "2.16.0"
 
 #(define-markup-list-command (paragraph layout props args) (markup-list?)
  (interpret-markup-list layout props
@@ -33,7 +33,7 @@ c1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c
 
 }
 
-\markuplines { \paragraph {
+\markuplist { \paragraph {
 mcp2ly voc 0 3 5 7 10
 } }
 

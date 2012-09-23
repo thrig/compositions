@@ -2,7 +2,7 @@
 %
 % http://soundcloud.com/thrig
 
-\version "2.12.3"
+\version "2.16.0"
 
 #(define-markup-list-command (paragraph layout props args) (markup-list?)
  (interpret-markup-list layout props
@@ -140,7 +140,7 @@ theMusic = {
   }
   \midi { }
 }
-  \markuplines { \paragraph {
+  \markuplist { \paragraph {
 This work is licensed under the Creative Commons Attribution 3.0 United
 States License. To view a copy of this license, visit
 http://creativecommons.org/licenses/by/3.0/us/ or send a letter to
