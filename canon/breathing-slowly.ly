@@ -7,6 +7,7 @@
 
 \header {
   title       = "Breathing Slowly"
+  subtitle    = "Inverse Canon (plus Clarinet)"
   subsubtitle = "2012-09-22"
   composer    = "Jeremy Mates"
   copyright   = "© 2012 Creative Commons Attribution 3.0 United States License"
