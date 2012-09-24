@@ -1,9 +1,14 @@
 % LilyPond engraving system - http://www.lilypond.org/
 %
-% Inverse Canon (plus a Clarinet).
+% Inverse Canon (plus a Clarinet). Probably too long, compared to the
+% shorter version, without redeeming modulation or other interest in the
+% middle. However, variations on the shorter version could be made by
+% picking different Clarinet lines from this one.
 
 \version "2.16.0"
 \include "articulate.ly"
+
+#(define-markup-list-command (paragraph layout props args) (markup-list?) (interpret-markup-list layout props (make-justified-lines-markup-list (cons (make-hspace-markup 4) args))))
 
 \header {
   title       = "Breathing Slowly - Extended Remix"
@@ -35,7 +40,7 @@ voiceone = \relative g' {
   a-> d-> c-> e-> g-> a-> g,->
 
   \bar "||"
-  a-> b-> a->\p g--\pp
+  a-> b-> a\p g--\pp
 }
 
 voicetwo = \relative c' {
@@ -54,7 +59,7 @@ voicetwo = \relative c' {
   c'-> b-> fis-> g-> e-> c-> b->
 
   \bar "||"
-  fis'-> g-> d->\pp g--\ppp
+  fis'-> g-> d\pp g--\ppp
 }
 
 voicethree = \relative a' {
@@ -79,7 +84,7 @@ voicethree = \relative a' {
   d1-> a-> b-> cis-> fis-> fis-> e->
 
   \bar "||"
-  d1-> cis-> gis->\ppp a--\pppp
+  d1-> cis-> gis\ppp a--\pppp
 }
 
 %                                                                           %
@@ -142,3 +147,7 @@ themusic = {
   \articulate { \themusic }
   \midi { }
 }
+
+\markuplist { \vspace #1 \paragraph {
+The Oboe melodic peak may need dynamic reduction to avoid drowing out the other voices; aim for simplicity and balance (and the Basson a slight increase on the C to B descent before the barline?). Notes should be attacked very softly, and show a slight <> dynamic, probably longer on the increase, as one does when breathing. Avoid a fermata on the final note; holding it and the penultimate note slightly longer than the previous notes should suffice.
+} }
