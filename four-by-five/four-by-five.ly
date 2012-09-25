@@ -1,14 +1,15 @@
 % LilyPond engraving system - http://www.lilypond.org/
-%
-% Started as canon practice, evolved from there.
 
 \version "2.16.0"
 \include "articulate.ly"
 
+#(define-markup-list-command (paragraph layout props args) (markup-list?) (interpret-markup-list layout props (make-justified-lines-markup-list (cons (make-hspace-markup 4) args))))
+
 \header {
-  title       = "Four by Five - DRAFT"
+  title       = "Four by Five"
+  subtitle    = "(for Marimba(s) or similar instrumentation)"
   composer    = "Jeremy Mates"
-  subsubtitle = "2012-??-??"
+  subsubtitle = "2012-09-24"
   copyright   = "© 2012 Creative Commons Attribution 3.0 United States License"
   tagline     = ##f
 }
@@ -17,6 +18,21 @@ keytempoetc = {
   \time 3/4
   \tempo "Sprightly" 4=164
   \key a \minor
+}
+
+codatheme = \relative c'' {
+  c4 c8 c8 c8 c8
+  aes'2 r4 |
+  ees8 ees8 ees8 ees8 ees8 ees8 |
+  c4 r8 c4 r8 |
+  d4 d8 d8 d8 d8 |
+  aes'4 aes4 aes4 |
+  ees8 ees8 ees8 ees8 ees8 ees8 |
+  d4 d8 d8 d4 |
+  g,4 g8 g8 g8 g8 |
+  b2 r4 |
+  c2 r4 |
+  g2 r4 |
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     SOPRANO     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -39,7 +55,7 @@ sopranoone = \relative e'' {
     g4 r e |
 
     e8 d e4 r
-    d2.
+    d2 r4
     a4 c4 d
     r4 g4 r4 |
 
@@ -61,10 +77,10 @@ sopranoone = \relative e'' {
 }
 
 sopranotwo = \relative e'' {
-  f!2.\mp^\markup{ \concat { \bold{Sakura} " [10,2,4,5,9] 2112" \bold {3} "1" }  }
-  f2.
-  e2.
-  e2. |
+  f!2\mp^\markup{ \concat { \bold{Sakura} " [10,2,4,5,9] 2112" \bold {3} "1" }  } r4
+  f2 r4
+  e2 r4
+  e2 r4 |
 
   R2.
   R2.
@@ -89,21 +105,67 @@ sopranotwo = \relative e'' {
   a8 a g2)
   R2.
   R2.
-  f2.\mp |
+  f2\mp r4 |
 
-  r2 f4
-  R2.
+  r2 f4~
+  f4 r2
   r4 e2
-  R2.
+  R2. |
 
-  e2.
+  e2 r4
   r4 f2
-  f2 r8 a
+  f2 r8 a~
+  a4. r4. |
+
+  r4 f2
+  r2 f4~
+  f4 r f
+  f2 f4 |
+ \bar "||"
+}
+
+sopranothree = {
+  R2.^\markup{ \concat { \bold { "Crab Canon" } } } R2. R2. R2.
+  R2. R2. R2. R2.
+  R2. R2. R2. R2.
+  R2. R2. R2. R2.
+
+  R2. R2. R2. R2.
+  R2. R2. R2. R2.
+  R2. R2. R2. R2.
+  R2. R2. R2. R2.
+
+  R2. R2. R2. R2.
+ \bar "||"
+}
+
+sopranofour = {
   R2.
-  r4 f2
-  r2 f4
-  r2 f4
-  f2 f4
+ \compressFullBarRests
+ \textLengthOn
+  s1*0^\markup{ \halign #6 \concat { \bold { "Improvise on " } \smaller { "F♯ G A B♭ C♯" } } }
+  R2.*31
+ \textLengthOff
+ \expandFullBarRests
+ \bar "||"
+}
+
+sopranofive = \relative d'' {
+  R2.
+  R2.
+  R2.
+  R2.^\markup{ \concat \bold { "Spiral Canon" } } 
+
+  \key d \minor
+  \transpose c d { \codatheme }
+  \key cis \minor
+  \transpose c cis { \codatheme }
+  \key c \minor
+  \transpose c c { \codatheme }
+  \key b \minor
+  \transpose c b, { \codatheme }
+
+  R2.*4
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      ALTO       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -125,7 +187,7 @@ altoone = \relative d'' {
     e4 r d
     d8 c d4 r |
 
-    c2.
+    c2 r4
     g4 a4 c
     r4 e4 r4
     r8 d c d e r |
@@ -148,10 +210,10 @@ altoone = \relative d'' {
 }
 
 altotwo = \relative d'' {
-  d2.\mp
-  d2.
-  d2.
-  d2. |
+  d2\mp r4
+  d2 r4
+  d2 r4
+  d2 r4 |
 
   r4. e8(\mf e e
   d8 e f4 f8 f
@@ -176,21 +238,156 @@ altotwo = \relative d'' {
   r4. d8( d d
   bes8 d e4 e8 e
   e8 e d2)
-  d2.\mp |
+  d2\mp r4 |
 
-  r2 d4
-  R2.
+  r2 d4~
+  d4 r2
   r4 d2
-  R2.
+  R2. |
 
-  d2.
+  d2 r4
   r4 e2
-  d2 r8 d
-  R2.
+  d2 r8 d~
+  d4. r4. |
+
   r4 d2
-  r2 d4
-  r2 d4
-  d2 d4
+  r2 d4~
+  d4 r d
+  d2 d4 |
+ \bar "||"
+}
+
+altothree = \relative a' {
+  R2.
+  a4(\mp r2
+  R2. |
+
+  d,4 r2
+  a'4) r4 g4(\mf
+  f4 e8 d8 e4
+  a4 g4) r4 |
+
+  a4( d4 c4
+  bes8 a8 g8 a8 g8 f8
+  d4 e4 f4
+  g8 e8 f4 d4 |
+
+  f4 e4 d4
+  c4 b4 a4)
+  d4( cis4 r4
+  e4) r2 |
+
+  r4 f4(\mp r4
+  R2.
+  R2.
+  d4\p)( r2 |
+
+  R2.
+  r2 f4\mp)
+  R2.
+  e4(\mf r4 cis4 |
+
+  d4) a4( b4
+  c4 d4 e4
+  f4 d4 f4
+  e8 g8 f4 e4 |
+
+  d4 f8 g8 a8 g8
+  a8 bes8 c4 d4
+  a4) r4 g4(
+  a4 e4 d8 e8 |
+
+  f4 g4) r4
+  a4(\mp r2
+  d,4 r2
+  R2. |
+
+  a'4) r2
+ \bar "||"
+}
+
+altofour = \relative e' {
+ \compressFullBarRests
+  R2.*31
+  ees2 r4
+ \expandFullBarRests
+ \bar "||"
+}
+
+altofourmidi = \relative b' {
+  r4. bes4~
+  bes4.~ bes16 a r32 bes16 a8 g32~ 
+  g8. fis16~ fis8. g16~ g8. a16~ 
+  a2.~ 
+
+  \times 2/3 { a8 cis bes } a16 bes16. a16 bes32 a8 g 
+  r32 fis32~ fis16~ fis8 g8.~ g32 fis~ fis4~ 
+  fis2~ fis8~ fis32 g32~ g16 
+  a16. bes16 a32 bes a r32 bes16~ bes32 cis16~ cis8~ cis32 bes~ bes8~ 
+
+  bes8. a16~ a4 bes4~ 
+  bes4.~ bes16 a r32 a8 a32 r16 
+  a16. a a16 r32 g16~ g32 fis16~ fis16~ fis4 
+  g4 a r32 g32~ g16~ g8~ 
+
+  g4.~ g8 cis8. r32 cis32~ 
+  cis8. r32 cis32 r16 cis16 cis16. cis32 r16 cis16 bes8 
+  r32 a16~ a32 g16~ g8 fis8~ fis8 g8.~ 
+  g8 a r8 a16. a32 r16 a16. a32 r16 
+
+  a16 a32 bes16. a16 r16 g8. r32 fis8. g32~ 
+  g8.~ g32 fis~ fis2~ 
+  fis4~ fis16. g32~ g8~ g16. a32~ a8 
+  \times 2/3 { r8 a8 a8 } a16. bes16 a32 cis16~ cis16 bes8 a16 
+
+  r16 bes8~ bes32 a32~ a16 g16~ g8 a4 
+  r32 g32~ g16~ g8~ g16 fis16~ fis8~ fis8~ fis32 g32~ g16~ 
+  g4~ g16 bes16~ bes8~ bes4~ 
+  bes4. a8~ a4~ 
+
+  a2~ a8~ a32 cis32~ cis16 
+  cis16. cis16. bes16 r32 cis32 bes16. a32~ a16 r16 g8~ g32 fis~ 
+  fis8 r32 g32~ g16 r16 a8 a16 r16 a16. a16 a32 
+  \times 2/3 { r8 a bes } a8 g16. fis32 \times 2/3 { r8 g a } 
+
+  bes16. cis16. cis16 r32 cis16. cis32 bes16 a32~ \times 2/3 { a16 bes a~ } a16. g32 
+  r16 fis32~ fis8 r32 g32~ g16.~ g8~ g4~ 
+  g16. fis32~ fis8~ fis2 
+  r32 ees2~ ees8~ ees16~ ees8~ ees32 |
+}
+
+altofive = \relative d' {
+  d2 r4
+  d2 r4
+  d4 r8 d4 r8
+  d4 d8 d8 d8 d8
+
+  d2 r4
+  R2.
+  R2.
+  R2.
+
+  R2.
+  R2.
+  R2.
+  R2.
+
+  R2.
+  R2.
+  R2.
+  R2.
+
+  R2.
+  R2.
+  R2.
+  R2.
+
+  R2.*32
+
+  R2.
+  R2.
+  R2.
+  R2.
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      TENOR      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -210,7 +407,7 @@ tenorone = \relative c' {
     a,4 r2
     d4 r c
     c8 a c4 r
-    a2. |
+    a2 r4 |
 
     e4 g4 a
     r4 d4 r4
@@ -236,8 +433,8 @@ tenorone = \relative c' {
 
 tenortwo = \relative a {
   R2.
-  r4. a4.\mp
-  R2.
+  r4. a4.\mp~
+  a8 r8 r2
   r4. bes8(\mf bes bes |
 
   a8 bes d4 d8 d
@@ -273,12 +470,83 @@ tenortwo = \relative a {
 
   R2.
   r4 d2\mp
-  d2 r8 d
-  R2.
+  d2 r8 d~
+  d4. r4. |
+
   r4 d2
-  r2 e4
-  r2 f4
-  e2 d4
+  r2 e4~
+  e4 r f
+  e2 d4( |
+ \bar "||"
+}
+
+tenorthree = \relative d' {
+  R2.
+  R2.
+  r4 f4) r4 |
+
+  r2 e4(\mf
+  r4 cis4 d4)
+  a4( b4 c4
+  d4 e4 f4 |
+
+  d4 f4 e8 g8
+  f4 e4 d4
+  f8 g8 a8 g8 a8 bes8
+  c4 d4 a4) |
+
+  r4 g4( a4
+  e4 d8 e8 f4
+  g4) r4 a4(\mp
+  r2 d,4 |
+
+  R2.
+  r2 a'4)
+  R2.
+  R2. |
+
+  r4 a4( r4
+  R2.
+  r4 d,4 r4
+  r4 a'4) r4 |
+
+  g4(\mf f4 e8 d8
+  e4 a4 g4)
+  r4 a4( d4
+  c4 bes8 a8 g8 a8 |
+
+  g8 f8 d4 e4
+  f4 g8 e8 f4
+  d4 f4 e4
+  d4 c4 b4 |
+
+  a4) d4( cis4
+  r4 e4) r4
+  r2 f4(\mp
+  R2. |
+
+  R2.
+ \bar "||"
+}
+
+tenorfour = \relative d' {
+ \compressFullBarRests
+  r4 d4) r4 R2.*31
+ \expandFullBarRests
+ \bar "||"
+}
+
+tenorfive = \relative d' {
+  R2.*7
+  \key d \minor
+  \transpose c f, { \codatheme }
+  \key cis \minor
+  \transpose c e, { \codatheme }
+  \key c \minor
+  \transpose c ees, { \codatheme }
+  \key b \minor
+  \transpose c d, { \codatheme }
+  R2.
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      BASS       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -299,7 +567,7 @@ bassone = \relative a {
 
     c4 r a
     a8 g a4 r
-    g2.
+    g2 r4
     d4 e4 g |
 
     r4 c4 r4
@@ -325,10 +593,10 @@ bassone = \relative a {
 }
 
 basstwo = \relative d' {
-  d2.\mp
-  d2.
-  d2.
-  d2. |
+  d2\mp r4
+  d2 r4
+  d2 r4
+  d2 r4 |
 
   R2.
   r4. a8(\mf a a
@@ -358,16 +626,75 @@ basstwo = \relative d' {
   e8 e d d bes4)
   r4 a2
   r4 d2\mp
+  R2. |
+
+  d2 r4
+  r4 a2
+  a2 r8 a~
+  a4. r4. |
+
+  r4 bes2
+  r2 bes4~
+  bes4 r a
+  a2 a4 |
+ \bar "||"
+}
+
+bassthree = {
+  R2. R2. R2. R2.
+  R2. R2. R2. R2.
+  R2. R2. R2. R2.
+  R2. R2. R2. R2.
+
+  R2. R2._\markup{ \concat { \bold { "nonaC barC" } } } R2. R2.
+  R2. R2. R2. R2.
+  R2. R2. R2. R2.
+  R2. R2. R2. R2.
+
+  R2. R2. R2. R2.
+ \bar "||"
+}
+
+bassfour = {
+ \compressFullBarRests
+  R2.*32
+ \expandFullBarRests
+ \bar "||"
+}
+
+bassfive = \relative d {
+  R2.
+  R2.
+  R2.
   R2.
 
-  d2.
-  r4 a2
-  a2 r8 a
   R2.
-  r4 bes2
-  r2 bes4
-  r2 a4
-  a2 a4
+  R2.
+  R2.
+  R2.
+
+  R2.
+  R2.
+  R2.
+  R2.
+
+  R2.
+  R2.
+  R2.
+  R2.
+
+  R2.
+  R2.
+  R2.
+  R2.
+
+  R2.
+  R2.
+  R2.
+  R2.
+
+  R2.*31
+  d2 r4
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     voices      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -381,6 +708,9 @@ soprano = {
   \sopranoone
   \break
   \sopranotwo
+  \sopranothree
+  \sopranofour
+  \sopranofive
 
   \bar "|."
 }
@@ -394,6 +724,24 @@ alto = {
   \altoone
   \break
   \altotwo
+  \altothree
+  \altofour
+% \altofourmidi
+  \altofive
+
+  \bar "|."
+}
+altomidi = {
+  \set Staff.midiInstrument = #"marimba"
+
+  \keytempoetc
+  \clef treble
+
+  \altoone
+  \altotwo
+  \altothree
+  \altofourmidi
+  \altofive
 
   \bar "|."
 }
@@ -407,6 +755,9 @@ tenor = {
   \tenorone
   \break
   \tenortwo
+  \tenorthree
+  \tenorfour
+  \tenorfive
 
   \bar "|."
 }
@@ -420,6 +771,9 @@ bass = {
   \bassone
   \break
   \basstwo
+  \bassthree
+  \bassfour
+  \bassfive
 
   \bar "|."
 }
@@ -448,7 +802,7 @@ themusic = {
       \set Score.midiChannelMapping = #'instrument
 
       \new Staff = "soprano" \soprano
-      \new Staff = "alto" \alto
+      \new Staff = "alto" \altomidi
       \new Staff = "tenor" \tenor
       \new Staff = "bass" \bass
     >>
@@ -468,7 +822,6 @@ themusic = {
   }
 }
 
-\markup { \wordwrap {
-Marimba or instruments with low sustain times should be used; longer notes are used to eliminate rest clutter, not indicate that the note should actually be held that long. Dynamics left to the whim of the performer(s), though the changes likely should favor subtle changes over dramatic contrasts.
+\markuplist { \vspace #1 \paragraph {
+Marimba or instruments with low sustain times should be used; the longer notes mostly eliminate rest clutter, and do not indicate that the note should actually be held that long. Dynamics are left to the whim of the performer(s), though these likely should favor subtle changes over dramatic contrasts. The improvise section should last around 32 measures, or otherwise balance with the earlier "Sakura" section. There might be suitable pedal notes or other accompaniment from other performers, or just a solo. Improvisation should be more expressive than rhythmic (listen to the Oud or similar Arabian music for ideas) though if you can make something else work for the five notes, go for it. For a larger improvisation space, consider from highest note down, D C♯ B♭ A G F♯ E♭ D C B A♭ G F E (a series of overlapping maqam).
 } }
-
