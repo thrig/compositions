@@ -21,7 +21,7 @@ keytempoetc = {
 }
 
 codatheme = \relative c'' {
-  c4 c8 c8 c8 c8
+  c4 c8 c8 c8 c8 |
   aes'2 r4 |
   ees8 ees8 ees8 ees8 ees8 ees8 |
   c4 r8 c4 r8 |
@@ -153,8 +153,8 @@ sopranofour = {
 sopranofive = \relative d'' {
   R2.
   R2.
-  R2.
-  R2.^\markup{ \concat \bold { "Spiral Canon" } } 
+  r2 d4
+  d4^\markup{ \concat \bold { "Spiral Canon" } } d d
 
   \key d \minor
   \transpose c d { \codatheme }
@@ -165,7 +165,11 @@ sopranofive = \relative d'' {
   \key b \minor
   \transpose c b, { \codatheme }
 
-  R2.*4
+  R2.
+  R2.
+  R2.
+  R2.
+
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      ALTO       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -360,10 +364,10 @@ altofive = \relative d' {
   d2 r4
   d2 r4
   d4 r8 d4 r8
-  d4 d8 d8 d8 d8
+  d4 r8 d4 r8
 
+  d4 d4 d4
   d2 r4
-  R2.
   R2.
   R2.
 
@@ -384,10 +388,7 @@ altofive = \relative d' {
 
   R2.*32
 
-  R2.
-  R2.
-  R2.
-  R2.
+  R2.*4
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      TENOR      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -537,6 +538,8 @@ tenorfour = \relative d' {
 }
 
 tenorfive = \relative d' {
+  \clef treble
+
   R2.*7
   \key d \minor
   \transpose c f, { \codatheme }
@@ -662,39 +665,43 @@ bassfour = {
  \bar "||"
 }
 
-bassfive = \relative d {
+bassfive = \relative bes {
+  R2.*4
+
+  R2.
+  bes4 r8 bes4 r8
+  bes2 r4
+  R2.
+
+  R2.*8
+
+  R2.
+  a4 r8 a4 r8
   R2.
   R2.
+
+  R2.*8
+
+  R2.
+  aes4 r8 aes4 r8
   R2.
   R2.
+
+  R2.*8
+
+  R2.
+  g4 r8 g4 r8
+  R2.
+  R2.
+
+  R2.*8
 
   R2.
   R2.
   R2.
-  R2.
-
-  R2.
-  R2.
-  R2.
-  R2.
-
-  R2.
-  R2.
-  R2.
-  R2.
-
-  R2.
-  R2.
-  R2.
-  R2.
-
-  R2.
-  R2.
-  R2.
-  R2.
-
-  R2.*31
-  d2 r4
+  \relative d {
+    d2 r4
+  }
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     voices      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
