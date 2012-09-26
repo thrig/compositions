@@ -9,7 +9,7 @@
   title       = "Four by Five"
   subtitle    = "(for Marimba(s) or similar instrumentation)"
   composer    = "Jeremy Mates"
-  subsubtitle = "2012-09-24"
+  subsubtitle = "2012-09-25"
   copyright   = "© 2012 Creative Commons Attribution 3.0 United States License"
   tagline     = ##f
 }
