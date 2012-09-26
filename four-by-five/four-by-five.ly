@@ -50,26 +50,26 @@ sopranoone = \relative e'' {
     R2. |
 
     g'4 e8 d e4
-    g4 a8 a r4
-    d,4 r2
+    g4 a8 a4 r8
+    d,2 r4
     g4 r e |
 
     e8 d e4 r
     d2 r4
     a4 c4 d
-    r4 g4 r4 |
+    r4 g2 |
 
-    r8 e d e g r
-    e8 d r2
+    r8 e d e g4
+    e8 d4 r4.
     r4 r8 e8 d c
     a4 r4 r8 e'8 |
 
-    e4 r2
-    r8 e r2
-    r4 e8 e r4
-    r2 e4 |
+    e2 r4
+    r8 e8~ e4. r8
+    r4 e8 e4 r8
+    r2 e4~ |
 
-    R2.
+    e4 r2
     e4 r2
     r2 e4
     e8 e e g e4 |
@@ -186,25 +186,25 @@ altoone = \relative d'' {
     R2.
     e'4 d8 c d4 |
 
-    e4 g8 g r4
-    c,4 r2
+    e4 g8 g4 r8
+    c,2 r4
     e4 r d
     d8 c d4 r |
 
     c2 r4
     g4 a4 c
-    r4 e4 r4
-    r8 d c d e r |
+    r4 e2
+    r8 d c d e4 |
 
-    d8 c r2
+    d8 c4 r4.
     r4 r8 d8 c a
     g4 r4 r8 d'8
-    d4 r2 |
+    d2 r4 |
 
-    r8 d r2
-    r4 d8 d r4
-    r2 d4
-    R2. |
+    r8 d~ d4. r8
+    r4 d8 d4 r8
+    r2 d4~
+    d4 r2 |
 
     d4 r2
     r2 d4
@@ -403,26 +403,26 @@ tenorone = \relative c' {
     g4 d r
     R2.
     d'4 c8 a c4
-    d4 e8 e r4 |
+    d4 e8 e4 r8 |
 
-    a,4 r2
+    a,2 r4
     d4 r c
     c8 a c4 r
     a2 r4 |
 
     e4 g4 a
-    r4 d4 r4
-    r8 c a c d r
-    c8 a r2 |
+    r4 d2
+    r8 c a c d4
+    c8 a4 r4. |
 
     r4 r8 c8 a g
     e4 r4 r8 c'8
-    c4 r2
-    r8 c r2 |
+    c2 r4
+    r8 c~ c4. r8 |
 
-    r4 c8 c r4
-    r2 c4
-    R2.
+    r4 c8 c4 r8
+    r2 c4~
+    c4 r2
     c4 r2 |
 
     r2 c4
@@ -565,26 +565,26 @@ bassone = \relative a {
   \repeat volta 2 {
     R2.
     c'4 a8 g a4
-    c4 d8 d r4
-    g,4 r2 |
+    c4 d8 d4 r8
+    g,2 r4 |
 
     c4 r a
     a8 g a4 r
     g2 r4
     d4 e4 g |
 
-    r4 c4 r4
-    r8 a g a c r
-    a8 g r2
+    r4 c2
+    r8 a g a c4
+    a8 g4 r4.
     r4 r8 a8 g e |
 
     d4 r4 r8 a'8
-    a4 r2
-    r8 a r2
-    r4 a8 a r4 |
+    a2 r4
+    r8 a~ a4. r8
+    r4 a8 a4 r8 |
 
-    r2 a4
-    R2.
+    r2 a4~
+    a4 r2
     a4 r2
     r2 a4 |
 
