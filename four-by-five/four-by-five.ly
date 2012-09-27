@@ -9,7 +9,7 @@
   title       = "Four by Five"
   subtitle    = "(for Marimba(s) or similar instrumentation)"
   composer    = "Jeremy Mates"
-  subsubtitle = "2012-09-25"
+  subsubtitle = "2012-09-27"
   copyright   = "© 2012 Creative Commons Attribution 3.0 United States License"
   tagline     = ##f
 }
@@ -46,7 +46,7 @@ sopranoone = \relative e'' {
   \repeat volta 2 {
     d2 d8 c
     d4 c a
-    c4 g r
+    c4 g2
     R2. |
 
     g'4 e8 d e4
@@ -70,7 +70,7 @@ sopranoone = \relative e'' {
     r2 e4~ |
 
     e4 r2
-    e4 r2
+    e2 r4
     r2 e4
     e8 e e g e4 |
   }
@@ -120,22 +120,17 @@ sopranotwo = \relative e'' {
   r4 f2
   r2 f4~
   f4 r f
-  f2 f4 |
+  f2 f4~ |
  \bar "||"
 }
 
-sopranothree = {
-  R2.^\markup{ \concat { \bold { "Crab Canon" } } } R2. R2. R2.
-  R2. R2. R2. R2.
-  R2. R2. R2. R2.
-  R2. R2. R2. R2.
+sopranothree = \relative f'' {
+  f4^\markup{ \concat { \bold { "Crab Canon" } } } r2
+  R2.
+  R2.
+  R2.
 
-  R2. R2. R2. R2.
-  R2. R2. R2. R2.
-  R2. R2. R2. R2.
-  R2. R2. R2. R2.
-
-  R2. R2. R2. R2.
+  R2.*32
  \bar "||"
 }
 
@@ -182,7 +177,7 @@ altoone = \relative d'' {
 
   \repeat volta 2 {
     c4 a g
-    a4 e r
+    a4 e2
     R2.
     e'4 d8 c d4 |
 
@@ -206,7 +201,7 @@ altoone = \relative d'' {
     r2 d4~
     d4 r2 |
 
-    d4 r2
+    d2 r4
     r2 d4
     d8 d d e d4
     c2 c8 a |
@@ -257,12 +252,12 @@ altotwo = \relative d'' {
   r4 d2
   r2 d4~
   d4 r d
-  d2 d4 |
+  d2 d4~ |
  \bar "||"
 }
 
 altothree = \relative a' {
-  R2.
+  d4 r2
   a4(\mp r2
   R2. |
 
@@ -400,7 +395,7 @@ tenorone = \relative c' {
   a4 g e |
 
   \repeat volta 2 {
-    g4 d r
+    g4 d2
     R2.
     d'4 c8 a c4
     d4 e8 e4 r8 |
@@ -423,7 +418,7 @@ tenorone = \relative c' {
     r4 c8 c4 r8
     r2 c4~
     c4 r2
-    c4 r2 |
+    c2 r4 |
 
     r2 c4
     c8 c c d c4
@@ -560,7 +555,7 @@ bassone = \relative a {
    a4
   g2 g8 f!
   g4 e d
-  e4 c r |
+  e4 c2 |
 
   \repeat volta 2 {
     R2.
@@ -585,13 +580,13 @@ bassone = \relative a {
 
     r2 a4~
     a4 r2
-    a4 r2
+    a2 r4
     r2 a4 |
 
     a8 a a c a4
     g2 g8 f!
     g4 e d
-    e4 c r |
+    e4 c2 |
   }
 }
 
@@ -639,22 +634,24 @@ basstwo = \relative d' {
   r4 bes2
   r2 bes4~
   bes4 r a
-  a2 a4 |
+  a2 a4~ |
  \bar "||"
 }
 
 bassthree = {
-  R2. R2. R2. R2.
-  R2. R2. R2. R2.
-  R2. R2. R2. R2.
-  R2. R2. R2. R2.
+  a4 r2
+  R2.
+  R2.
+  R2.
 
-  R2. R2._\markup{ \concat { \bold { "nonaC barC" } } } R2. R2.
-  R2. R2. R2. R2.
-  R2. R2. R2. R2.
-  R2. R2. R2. R2.
+  R2.*12
 
-  R2. R2. R2. R2.
+  R2.
+  R2._\markup{ \concat { \bold { "nonaC barC" } } }
+  R2.
+  R2.
+
+  R2.*16
  \bar "||"
 }
 
