@@ -17,7 +17,7 @@
 }
 
 keytempoetc = {
-  \tempo "Adagio Tranquillamente" 4=72
+  \tempo "Adagio Tranquillamente" 4=70
   \time 4/4
 }
 
