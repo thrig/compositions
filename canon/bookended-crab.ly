@@ -40,7 +40,7 @@ voiceone = \relative g' {
   \bar "||"
   ees4 d
   c4 b
-  c2~ c2~ c2
+  c2~ c2~ c4 r
 }
 
 voicetwo = \relative c' {
@@ -64,7 +64,7 @@ voicetwo = \relative c' {
   g2
   c2
   g2
-  c,2
+  c,4 r
 }
 
 voicethree = \relative c {
@@ -88,7 +88,7 @@ voicethree = \relative c {
   c~
   c~
   c~
-  c
+  c4 r
 }
 
 %                                                                           %
