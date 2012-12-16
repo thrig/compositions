@@ -15,7 +15,7 @@
 
 keytempoetc = {
   \key c \minor
-  \tempo "Moderato" 4=108
+  \tempo "Moderato ben marcato" 4=90
   \time 2/4
 }
 
