@@ -7,7 +7,7 @@
 
 \header {
   title       = "Crab Canon with Bookends"
-  subsubtitle = "2012-12-16"
+  subsubtitle = "2012-12-17"
   composer    = "Jeremy Mates"
   copyright   = "© 2012 Creative Commons Attribution 3.0 United States License"
   tagline     = ##f
@@ -76,17 +76,17 @@ voicethree = \relative c {
   g
   c,
   d
-  g,~
-  g
-  aes~
-  aes
+  g,
+  g'
+  f
+  ees
   f
   c
   d
-  g
+  g,
+  c~
+  c
   c,~
-  c~
-  c~
   c~
   c4 r
 }
