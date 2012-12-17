@@ -23,6 +23,7 @@ voiceone = \relative g' {
   \keytempoetc
   \clef treble
 
+  g2~
   g2
   aes4 f
   d2
@@ -40,13 +41,14 @@ voiceone = \relative g' {
   \bar "||"
   ees4 d
   c4 b
-  c2~ c2~ c4 r
+  c2~ c2~ c2\fermata
 }
 
 voicetwo = \relative c' {
   \keytempoetc
   \clef alto
 
+  r4 c~
   c4 g
   f2
   g4 b
@@ -64,14 +66,15 @@ voicetwo = \relative c' {
   g2
   c2
   g2
-  c,4 r
+  c,2\fermata
 }
 
 voicethree = \relative c {
   \keytempoetc
   \clef bass
 
-  c2
+  c2~
+  c
   f
   g
   c,
@@ -88,7 +91,7 @@ voicethree = \relative c {
   c
   c,~
   c~
-  c4 r
+  c\fermata
 }
 
 %                                                                           %
