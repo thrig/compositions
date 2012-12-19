@@ -15,7 +15,7 @@
 }
 
 keytempoetc = {
-  \tempo "Adagio Maestoso" 4=112
+  \tempo "Adagio Maestoso" 4=108
   \time 3/2
 }
 
@@ -23,34 +23,34 @@ voiceone = \relative b' {
   \keytempoetc
   \clef treble
 
-  b1*3/2->\mp
-  a1*3/2->
-  f1*3/2->
-  e1*3/2->
-  e1*3/2->
-  e1*3/2->
-  g1*3/2->
-  g1*3/2->
-  a1*3/2->
-  e1*3/2->\p
-  e'1*3/2->\mp
-  c1*3/2->
-  bes1*3/2->
-  a1*3/2->
-  g1*3/2->\p
-  g1*3/2->
-  g1*3/2->
-  a1*3/2->
-  f1*3/2->
-  e1*3/2->
-  e1*3/2->
-  e1*3/2->
-  f1*3/2->
-  d'2.\mf(_\markup { \italic "rit." } d4 c2
-  bes2) bes2.( a4
-  a1*3/2->)
-  a1*3/2->\mp
-  g1*3/2~\p
+  b1.->\mp
+  a1.->
+  f1.->
+  e1.->
+  e1.->
+  e1.->
+  g1.->
+  g1.->
+  a1.->
+  e1.->\p
+  e'1.->\mp
+  c1.->
+  bes1.->
+  a1.->
+  g1.->\p
+  g1.->
+  g1.->
+  a1.->
+  f1.->
+  e1.->
+  e1.->
+  e1.->
+  f1.(
+  d'2.\mf_\markup { \italic "rit." } d4 c2)
+  bes2( bes2. a4
+  a1.->)
+  a1.->\mp
+  g1.~\p
   g1\pp\fermata r2
 }
 
@@ -81,11 +81,11 @@ voicetwo = \relative b {
   g2 f c'~
   c2( b a~
   a2 b c)
-  d1*3/2->\p_\markup { \italic "rit." } 
+  d1.->\p_\markup { \italic "rit." } 
   e1 d2~
   d2 b\mp( c
   a2 g f)
-  b1*3/2\p(
+  b1.\p(
   c1\pp\fermata) r2
 }
 
@@ -93,34 +93,34 @@ voicethree = \relative e {
   \keytempoetc
   \clef bass
 
-  e1*3/2->\mp
-  c1*3/2->
-  d1*3/2->
-  c1*3/2->
-  a1*3/2->
-  a'1*3/2->
-  g1*3/2->
-  e1*3/2->
-  f1*3/2->
-  e1*3/2->\p
-  g1*3/2->\mp
-  g1*3/2->
-  g1*3/2->
-  f1*3/2->
-  e1*3/2->\p
-  d1*3/2->
-  g1*3/2->
-  c,1*3/2->\mp
-  d1*3/2->
-  c1*3/2->
-  a1*3/2->
-  a'1*3/2->
-  f1*3/2->
-  d1*3/2->\p_\markup { \italic "rit." } 
-  g1*3/2->
-  a1*3/2->
-  f1*3/2->\mp
-  g1*3/2\p(
+  e1.->\mp
+  c1.->
+  d1.->
+  c1.->
+  a1.->
+  a'1.->
+  g1.->
+  e1.->
+  f1.->
+  e1.->\p
+  g1.->\mp
+  g1.->
+  g1.->
+  f1.->
+  e1.->\p
+  d1.->
+  g1.->
+  c,1.->\mp
+  d1.->
+  c1.->
+  a1.->
+  a'1.->
+  f1.->
+  d1.->\p_\markup { \italic "rit." } 
+  g1.->
+  a1.->
+  f1.->\mp
+  g1.\p(
   c,1\pp)\fermata r2
 }
 
