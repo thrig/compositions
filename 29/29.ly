@@ -19,44 +19,50 @@ keytempoetc = {
   \time 3/2
 }
 
-voiceone = \relative b' {
+voiceone = {
+  % English Horn transposing instrument pitched in F below C
+  \key g \major
+  \transposition f,
+
   \keytempoetc
   \clef treble
 
-  b1.->\mp
-  a1.->
-  f1.->
-  e1.->
-  e1.->
-  e1.->
-  g1.->
-  g1.->
-  a1.->
-  e1.->\p
-  e'1.->\mp
-  c1.->
-  bes1.->
-  a1.->
-  g1.->\p
-  g1.->
-  g1.->
-  a1.->
-  f1.->
-  e1.->
-  e1.->
-  e1.->
-  f1.(
-  d'2.\mf_\markup { \italic "rit." } d4 c2)
-  bes2( bes2. a4
-  a1.->)
-  a1.->\mp
-  g1.~\p
-  g1\pp\fermata r2
+  \transpose c g' { \relative b {
+    b1.->\mp
+    a1.->
+    f1.->
+    e1.->
+    e1.->
+    e1.->
+    g1.->
+    g1.->
+    a1.->
+    e1.->\p
+    e'1.->\mp
+    c1.->
+    bes1.->
+    a1.->
+    g1.->\p
+    g1.->
+    g1.->
+    a1.->
+    f1.->
+    e1.->
+    e1.->
+    e1.->
+    f1.(
+    d'2.\mf_\markup { \italic "rit." } d4 c2)
+    bes2( bes2. a4
+    a1.->)
+    a1.->\mp
+    g1.~\p
+    g1\pp\fermata r2
+  } }
 }
 
 voicetwo = \relative b {
   \keytempoetc
-  \clef alto
+  \clef bass
 
   b1\mp e2~
   e2 c a~
@@ -67,7 +73,7 @@ voicetwo = \relative b {
   b2 c d~)
   d2 c( b
   a2 g a
-  b2) c\p e~
+  b2) \clef treble c\p e~
   e2\mp( f2 g~)
   g2 f( e
   d2 e f~)
@@ -75,7 +81,7 @@ voicetwo = \relative b {
   c2 b g~
   g2 a( c
   b2~ b16 g4.. a2~)
-  a2 c,\mp a~
+  a2 \clef bass c,\mp a~
   a2 d, f~
   f2 e g~
   g2 f c'~
