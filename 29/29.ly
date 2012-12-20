@@ -15,7 +15,7 @@
 }
 
 keytempoetc = {
-  \tempo "Adagio Maestoso" 4=108
+  \tempo "Adagio Maestoso con Affettuoso" 4=108
   \time 3/2
 }
 
@@ -37,8 +37,8 @@ voiceone = {
     g1.->
     g1.->
     a1.->
-    e1.->\p
-    e'1.->\mp
+    e1.->
+    e'1.->
     c1.->
     bes1.->
     a1.->
@@ -73,16 +73,16 @@ voicetwo = \relative b {
   b2 c d~)
   d2 c( b
   a2 g a~)
-  a2-> \clef treble c e~
+  a2-> r2 \clef treble e'~\mf
   e2( f2 g~)
-  g2 f( e
+  g2 f(\mp e
   d2 e f~)
   f2-> a\mf c~
   c2 b g~
   g2 a( c
   b2~ b16 g2 a4..~)
-  a2 \clef bass c,\mp a~
-  a2 d, f~
+  a2 \clef bass c,\p a~
+  a2 d,\mp f~
   f2 e g~
   g2 f c'~
   c2( b a~
@@ -108,8 +108,8 @@ voicethree = \relative e {
   g1.->
   e1.->
   f1.->
-  e1.->\p
-  g1.->\mp
+  e2 d'2~ d4-> r4
+  g,1.->
   g1.->
   g1.->
   f1.->
