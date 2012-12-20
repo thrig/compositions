@@ -56,7 +56,7 @@ voiceone = {
     a1.->)
     a1.->\mp
     g1.~\p
-    g1\pp\fermata r2
+    g1\fermata r2
   } }
 }
 
@@ -72,27 +72,27 @@ voicetwo = \relative b {
   c2( b a
   b2 c d~)
   d2 c( b
-  a2 g a
-  b2) \clef treble c\p e~
-  e2\mp( f2 g~)
+  a2 g a~)
+  a2-> \clef treble c e~
+  e2( f2 g~)
   g2 f( e
   d2 e f~)
   f2-> a\mf c~
   c2 b g~
   g2 a( c
-  b2~ b16 g4.. a2~)
+  b2~ b16 g2 a4..~)
   a2 \clef bass c,\mp a~
   a2 d, f~
   f2 e g~
   g2 f c'~
   c2( b a~
-  a2 b c)
+  a2 b\< c\!)
   d1.->\p_\markup { \italic "rit." } 
   e1 d2~
   d2 b\mp( c
   a2 g f)
   b1.\p(
-  c1\pp\fermata) r2
+  c1\fermata) r2
 }
 
 voicethree = \relative e {
@@ -127,7 +127,7 @@ voicethree = \relative e {
   a1.->
   f1.->\mp
   g1.\p(
-  c,1\pp)\fermata r2
+  c,1)\fermata r2
 }
 
 %                                                                           %
