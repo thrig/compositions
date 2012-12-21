@@ -55,7 +55,7 @@ voiceone = {
     bes2( bes2. a4
     a1.->)
     a1.->\mp
-    g1.~\p
+    g1.\p
     g1\fermata r2
   } }
 }
@@ -73,7 +73,7 @@ voicetwo = \relative b {
   b2 c d~)
   d2 c( b
   a2 g a~)
-  a2-> r2 \clef treble e'~\mf
+  a2~a4 r4 \clef treble e'2~\mf
   e2( f2 g~)
   g2 f(\mp e
   d2 e f~)
@@ -91,8 +91,8 @@ voicetwo = \relative b {
   e1 d2~
   d2 b\mp( c
   a2 g f)
-  b1.\p(
-  c1\fermata) r2
+  b1.\p
+  c1\fermata r2
 }
 
 voicethree = \relative e {
@@ -108,7 +108,7 @@ voicethree = \relative e {
   g1.->
   e1.->
   f1.->
-  e2 d'2~ d4-> r4
+  e2 d'2~ d4 r4
   g,1.->
   g1.->
   g1.->
@@ -126,8 +126,8 @@ voicethree = \relative e {
   g1.->
   a1.->
   f1.->\mp
-  g1.\p(
-  c,1)\fermata r2
+  g1.\p
+  c,1\fermata r2
 }
 
 %                                                                           %
