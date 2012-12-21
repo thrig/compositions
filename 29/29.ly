@@ -80,8 +80,8 @@ voicetwo = \relative b {
   f2-> a\mf c~
   c2 b g~
   g2 a( c
-  b2~ b16 g2 a4..~)
-  a2 \clef bass c,\p a~
+  b2~ b16_\markup { \italic "poco rit." } g2 a4..~)
+  a2_\markup { \italic "a tempo" } \clef bass c,\p a~
   a2 d,\mp f~
   f2 e g~
   g2 f c'~
