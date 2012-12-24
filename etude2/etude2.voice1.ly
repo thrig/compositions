@@ -113,10 +113,12 @@
   g'''16-|
   \ottava #1
   \ottava #1
+  \ottava #1
   cis'''16-|
   cis''''16-|
   f'''16-|
   f''''16-|
+  \ottava #0
   \ottava #0
   \ottava #0
   \ottava #0
@@ -518,7 +520,7 @@
   cis''16-|
   f''16-|
   f'''16-|
-  r8  r4  \change Staff = "lower"
+  r8  r4\fermata   \change Staff = "lower"
   ais,16-|
   ais16-|
   cis16-|
@@ -580,118 +582,140 @@
   b16-|
   \change Staff = "upper"
   b'16-|
+  \change Staff = "lower"
+  g16-|
+  \change Staff = "upper"
   g'16-|
-  g''16-|
+  \change Staff = "lower"
+  d16-|
+  \change Staff = "upper"
   d'16-|
-  d''16-|
   \change Staff = "lower"
+  f,16-|
   f16-|
-  \change Staff = "upper"
-  f'16-|
-  \change Staff = "lower"
+  a,16-|
   a16-|
+  dis16-|
   \change Staff = "upper"
-  a'16-|
   dis'16-|
-  dis''16-|
+  \change Staff = "lower"
+  c16-|
+  \change Staff = "upper"
   c'16-|
-  c''16-|
+  \change Staff = "lower"
+  e16-|
+  \change Staff = "upper"
   e'16-|
-  e''16-|
+  \change Staff = "lower"
+  cis16-|
+  \change Staff = "upper"
   cis'16-|
-  cis''16-|
-  \ottava #2
-  \ottava #2
+  \ottava #1
+  \ottava #1
+  \ottava #1
+  fis'16-|
   fis''16-|
-  fis'''16-|
-  fis''16-|
-  fis'''16-|
-  b''16-|
-  b'''16-|
-  b''16-|
-  b'''16-|
-  f'''16-|
-  f''''16-|
-  cis'''16-|
-  cis''''16-|
-  f'''16-|
-  f''''16-|
-  d''''16-|
-  d'''''16-|
-  f'''16-|
-  f''''16-|
-  a'''16-|
-  a''''16-|
-  c''''16-|
-  c'''''16-|
-  e''''16-|
-  e'''''16-|
-  cis''''16-|
-  cis'''''16-|
-  f''''16-|
-  f'''''16-|
-  c''''16-|
-  c'''''16-|
-  gis'''16-|
-  gis''''16-|
-  c''''16-|
-  c'''''16-|
-  b''16-|
-  b'''16-|
-  e'''16-|
-  e''''16-|
-  g''16-|
-  g'''16-|
-  \ottava #0
-  \ottava #0
-  fis''16-|
-  fis'''16-|
   fis'16-|
   fis''16-|
   b'16-|
   b''16-|
+  b'16-|
+  b''16-|
+  f''16-|
+  f'''16-|
+  cis''16-|
+  cis'''16-|
+  f''16-|
+  f'''16-|
+  d'''16-|
+  d''''16-|
+  f''16-|
+  f'''16-|
+  a''16-|
+  a'''16-|
+  c'''16-|
+  c''''16-|
+  e'''16-|
+  e''''16-|
+  cis'''16-|
+  cis''''16-|
+  f'''16-|
+  f''''16-|
+  c'''16-|
+  c''''16-|
+  gis''16-|
+  gis'''16-|
+  c'''16-|
+  c''''16-|
+  b'16-|
+  b''16-|
+  e''16-|
+  e'''16-|
+  g'16-|
+  g''16-|
+  \ottava #0
+  \ottava #0
+  \ottava #0
+  fis'16-|
+  fis''16-|
+  \change Staff = "lower"
+  fis16-|
+  \change Staff = "upper"
+  fis'16-|
+  \change Staff = "lower"
+  b16-|
+  \change Staff = "upper"
+  b'16-|
+  \change Staff = "lower"
+  ais,16-|
+  ais16-|
+  f16-|
+  \change Staff = "upper"
+  f'16-|
+  cis'16-|
+  cis''16-|
   \change Staff = "lower"
   ais16-|
   \change Staff = "upper"
   ais'16-|
+  \change Staff = "lower"
+  f16-|
+  \change Staff = "upper"
+  f'16-|
+  \ottava #1
+  \ottava #1
+  \ottava #1
   f'16-|
   f''16-|
-  cis''16-|
-  cis'''16-|
-  ais'16-|
-  ais''16-|
-  f'16-|
-  f''16-|
-  \ottava #2
-  \ottava #2
-  f''16-|
-  f'''16-|
+  c'''16-|
   c''''16-|
-  c'''''16-|
+  b'16-|
   b''16-|
-  b'''16-|
+  e''16-|
   e'''16-|
-  e''''16-|
   \ottava #0
   \ottava #0
+  \ottava #0
+  g'16-|
   g''16-|
-  g'''16-|
-  fis''16-|
-  fis'''16-|
   fis'16-|
   fis''16-|
-  cis'16-|
-  cis''16-|
+  \change Staff = "lower"
+  fis16-|
+  \change Staff = "upper"
+  fis'16-|
   \change Staff = "lower"
   cis16-|
   \change Staff = "upper"
   cis'16-|
   \change Staff = "lower"
+  cis,16-|
+  cis16-|
+  d,16-|
   d16-|
+  c16-|
   \change Staff = "upper"
-  d'16-|
   c'16-|
-  c''16-|
   \change Staff = "lower"
   f16-|
   \change Staff = "upper"
@@ -802,12 +826,14 @@
   e'''16-|
   \ottava #1
   \ottava #1
+  \ottava #1
   g''16-|
   g'''16-|
   cis'''16-|
   cis''''16-|
   f'''16-|
   f''''16-|
+  \ottava #0
   \ottava #0
   \ottava #0
   ais'16-|

@@ -8,10 +8,10 @@
    (make-justified-lines-markup-list (cons (make-hspace-markup 0) args))))
 
 \header {
-  title       = "Etude No.2"
+  title       = "Etude No.2-1"
   subtitle    = "Hash Key Rotation"
   composer    = "Jeremy Mates"
-  subsubtitle = "2012-12-16"
+  subsubtitle = "2012-12-24"
   copyright   = "© 2012 Creative Commons Attribution 3.0 United States License"
   tagline     = ##f
 }
