@@ -69,7 +69,7 @@ voiceone = {
     \tempo 4=86
     g1.--\p
 
-    \tempo 4=50
+    \tempo 4=42
     g1.\fermata
   }
 }
@@ -98,10 +98,11 @@ voicetwo = \relative b {
   c2 b\mf( g~)
   g2 a(\f c
 
-  b2~ b16 g2
+  b2_\markup { \italic "poco rit. ?" }
+    g
   % this rit fares poorly in piano rendition, better for things with sustains
-%   \tempo 4=98
-    a4..~)_\markup { \italic "poco rit. ?" }
+  % \tempo 4=98
+    a~)
 % \tempo 4=100
   a2_\markup { \italic "a tempo" } \clef bass c,\p( a~)
   a2 d,\mp( f~)
