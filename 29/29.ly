@@ -1,8 +1,6 @@
 % LilyPond engraving system - http://www.lilypond.org/
 %
-% Strings version for harmonic checks and phrasing.
-%
-%% timidity --config-file=organ.cfg
+% Strings/piano (4 hand?) version for harmonic checks and phrasing.
 
 \version "2.16.0"
 \include "articulate.ly"
@@ -12,16 +10,17 @@
 \header {
   title       = "Twenty Nine"
   subtitle    = "To Lives Lost"
-  subsubtitle = "2012-12-26"
+  subsubtitle = "2012-12-27"
   composer    = "Jeremy Mates"
-  copyright   = ""
+% copyright   = ""
+  copyright   = "© 2012 Creative Commons Attribution 3.0 United States License"
   tagline     = ##f
 }
 
 keytempoetc = {
   \set Score.tempoHideNote = ##t
   % or for orchestra strings possibly even slower?
-  \tempo "Adagio Maestoso con Affettuoso" 4=108
+  \tempo "Adagio Maestoso con Affettuoso" 4=100
   \time 3/2
 }
 
@@ -34,36 +33,43 @@ voiceone = {
     a1.
     f1.
     e1.
+
     e1.
     e1.--)
     g1.(
     g1.
+
     f1.--)
-    a1.(
+    a2( g a
     e'1.--)
     c1.(
+
     bes1.
     a1.)
     g1.(
     g1.
+
     g1.
     a1.
     f1.
     e1.
+
     e1.
     e1.)
     f1.(
-    \tempo 4=106
+    \tempo 4=98
     d'2.\mf_\markup { \italic "rit." } d4 c2)
-    \tempo 4=104
-    bes2( bes2. a4
-    \tempo 4=101
-    a1.)
-    \tempo 4=99
-    a1.--\mp
+
     \tempo 4=96
+    bes2( bes2. a4
+    \tempo 4=93
+    a1.)
+    \tempo 4=90
+    a1.--\mp
+    \tempo 4=86
     g1.--\p
-    \tempo 4=56
+
+    \tempo 4=50
     g1.\fermata
   }
 }
@@ -76,31 +82,41 @@ voicetwo = \relative b {
   e2( c) a~
   a2-- d,( f~)
   f2-- e( g~)
+
   g2-- f( c'~)
   c2( b a
   b2 c d~)
   d2 c( b
+
   a2 g a~)
   a1 \clef treble e'2~\f
   e2( f2\mf g~)
   g2 f(\mp e
+
   d2 e f
   f2) a--\f c~
   c2 b\mf( g~)
   g2 a(\f c
-  b2~ b16 g2 \tempo 4=100 a4..~)_\markup { \italic "rit." }
-  \tempo 4=108
+
+  b2~ b16 g2
+  % this rit fares poorly in piano rendition, better for things with sustains
+%   \tempo 4=98
+    a4..~)_\markup { \italic "poco rit. ?" }
+% \tempo 4=100
   a2_\markup { \italic "a tempo" } \clef bass c,\p( a~)
   a2 d,\mp( f~)
   f2 e( g~)
+
   g2 f( c'~)
   c2( b a~
   a2 b\< c--\!)
   d1.--\p
+
   e1( d2~)
   d2-- b(\mp c
   a2 g f)
   b1.--\p
+
   c1.\fermata
 }
 
@@ -112,68 +128,84 @@ voicethree = \relative e {
   c1.
   d1.
   c1.
-  a1.)
+
+  a1.--)
   a'1.(
   g1.
   e1.
+
   f1.)
-  e2(\mf d'1
-  g,1.)\p
+  e2(\mf d' a
+  g1.)\p
   g1.
+
   g1.
   f1.(
   e1.
   d1.--)
+
   g1.--
   c,1.(
   d1.
   c1.
+
   a1.)
   a'1.(
   f1.
   d1.)
+
   g1.(
   a1.
   f1.)
   g1.--
+
   c,1.\fermata
 }
 
-% contrabass probably just doubles cello
+% contrabass *mostly* just doubles cello
 voicefour = {
   \keytempoetc
   \clef bass
-  \transposition c,
+  \transposition c
 
   \relative e {
     e1.\p(
-    c1.
+    c'1.
     d1.
     c1.
-    a1.)
-    a'1.(
+
+    a1.--)
+    a1.(
     g1.
     e1.
+
     f1.)
-    e2(\mf d'1
-    g,1.)\p
+%   \clef treble
+    e2(\mf d' a
+    g1.)\p
     g1.
+
+%   \clef bass
     g1.
     f1.(
     e1.
     d1.--)
+
     g1.--
-    c,1.(
+    c1.(
     d1.
     c1.
+
     a1.)
-    a'1.(
-    f1.
+    a1.(
+    f'1.
     d1.)
-    g1.(
+
+    g,1.(
     a1.
     f1.)
     g1.--
+
     c,1.\fermata
   }
 }
@@ -219,7 +251,7 @@ theblackdots = {
       \new Staff = "upper" \upper
       \new Staff = "middle" \middle
       \new Staff = "lower" \lower
-%     \new Staff = "bass" \bass
+      \new Staff = "bass" \bass
     >>
   >>
 }
@@ -231,7 +263,7 @@ themusic = {
       \new Staff = "upper" \upper
       \new Staff = "middle" \middle
       \new Staff = "lower" \lower
-%     \new Staff = "bass" \bass
+      \new Staff = "bass" \bass
     >>
   >>
 }
