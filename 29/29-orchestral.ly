@@ -89,7 +89,6 @@ altoflute = {
   \bar "|."
 }
 
-% TODO wrestle transposition to working state
 ehorn = {
   \set Staff.instrumentName = #"English Horn"
   \set Staff.shortInstrumentName = #"E. Hn."
@@ -97,8 +96,10 @@ ehorn = {
 
   \keytempoetc
   \clef treble
+  \transposition f
+  \key g \major
 
-  \relative b' {
+  \transpose b fis' { \relative b' {
     b1.(\mp
     a1.
     f1.
@@ -135,7 +136,7 @@ ehorn = {
     g1.\p(
 
     g1.\fermata)
-  }
+  } }
 
   \bar "|."
 }
@@ -192,51 +193,54 @@ bassoon = \relative e {
 %
 % Brass
 
-% TODO work out transposition
-hornf = \relative e {
+hornf = {
   \set Staff.instrumentName = #"Horn in F"
   \set Staff.shortInstrumentName = #"Hn."
   \set Staff.midiInstrument = #"french horn"
 
   \keytempoetc
   \clef bass
+  \transposition f
+  \key g \major
 
-  e1.\mp(
-  c1.
-  d1.
-  c1.
+  \transpose b fis' { \relative e {
+    e1.\mp(
+    c1.
+    d1.
+    c1.
 
-  a1) r2
-  a'1.(
-  g1.
-  e1) r2
+    a1) r2
+    a'1.(
+    g1.
+    e1) r2
 
-  f1.(
-  e2\< d'1\!->)
-  g,1\mp r2
-  g1 r2
+    f1.(
+    e2\< d'1\!->)
+    g,1\mp r2
+    g1 r2
 
-  g1 r2
-  f1.(
-  e1.
-  d1.
+    g1 r2
+    f1.(
+    e1.
+    d1.
 
-  g1) r2
-  c,1.(
-  d1.
-  c1.
+    g1) r2
+    c,1.(
+    d1.
+    c1.
 
-  a1) r2
-  a'1.(
-  f1.
-  d1)_\markup { \italic "rit." } r2
+    a1) r2
+    a'1.(
+    f1.
+    d1)_\markup { \italic "rit." } r2
 
-  g1.(
-  a1.
-  f1) r2
-  g1.(\p
+    g1.(
+    a1.
+    f1) r2
+    g1.(\p
 
-  c,1.\fermata)
+    c,1.\fermata)
+  } }
 
   \bar "|."
 }
@@ -264,7 +268,7 @@ tboneone = {
     r1 e2~\f(
     e2 f\mf g~
     g2--) r1
-    
+
     R1.
     r2 << { a\ff c~ c2( b g~ g2--) } \\ { s4. s8\< s4. s8\! } >> r1
 
