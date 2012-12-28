@@ -18,8 +18,6 @@
 }
 
 keytempoetc = {
-  \set Score.tempoHideNote = ##t
-  % or for orchestra strings possibly even slower?
   \tempo "Adagio Maestoso con Affettuoso" 4=100
   \time 3/2
 }
@@ -41,8 +39,8 @@ voiceone = {
 
     f1.--)
     a2( g a
-    e'1.--)
-    c1.(
+    e'1.\mp--)
+    c1.\p(
 
     bes1.
     a1.)
@@ -57,6 +55,7 @@ voiceone = {
     e1.
     e1.)
     f1.(
+    \set Score.tempoHideNote = ##t
     \tempo 4=98
     d'2.\mf_\markup { \italic "rit." } d4 c2)
 
@@ -66,7 +65,7 @@ voiceone = {
     a1.)
     \tempo 4=90
     a1.--\mp
-    \tempo 4=86
+    \tempo 4=88
     g1.--\p
 
     \tempo 4=42
@@ -84,7 +83,7 @@ voicetwo = \relative b {
   f2-- e( g~)
 
   g2-- f( c'~)
-  c2( b a
+  c2 b( a
   b2 c d~)
   d2 c( b
 
@@ -109,7 +108,7 @@ voicetwo = \relative b {
   f2 e( g~)
 
   g2 f( c'~)
-  c2( b a~
+  c2 b( a~
   a2 b\< c--\!)
   d1.--\p
 
@@ -136,7 +135,7 @@ voicethree = \relative e {
   e1.
 
   f1.)
-  e2(\mf d' a
+  e2(\< d'\! a
   g1.)\p
   g1.
 
@@ -182,7 +181,7 @@ voicefour = {
 
     f1.)
 %   \clef treble
-    e2(\mf d' a
+    e2(\< d'\! a
     g1.)\p
     g1.
 
@@ -193,7 +192,7 @@ voicefour = {
     d1.--)
 
     g1.--
-    c1.(
+    c,1.(
     d1.
     c1.
 
@@ -202,7 +201,7 @@ voicefour = {
     f'1.
     d1.)
 
-    g,1.(
+    g1.(
     a1.
     f1.)
     g1.--
@@ -260,7 +259,7 @@ theblackdots = {
 themusic = {
   <<
     \new PianoStaff <<
-      \set Score.midiChannelMapping = #'instrument
+      \set Score.midiChannelMapping = #'voice
       \new Staff = "upper" \upper
       \new Staff = "middle" \middle
       \new Staff = "lower" \lower
