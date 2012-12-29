@@ -1,4 +1,12 @@
-Rendered versions of the music here may be available under:
+Mostly just practice pieces. In particular:
+
+ * 29 - short elegy for orchestra or possibly other renditions.
+ * dmm - musical doodle via markov chains based on the relative lengths
+   of piano keys in a particular doodle.
+ * etude1, etude2 - experiments with enharmonics and some of the Perl
+   modules I've created for musical composition.
+
+Rendered versions of some of the music here may be available under:
 
 http://soundcloud.com/thrig
 
