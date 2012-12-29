@@ -64,10 +64,10 @@ altoflute = {
 
     bes1.
     a1) r2
-    g1.(
-    g1.
+    g1 r2
+    g1 r2
 
-    g1) r2
+    g1.
     a1.(
     f1.
     e1) r2
@@ -83,7 +83,7 @@ altoflute = {
     a1 r2
     g1.\p(
 
-    g1.\fermata)
+    g1.\fermata) |
   }
 
   \bar "|."
@@ -117,10 +117,10 @@ ehorn = {
 
     bes1.
     a1) r2
-    g1.(
-    g1.
+    g1 r2
+    g1 r2
 
-    g1) r2
+    g1.
     a1.(
     f1.
     e1) r2
@@ -135,7 +135,7 @@ ehorn = {
     a1\mp r2
     g1.\p(
 
-    g1.\fermata)
+    g1.\fermata) |
   } }
 
   \bar "|."
@@ -184,7 +184,7 @@ bassoon = \relative e {
   f1) r2
   g1.\p(
 
-  c,1.\fermata)
+  c,1.\fermata) |
 
   \bar "|."
 }
@@ -215,6 +215,7 @@ hornf = {
     e1) r2
 
     f1.(
+    \clef treble
     e2\< d'1\!->)
     g,1\mp r2
     g1 r2
@@ -225,6 +226,7 @@ hornf = {
     d1.
 
     g1) r2
+    \clef bass
     c,1.(
     d1.
     c1.
@@ -239,7 +241,7 @@ hornf = {
     f1) r2
     g1.(\p
 
-    c,1.\fermata)
+    c,1.\fermata) |
   } }
 
   \bar "|."
@@ -265,17 +267,17 @@ tboneone = {
 
     R1.
     \clef treble
-    r1 e2~\f(
-    e2 f\mf g~
-    g2--) r1
+    r1 e2~\f
+    e2( f\mf g~)
+    g2-- r1
 
     R1.
     r2 << { a\ff c~ c2( b g~ g2--) } \\ { s4. s8\< s4. s8\! } >> r1
 
     R1.
     \clef bass
-    r2 c,2\mf( a~
-    a2) r1
+    r2 c,2\mf( a~)
+    a2 r1
     r2 << { e\mp( g~) g2-- } \\ { s4. s8\< s4. s8\! s4.\> s8\! } >> r1
     r2 b2(\mf a~
     a2 b\< c--\!)
@@ -332,7 +334,7 @@ tbonetwo = {
     R1.
     b1.(
 
-    c1.\fermata)
+    c1.\fermata) |
   }
 
   \bar "|."
@@ -381,7 +383,7 @@ tuba = \relative e, {
   f2 r1
   g2\p r1
 
-  c,1.\fermata
+  c,1.\fermata |
 
   \bar "|."
 }
@@ -441,7 +443,7 @@ violin = {
     g1.\p(
 
     \tempo 4=42
-    g1.\fermata)
+    g1.\fermata) |
   }
 
   \bar "|."
@@ -466,7 +468,7 @@ viola = \relative b {
   d2 c( b
 
   a2 g a~)
-  a1 \clef treble e'2~\f
+  a1 e'2~\f
   e2( f2\mf g~)
   g2 f( e
 
@@ -476,7 +478,7 @@ viola = \relative b {
   g2 a c
 
   b2 g a~
-  a2 \clef bass c,( a~)
+  a2 c,( a~)
   a2 d,( f~)
   f2 e( g~)
 
@@ -490,7 +492,7 @@ viola = \relative b {
   a2 g f)
   b1.\p(
 
-  c1.\fermata)
+  c1.\fermata) |
 
   \bar "|."
 }
@@ -538,7 +540,7 @@ cello = \relative e {
   f1.)
   g1.(
 
-  c,1.\fermata)
+  c,1.\fermata) |
 
   \bar "|."
 }
@@ -587,9 +589,9 @@ doublebass = {
     g1.(
     a1.
     f1.)
-    g1.\pp(
+    g1.(
 
-    c,1.\fermata)
+    c,1.\fermata) |
   }
 
   \bar "|."
