@@ -75,11 +75,11 @@ altoflute = {
     e1.
     e1 r2
     f1.(
-    d2._\markup { \italic "rit." } d4 c2)
+    d2.)_\markup { \italic "rit." } d4 c2--
 
     \clef bass
-    bes2( bes2. a4
-    a1) r2
+    bes2-- bes2.-- a4
+    a1 r2
     a1 r2
     g1.\p(
 
@@ -128,10 +128,10 @@ ehorn = {
     e1.
     e1 r2
     f1.(
-    d'2.\f_\markup { \italic "rit." } d4 c2)
+    d'2.)\f_\markup { \italic "rit." } d4 c2--
 
-    bes2(\mf bes2. a4
-    a1) r2
+    bes2--\mf bes2.-- a4
+    a1 r2
     a1\mp r2
     g1.\p(
 
@@ -431,12 +431,12 @@ violin = {
     f1.(
     \set Score.tempoHideNote = ##t
     \tempo 4=98
-    d'2.\mf_\markup { \italic "rit." } d4 c2)
+    d'2.)\mf_\markup { \italic "rit." } d4 c2--
 
     \tempo 4=96
-    bes2( bes2. a4
+    bes2-- bes2.-- a4
     \tempo 4=93
-    a1.)
+    a1.
     \tempo 4=90
     a1.--\mp
     \tempo 4=88
