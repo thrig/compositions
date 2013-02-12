@@ -1,18 +1,24 @@
 % Harmonization practice from Bach chorale upper voice - SATB version
-
 \version "2.14.0"
 
 #(define-markup-list-command (paragraph layout props args) (markup-list?)
  (interpret-markup-list layout props
-   (make-justified-lines-markup-list (cons (make-hspace-markup 2) args))))
+   (make-justified-lines-markup-list (cons (make-hspace-markup 0) args))))
 
 \header {
   title = "Chorale 1"
   composer = "Jeremy Mates"
-  subtitle = "(Derived from the Soprano line of an unknown Bach Chorale)"
   subsubtitle = "2013-02-06"
   tagline = #f
 }
+
+\markuplist { \paragraph {
+Derived from the Soprano line of a at the time unknown Bach Chorale. I
+had done a Roman Numeral analysis of this (portion of the) chorale some
+unknown number of months ago, it turns out, as it is fairly easy to find
+in the book of 371. So more like: from a not consciously remembered
+Bach Chorale.
+} }
 
 sop = \relative b' {
   \set Score.tempoHideNote = ##t
