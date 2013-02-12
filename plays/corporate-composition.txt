@@ -1,0 +1,236 @@
+CORPORATE COMPOSITION
+
+Copyright © 2013 by Jeremy Mates
+All rights reserved.
+
+Dramatis Personae
+
+MANAGER OF TEAM
+COMPOSER 1
+COMPOSER 2, via speakerphone
+COMPOSER 3
+COMPOSER 4
+1ST VIOLIN
+2ND VIOLIN
+VIOLA & CELLO (do not appear)
+
+SCENE:
+A meeting room. Ideally small; a table or tables dominate the center,
+with an excess of chairs around edges. The walls are covered with
+whiteboards possessing varying degrees of random scribbles and workflows
+including both "DNE" markings and "please clean whiteboard" prints. The
+exit should be a sliding door, with noisy rollers, left partially ajar,
+that leads to a hallway invisible to the audience. Fluorescent lighting
+is recommended. A speakerphone system is required for COMPOSER 2; this
+should have poor audio quality (breathing on the mic, etc), and should
+be set slightly loud relative the on-stage actors.
+
+[COMPOSERS 1 & 4 are in sotto voce conversation with one another,
+  COMPOSER 3 is set somewhat apart]
+
+MANAGER.    Right. Let's get started. We're working on the symphony today.
+COMPOSERS 1 & 4. Okay.
+COMPOSER 2. Could you move closer to the mic? I can barely hear you.
+MANAGER.    [fiddles with speakerphone] That better?
+COMPOSER 2. Perfect.
+MANAGER.    So, the symphony. Last meeting we had finished the opening
+  phrase, does everyone have that?
+COMPOSER 1. Yup.
+COMPOSER 2. Was it e-mailed?
+COMPOSER 4. It's on the wiki.
+COMPOSER 2. Okay, thanks.
+MANAGER.    Everyone have it open? Okay, so this meeting we'll work on the
+  second phrase.
+2ND VIOLIN. [leans through door] Uhh, hey, is this the quartet?
+MANAGER.    No, they're in 1123.
+2ND VIOLIN. Sorry guys, thanks.
+[Exits, closing door]
+MANAGER.    … so we'll work on the second phrase—yes?
+COMPOSER 1. I think we need to fix the instrumentation.
+MANAGER.    Didn't we cover that last meeting?
+COMPOSER 1. Yes, but I'm not convinced we need the horns, and not having
+  them changes the second phrase.
+COMPOSER 4. We never really did finish the instrumentation.
+MANAGER.    I thought we did.
+COMPOSER 4. No, we ran out of time.
+MANAGER.    Okay, so what's wrong with the horns?
+COMPOSER 1. It's too early for them, I think a softer start would be
+  better. Did you get the sample I sent you?
+MANAGER.    Let me see… [swipes away at some device] when did you send it?
+COMPOSER 1. Tuesday.
+MANAGER.    I don't see it.
+COMPOSER 4. Check the spam folder.
+[More device swiping]
+MANAGER.    How did it get in there?
+COMPOSER 1. Am I in your address book?
+MANAGER.    You should be.
+COMPOSER 1. I used my gmail address.
+MANAGER.    [checks something] Oh, I had your old account. Let me add
+  you again.
+[Pause]
+COMPOSER 1. So, if you listen to that sample, you'll hear that the horns
+  are a problem.
+COMPOSER 4. Wasn't four voices one of our requirements?
+COMPOSER 1. Sure, but my idea is we split the violins, have them cover
+  the horn part.
+COMPOSER 2. Uhh, guys?
+MANAGER.    [leans over speakerphone] Go ahead.
+COMPOSER 2. The horns are much louder than the violins. I don't think
+  half the violins will work.
+COMPOSER 1. That's why we use a softer opening.
+COMPOSER 2. Did you see my plan?
+COMPOSER 4. The one with parallel motion?
+COMPOSER 2. I think it's fine, the basses are just doubling—
+COMPOSER 4. No, no, I saw your version. It has a parallel fifth.
+COMPOSER 2. What? Where?
+COMPOSER 4. In measure three.
+COMPOSER 2. [pause] Ahh, oh, I see it now. Sorry guys.
+MANAGER.    Okay, so we drop the horns from the opening, violins one and
+  two keep us at four voices. Any objections? No? Who is going to own
+  this change?
+COMPOSER 2. I can, I’m in the wiki.
+[Mic is left open]
+MANAGER.    Perfect! All right, second phrase. I want ideas from everybody
+  this time.
+COMPOSER 1. I think we should just repeat the first phrase.
+COMPOSER 4. How about we repeat with the horns?
+COMPOSER 1. No, too soon. Eventually we add the horns in on top.
+COMPOSER 4. A slow build-up?
+COMPOSER 1. Exactly.
+MANAGER.    Good, good—any other ideas?
+COMPOSER 1. We need more dominants.
+MANAGER.    What about them?
+[Background noise from the open mic on the speakerphone grows]
+COMPOSER 4. Hey, open mic.
+COMPOSER 2. Sorry. [mutes line]
+1ST VIOLIN. [barging in] Do you guys have this room?
+MANAGER.    Yes, it's ours.
+1ST VIOLIN. Really?
+MANAGER.    Aren't you in 1123?
+1ST VIOLIN. The calendar was free when I scheduled this room.
+MANAGER.    What happened to 1123?
+1ST VIOLIN. The conductors kicked us out.
+MANAGER.    Well, we have this room.
+2ND VIOLIN. [leaning in] Maybe we could try the roof?
+1ST VIOLIN. That's crazy.
+2ND VIOLIN. But there's nobody up there.
+MANAGER.    Sorry, we have this room.
+1ST VIOLIN. Okay.
+[Violinists retreat, closing door]
+MANAGER.    You were saying something about…?
+COMPOSER 4. Dominants.
+COMPOSER 1. Yeah, we need more of them.
+COMPOSER 4. Just regular dominants?
+COMPOSER 1. No, variations on them—inversions, sevenths, and all that.
+MANAGER.    Would that make things interesting?
+COMPOSER 4. Yeah, yeah! We could even shift them to augmented sixths!
+COMPOSER 3. Bruckner did that in his seventh symphony.
+COMPOSER 4. He did?
+COMPOSER 3. Second movement, starting around measure 80.
+[Everyone stares at COMPOSER 3]
+MANAGER.    Well, we're working on our first movement, not the second.
+[Quartet strikes up something rousing offstage, for example…]
+
+MANAGER.    [opens and leans out door] Hey, hey! Could you guys practice
+  somewhere else?
+1ST VIOLIN. [offstage] But it's raining out there!
+MANAGER.    You can't practice here. Okay?
+[Muttering and banging from offstage; manager closes door]
+MANAGER.    Where were we?
+COMPOSER 2. We were talking about dominants.
+MANAGER.    Dominants, right. Who is going to work on those?
+COMPOSER 1. They're my idea.
+COMPOSER 4. I think I can come up with some, too.
+MANAGER.    Good, I want to hear ideas from all of you. How long will that
+  take you guys?
+COMPOSER 1. A day or two, I suppose.
+MANAGER.    Can you be specific? I need hours for the project plan.
+COMPOSER 4. Twelve hours for me, but I'm going to the retreat tomorrow.
+COMPOSER 1. Yeah, make it twelve hours.
+MANAGER.    [pokes at device] Day and a half, plus a day for the
+  teambuilding. Okay. So, the second phrase. We repeat it?
+COMPOSER 1. Well, not exactly, if we're altering the dominants.
+MANAGER.    But provisionally we just repeat it?
+COMPOSER 4. Sure.
+COMPOSER 1. And we need to work out the dynamics.
+MANAGER.    Can't we do those afterwards?
+COMPOSER 1. Well, we need to work the dynamics towards the horn intro.
+MANAGER.    Where does that happen?
+COMPOSER 1. In the third, maybe fourth phrase?
+COMPOSER 4. How about cutting them into the second phrase? With one of
+  the new dominants?
+MANAGER.    Will that work?
+COMPOSER 1. I don't think so, it'll be too abrupt.
+COMPOSER 4. No, I think it can work out.
+MANAGER.    Okay, okay. So we'll work on the horn intro in our next
+  meeting. How about your early idea?
+COMPOSER 4. Well, that depends on the dominants. I'll have to experiment.
+MANAGER.    Is that part of the dominant testing?
+COMPOSER 4. Sure.
+[Pause while manager fiddles with device]
+MANAGER.    Okay, so next meeting: second phrase dominants versus just
+  copying the first phrase, horn intro ideas, and if we have time, the
+  third phrase. I'll send the updated project plan to the group right—
+COMPOSER 1. No, don't do that, groups are broken.
+MANAGER.    What?
+COMPOSER 4. Yeah, if you send it to the group, nobody can see the document.
+MANAGER.    Did someone report this?
+COMPOSER 1. A while ago, I think fixing it is in their next release
+  cycle. Groups are still pretty new.
+COMPOSER 4. You have to e-mail everyone with the document so they
+  can see it. Using groups is fine for permissions, just not for
+  sharing things.
+MANAGER.    All right, I'll send individual e-mails.
+[A long pause while the manager does this]
+MANAGER.    Make sure you all acknowledge the e-mail, I need to see that
+  you got it.
+COMPOSERS.  [murmurs of assent]
+MANAGER.    Okay, I think we have time to cover dynamics. What do we have?
+COMPOSER 1. Well, the opening is piano.
+MANAGER.    Great!
+COMPOSER 2. Uhh, guys, guys, the wiki says pianissimo.
+COMPOSER 4. Did you change something?
+COMPOSER 2. No, it's pp, and then a poco crescendo I guess? Kinda hard
+  to read this font.
+COMPOSER 1. Check the edit history. Someone must have changed it.
+COMPOSER 2. Where is that?
+COMPOSER 1. Top right, under the review icon and then change log and
+  then the revisions tab.
+COMPOSER 2. Which one is the review icon? It used to say "review."
+COMPOSER 4. It's the gear with the little triangle.
+COMPOSER 1. They changed it when they redid the U.I.
+COMPOSER 2. Ahh, okay. [pause] Found it. [mumbles while clicking] change
+  log…and then revisions…
+[Longer pause, perhaps scrolling sounds]
+COMPOSER 2. It says the host TAO edited it.
+COMPOSER 1. No username?
+COMPOSER 2. No, just TAO, there's also an IP address, one ninety two dot
+  zero dot two—
+COMPOSER 1. That's fine. Whose host is TAO?
+[Silence and stares]
+MANAGER.    Oh, that's my laptop. I must have changed p to pp by accident,
+  sorry about that.
+COMPOSER 2. So should I change it back?
+COMPOSER 1. Yes. We need piano to open.
+COMPOSER 2. and the crescendo?
+COMPOSER 1. That's fine, piano to poco crescendo.
+COMPOSER 4. Then do we decrescendo?
+COMPOSER 1. No, I think we should hold to the rest.
+COMPOSER 4. A rest? Doesn't it cut directly to the second phrase?
+COMPOSER 1. No, the rests aren't shown in the draft version. They only
+  get rendered when you do a full build.
+COMPOSER 4. Oh, I see. [tilts device and stares] So there's…ah, a
+  quarter rest?
+COMPOSER 1. Yeah.
+COMPOSER 4. Okay, in that case, I think we should hold the dynamic to that.
+MANAGER.    This is great work, guys. So we all agree on the dynamics—piano
+  to crescendo, and hold that to the next phrase?
+COMPOSER 1. To the rest.
+MANAGER.    Right, that's what I said.
+[Speakerphone doo-deeps]
+MANAGER.    Hi, who just joined?
+COMPOSER 2. Sorry guys, I got disconnected. What did I miss?
+MANAGER.    No problem, we were talking about holding the dynamic to
+  the rest.
+COMPOSER 2. What rest?
+[Cut lights & curtains]
