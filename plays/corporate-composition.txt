@@ -3,6 +3,11 @@ CORPORATE COMPOSITION
 Copyright © 2013 by Jeremy Mates
 All rights reserved.
 
+   A short play ruminating on interrupt-driven, meeting-infested corporations,
+   all the wonders of technological progress, and how a team of composers
+   might perform putting together a Symphony. Direct inspiration probably from
+   reading “Quiet” by Susan Cain.
+
 Dramatis Personae
 
 MANAGER OF TEAM
