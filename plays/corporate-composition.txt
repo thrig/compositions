@@ -3,10 +3,14 @@ CORPORATE COMPOSITION
 Copyright © 2013 by Jeremy Mates
 All rights reserved.
 
-   A short play ruminating on interrupt-driven, meeting-infested corporations,
-   all the wonders of technological progress, and how a team of composers
-   might perform putting together a Symphony. Direct inspiration probably from
-   reading “Quiet” by Susan Cain.
+   A short play ruminating on interrupt-driven, meeting-infested
+   corporations, all the wonders of technological progress, and how a
+   team of composers might perform putting together a Symphony. Direct
+   inspiration probably from reading “Quiet” by Susan Cain. Amusingly, a
+   coffee shop a few days later featured a group of people being not
+   very productive discussing Drop Box, whether files were shared or
+   not, troubles deleting files, and so forth, and in general not making
+   any progress on whatever it was they were working on.
 
 Dramatis Personae
 
