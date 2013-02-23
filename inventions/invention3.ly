@@ -40,7 +40,7 @@ uppersecond = \relative b' {
   des,16 f aes-. ges-.
     a16 des e-. des-.
     ges,8-| des'-| aes-| bes-|
-  ees,8-| aes-| e-| aes-|  f16 ees des c
+  ees,8-| aes-| e-| aes-|  f16 ees des c-.
     ees16 g bes-. aes-.
   b16 ees ges-. ees-.  f,16 a c-. bes-. des f aes-. f-. g, b d-. c-.
   ees16 g bes-. aes-. b ees ges f e ees des c bes aes g f
