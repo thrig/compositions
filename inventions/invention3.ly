@@ -10,7 +10,7 @@
 
 \header {
   title       = "Invention No. 3"
-  subsubtitle = "2013-02-19"
+  subsubtitle = "2013-02-23"
   composer    = "Jeremy Mates"
   tagline     = ##f
 }
@@ -36,11 +36,11 @@ upperfirst = \relative f' {
 }
 
 uppersecond = \relative b' {
-  c8-| r r4 r2
+  c8-| r8 r4 r2
   des,16 f aes-. ges-.
     a16 des e-. des-.
-    ges,8-| des'-| f,-| bes-|
-  ees,8-| aes-| e-| aes-|  f-| des-|
+    ges,8-| des'-| aes-| bes-|
+  ees,8-| aes-| e-| aes-|  f16 ees des c
     ees16 g bes-. aes-.
   b16 ees ges-. ees-.  f,16 a c-. bes-. des f aes-. f-. g, b d-. c-.
   ees16 g bes-. aes-. b ees ges f e ees des c bes aes g f
@@ -71,14 +71,11 @@ lowersecond = \relative a {
   aes16 c ees-. des-.
     e16 aes b-. aes-.
     des,8-| aes'-| c,-| f-|
-  R1
-  r2 r4 
-\relative a {
-    bes8-| ees-| aes,-| ees'-|
-    c8-| f-| des-| f-| ees-| g-|
+  aes,8-| r r r  r f'-| des-| bes-|
+  c8-| aes-| b-| c-| aes-| f-| bes8-| ees-|
+  aes,-| ees'-| c8-| f-| des-| f-| ees-| g-|
   c,8-| ees-| aes,-| ees'-| aes-| r ees-| r
   aes8-| r ees-| r aes-| r4. 
-}
 }
 
 upper = {
