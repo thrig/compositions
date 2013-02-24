@@ -23,7 +23,7 @@ keytempoetc = {
 
 upperfirst = \relative f' {
   R1
-  ees16\mf g bes-. aes-.
+  ees16 g bes-. aes-.
     b ees ges-. ees-.
     aes,8-| ees'-| g,-| c-|
   aes8-. r r r r f'-| aes16-. f-. ees des
@@ -39,7 +39,7 @@ uppersecond = \relative b' {
   c8-| r8 r4 r2
   des,16 f aes-. ges-.
     a16 des e-. des-.
-    ges,8-| des'-| aes-| bes-|
+    ges,8-| des'-| f,-| bes-|
   ees,8-| aes-| e-| aes-|  f16 ees des f
     ees16 g bes-. aes-.
   b16 ees ges-. ees-.  f,16 a c-. bes-. des f aes-. f-. g, b d-. c-.
@@ -48,7 +48,7 @@ uppersecond = \relative b' {
 }
 
 lowerfirst = \relative a {
-  aes16\mf c ees-. des-.
+  aes16 c ees-. des-.
     e16 aes b-. aes-.
     des,8-| aes'-| c,-| f-|
   bes,8-| ees-| aes,-| ees'-|
@@ -71,7 +71,7 @@ lowersecond = \relative a {
   aes16 c ees-. des-.
     e16 aes b-. aes-.
     des,8-| aes'-| c,-| f-|
-  aes,8-| r r r  r f'-| des-| g-|
+  r r r r r aes-| des,-| g-|
   c,8-| aes-| b-| c-| aes-| f-| bes8-| ees-|
   aes,-| ees'-| c8-| f-| des-| f-| ees-| g-|
   c,8-| ees-| aes,-| ees'-| aes-| r ees-| r
