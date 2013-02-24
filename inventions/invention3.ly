@@ -82,7 +82,7 @@ upper = {
   \clef treble
   \keytempoetc
 
-% \upperfirst
+  \upperfirst
   \uppersecond
 
   \bar "|."
@@ -92,7 +92,7 @@ lower = {
   \clef treble
   \keytempoetc
 
-% \lowerfirst
+  \lowerfirst
   \lowersecond
 
   \bar "|."
