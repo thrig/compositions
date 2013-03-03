@@ -6,7 +6,7 @@ mp3: modulus5
 	@-rm *.wav
 
 modulus5.pdf: modulus5.ly
-	lilypond --pdf modulus5.ly
+	lilypond -dno-point-and-click --pdf modulus5.ly
 
 clean:
 	@-rm *.midi *.pdf *.mp3 2>/dev/null

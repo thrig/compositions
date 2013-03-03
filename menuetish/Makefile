@@ -6,7 +6,7 @@ mp3: menuet3.pdf
 	@-rm *.wav
 
 menuet3.pdf: menuet3.ly
-	lilypond menuet3.ly
+	lilypond -dno-point-and-click menuet3.ly
 
 clean:
 	@-rm *.midi *.wav *.mp3 *.pdf 2>/dev/null

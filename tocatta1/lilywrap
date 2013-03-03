@@ -51,7 +51,7 @@ inscore && /{/ { print "\\score {"
 	next
 }
 	{print}' $1 > $1-preprocessed.ly
-lilypond $INC  $midionly -o `basename $1 .ly` $1-preprocessed.ly 
+lilypond -dno-point-and-click $INC  $midionly -o `basename $1 .ly` $1-preprocessed.ly 
 rm -f $1-preprocessed.ly
 
 

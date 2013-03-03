@@ -6,7 +6,7 @@ mp3: fanfare1.pdf
 	@-rm *.wav
 
 fanfare1.pdf: fanfare1.ly
-	lilypond fanfare1.ly
+	lilypond -dno-point-and-click fanfare1.ly
 
 clean:
 	@-rm *.midi *.wav *.mp3 *.pdf 2>/dev/null

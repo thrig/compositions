@@ -5,7 +5,7 @@ mp3: fugue1
 	@-rm *.wav
 
 fugue1.pdf: fugue1.ly articulate.ly lilywrap
-	lilypond --pdf --output=tmp fugue1.ly
+	lilypond -dno-point-and-click --pdf --output=tmp fugue1.ly
 	./lilywrap fugue1.ly
 	mv tmp.pdf fugue1.pdf
 	@-rm tmp.*
