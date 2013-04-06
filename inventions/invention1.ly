@@ -1,8 +1,6 @@
 % LilyPond engraving system - http://www.lilypond.org/
 %
 % MIDI playback assumes "Campbells Harpsichord tuned" SoundFont being used!
-%
-% http://soundcloud.com/thrig
 
 \version "2.16.0"
 

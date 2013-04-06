@@ -42,8 +42,6 @@
 %
 % Only two voices, or could have multiple instruments that swap places with
 % one another so one two sounding at one time?
-%
-% http://soundcloud.com/thrig
 
 \version "2.12.3"
 
