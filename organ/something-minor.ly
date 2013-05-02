@@ -455,14 +455,16 @@ themusic = {
       % This selects the Flute pipes of jeux_d_orgues2.sf2 - however,
       % Baroque Plenum (reeds) also works, depending, so probably leave
       % pipe selection up to the organist.
-      \set PianoStaff.midiInstrument = #"electric piano 2"
+%     \set PianoStaff.midiInstrument = #"electric piano 2"
+      \set PianoStaff.midiInstrument = #"church organ"
       \new Staff = "upper" \upper
       \new Staff = "lower" \tenor
     >>
     \new Staff
 %     \with { \consists "Ambitus_engraver" }
     <<
-      \set Staff.midiInstrument = #"electric piano 2"
+%     \set Staff.midiInstrument = #"electric piano 2"
+      \set Staff.midiInstrument = #"church organ"
       \clef bass
       \pedal
     >>
