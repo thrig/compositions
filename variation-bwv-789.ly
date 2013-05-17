@@ -11,11 +11,11 @@
 }
 
 blackspots = \relative f'' {
-  \accidentalStyle "piano"        % PORTABILITY comment out if lilypond < 2.16
+  \accidentalStyle "neo-modern"     % PORTABILITY comment out if lilypond < 2.16
 
   fis16 g a8 c,16 b a8  d16 e fis8 b,16 a b8
   e,8 fis g c,          b' a g a
-  b8 cis d g,           f' e d e 
+  b8 cis d g,           f'! e d e 
   f8 d e c              d bes c f, 
 
   ees'8 d c d        ees c d bes 
@@ -31,12 +31,12 @@ blackspots = \relative f'' {
   d8 b cis d         e fis g cis, 
   a'8 g f e          f d e c 
   b8 a b e,          d' cis b cis
-  e8 d cis d         f e d cis
+  e8 d cis d         f! e d cis
 
   d2                        cis16 d e8 g,16 fis e8
   a16 b cis8 fis,16 e fis8  b, cis d g,
   fis'8 e d e               fis gis a d,
-  c'8 b a b                 c a b g
+  c'!8 b a b                c a b g
 
   a8 f g c,          bes' a g a
   bes8 g a f         g e f bes,
@@ -55,7 +55,7 @@ blackspots = \relative f'' {
 
   fis16 g a8 c,16 b a8  d16 e fis8 b,16 a b8 
   e,8 fis g c,          b' a g a
-  b8 cis d g,           f' e d e 
+  b8 cis d g,           f'! e d e 
   f8 d e c              d bes c f, 
 
   ees'8 d c d        ees c d bes 
