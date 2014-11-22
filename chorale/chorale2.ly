@@ -211,8 +211,8 @@ mbass = { \articulate {
     \set Score.midiChannelMapping = #'staff
     \new Staff << \msop   >>
     \new Staff << \malto  >>
-    \new Staff << \mbass  >>
     \new Staff << \mtenor >>
+    \new Staff << \mbass  >>
   >>
   \midi { }
 }
