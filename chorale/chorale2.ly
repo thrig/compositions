@@ -21,6 +21,8 @@ tempoandetc = {
   \set Score.tempoHideNote = ##t
   \tempo "Moderately" 4=66
 
+  \override Staff.TimeSignature #'stencil = ##f
+
   \key c \major               % lies! but every note is literal
 
   \cadenzaOn
