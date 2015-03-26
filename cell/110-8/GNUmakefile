@@ -11,3 +11,4 @@ includes:
 
 clean:
 	@-rm -f sixteen-thoughts.aux sixteen-thoughts.log sixteen-thoughts.out
+	@-$(MAKE) -C includes clean

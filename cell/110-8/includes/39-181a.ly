@@ -21,11 +21,11 @@
       \accidentalStyle forget
       \clef "hufnagel-do1"
       \cadenzaOn
-      d4 d c4. d8 e d c a8 r c4 d8 e16 f g8 e a a, a' a g f g16 a g8 a4.
+      d4 d c4. d8 e d c a4 c d8 e16 f g8 e a a, a' a g f g16 a g8 a4.
       \cadenzaOff
       \bar ""
       \cadenzaOn
-      e8 d4. c8 d r8 d8 a a' a16 g f8 g a bes a e a a g f g a g16 f e4 d2
+      e8 d4. c8 d4 d8 a a' a16 g f8 g a bes a e a a g f g a g16 f e4 d2
       \cadenzaOff
       \bar "k"
     }

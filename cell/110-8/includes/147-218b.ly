@@ -25,7 +25,7 @@
       \cadenzaOff
       \bar ""
       \cadenzaOn
-      d8. e16 f g32 e g16 f e d32 e f g a16 a32 a f g e f d f e8 e16 d32 e f e a a g f g16 a4 g8. a4
+      d8. e16 f g32 e g16 f e d32 e f g a16 a32 a f g e f d f e8 e16 d32 e f e a a g f g16 a4 g2 a
       \cadenzaOff
       \bar "k"
     }
