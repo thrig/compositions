@@ -22,6 +22,8 @@
 \usepackage{pxfonts}
 \usepackage{textcomp}
 
+\usepackage[square]{natbib}
+
 \usepackage{graphicx}
 \setkeys{Gin}{width=156mm,totalheight=\textheight,keepaspectratio}
 \graphicspath{{includes/}}
@@ -33,6 +35,7 @@
 \hypersetup{pdfauthor={Jeremy Mates},pdftitle={Sixteen Thoughts on Rule 110}}
 
 \begin{document}
+\bibliographystyle{plainnat}
 
 \mainmatter
 
@@ -75,7 +78,7 @@
 
 \includegraphics{228-182b.pdf}%
 
-\clearpage
+\chapter*{Code}
 
 \begin{verbatim}
 /*
@@ -85,7 +88,7 @@
  * porting to a system of some other endianess.
  *
  * Usage:
- *   make gen && ./gen num
+ *   cc -std=c99 -o gen gen.c && ./gen num
  *
  * where num is a number from 0 to 255 inclusive.
  */
@@ -115,8 +118,12 @@ int main(int argc, char *argv[])
     unsigned int iters = 0;
     unsigned int input;
 
+    if (argc != 2)
+        errx(EX_USAGE, "Usage: gen {0..255}");
+
     argv++;                     // skip prog name
-    sscanf(*argv++, "%3u", &input);
+    if (sscanf(*argv++, "%3u", &input) != 1)
+        errx(EX_USAGE, "Usage: gen {0..255}");
     argc -= 2;
     if (input > UINT8_MAX)
         errx(EX_DATAERR, "input number must be in range 0..%u", UINT8_MAX);
@@ -156,7 +163,46 @@ int main(int argc, char *argv[])
 }
 \end{verbatim}
 
-\clearpage
+\chapter*{Method}
+
+The use of an 8-bit ring buffer keeps output minimal (32-bit has a much larger space to explore), and allows easy graphing of the resulting patterns. The melodies above are based on the eight starting numbers that have a single subsequent step before terminating. There are other interesting patterns in some of the remaining numbers perhaps worth exploring. \\
+
+\begin{verbatim}
+$ ./gen 39
+XXX..X..  39
+X.X.XX.X 181
+hilo 255 at 2
+\end{verbatim}
+
+Melodization was performed by taking the numbers as binary:
+
+\begin{verbatim}
+11100100 39
+10101101 181
+\end{verbatim}
+
+Then spacing these numbers out:
+
+\begin{verbatim}
+ 1   1   1   0   0   1   0   0
+ 1   0   1   0   1   1   0   1
+\end{verbatim}
+
+A new number created with the previous, current, and next numbers for each number, plus \texttt{s} and \texttt{e} to indicate the start and end:
+
+\begin{verbatim}
+ 1   1   1   0   0   1   0   0
+s11 111 110 100 001 010 100 00e
+ 1   0   1   0   1   1   0   1
+s10 101 010 101 011 110 101 01e
+\end{verbatim}
+
+And then each set (\texttt{s11}, \texttt{111}, etc.) is considered in the construction of a musical phrase. Particular codas\citep[p.29]{taruskin2010} were used for the four \texttt{e} cases, though otherwise the process was fairly loose, with a \texttt{1} usually meaning ascending or faster, and \texttt{0} the opposite, and a variable number of notes or overlap allowed between the different sets. So, a fairly informal process. Whether a cellular automata melody\citep[p.600]{stephenson2008} could be designed that is both musically pleasing and possible to recover the original bits from might make for an interesting study.
+
+\vfill
+
 This work is licensed under the Creative Commons Attribution 3.0 United States License. To view a copy of this license, visit http://creativecommons.org/licenses/by/3.0/us/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105.
+
+\bibliography{references}
 
 \end{document}

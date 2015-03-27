@@ -5,7 +5,7 @@
  * porting to a system of some other endianess.
  *
  * Usage:
- *   make gen && ./gen num
+ *   cc -std=c99 -o gen gen.c && ./gen num
  *
  * where num is a number from 0 to 255 inclusive.
  */
@@ -35,8 +35,12 @@ int main(int argc, char *argv[])
     unsigned int iters = 0;
     unsigned int input;
 
+    if (argc != 2)
+        errx(EX_USAGE, "Usage: gen {0..255}");
+
     argv++;                     // skip prog name
-    sscanf(*argv++, "%3u", &input);
+    if (sscanf(*argv++, "%3u", &input) != 1)
+        errx(EX_USAGE, "Usage: gen {0..255}");
     argc -= 2;
     if (input > UINT8_MAX)
         errx(EX_DATAERR, "input number must be in range 0..%u", UINT8_MAX);
