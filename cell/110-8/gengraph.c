@@ -65,7 +65,7 @@ int main(void)
                 break;
 
             if (!conn_isconn(pfield, field1))
-                conn_mkunion(pfield, field1);
+                conn_mkunion(sfield, field1);
 
             pfield = field1;
         }

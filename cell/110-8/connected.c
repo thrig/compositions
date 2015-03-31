@@ -11,31 +11,10 @@ int conn_count(void)
     return Count;
 }
 
-/* "path compression" code disabled as too much of a pain to write a portable
- * version of reallocarray(3) for non-OpenBSD systems. */
 uint8_t conn_find(uint8_t p)
 {
-/*  uint8_t *seen;
-    size_t seen_len = 8;
-    size_t seen_idx = 0;
-
-    if ((seen = calloc(seen_len, sizeof(uint8_t))) == NULL)
-        err(EX_OSERR, "could not calloc() seen list"); */
-
-    while (p != Id[p]) {
-/*      seen[seen_idx++] = p; */
+    while (p != Id[p])
         p = Id[p];
-/*      if (seen_idx >= seen_len) {
-            seen_len <<= 1;
-            if ((seen = reallocarray(seen, seen_len, sizeof(uint8_t))) == NULL)
-                err(EX_OSERR, "could not calloc() seen list");
-        } */
-    }
-/*  seen_len = seen_idx;
-
-    for (seen_idx = 0; seen_idx < seen_len; seen_idx++) {
-        Id[seen[seen_idx]] = p;
-    } */
 
     return p;
 }
