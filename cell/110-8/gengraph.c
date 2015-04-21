@@ -1,16 +1,16 @@
 /*                     Rule 110, 8-bit playfield.
  *
  * Produces output for graphviz (or anything that can read such, e.g.
- * OmniGraffle or the like). The output should be filtered for
- * duplicates because I haven't spent the time to figure out how to do
- * that in C. Usage might run something like:
+ * OmniGraffle or the like). Usage might run something like:
  *
  *   gmake gengraph
- *   ./gengraph | perl -ne 'print unless $s{$_}++' > foo.dot
+ *   ./gengraph > foo.dot
  *   neato -Gstart=rand -Tpng -o foo.png foo.dot
  */
 
 #include "connected.h"
+
+bool seenint[256];
 
 #define FIELD_WIDTH 8
 #define OUTCOMES_WIDTH 8
@@ -54,10 +54,12 @@ int main(void)
             field1 = field2;
 
             /* TODO would like to emit individual graph files for each group
-             * or at least to tag each such line as such (and also not
-             * emit already emitted pairs...) */
-            //if (field1 != 0)
-                printf("  %u -> %u;\n", pfield, field1);
+             * or at least to tag each such line as such. */
+            if (!seenint[pfield]) {
+                printf("  %u -> %u;\t\t/* id %03u */\n", pfield, field1,
+                       conn_find(field1));
+                seenint[pfield] = true;
+            }
 
             /* Bail if already connected to start node; this kills
              * loops, so the IFYOUHAVETOASK is not really needed. */
