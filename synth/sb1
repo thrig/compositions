@@ -1,0 +1,47 @@
+#!/usr/bin/env perl
+#
+# Set synth to appropriate state, perhaps some drum mode, for example.
+# Timings may very well need to be adjusted, below.
+#
+# Record on OpenBSD via:
+#   aucat -o rec.wav &; ./sb1 ; pkill aucat
+#
+# Then trim/fade/fixup with sox(1) or the like.
+
+use strict;
+use warnings;
+use feature qw(say);
+
+use Time::HiRes qw(sleep usleep);
+
+my $midi_dev = shift // '/dev/rmidi0';
+
+open my $midfh, '>', $midi_dev
+  or die "could not open MIDI device '$midi_dev': $!\n";
+binmode $midfh;
+$midfh->autoflush(1);
+
+my $x = 2;
+
+$SIG{INT}  = sub { silence(127); exit 1 };
+$SIG{TERM} = sub { silence(127); exit 1 };
+
+sleep(0.1);    # time for aucat to get started?
+
+while ( $x++ < 9277 ) {
+  my $note = int( cos( $x * 17 - 3 ) * 64 + 64 );
+  my $velo = int( 83 + rand(7) );
+  printf $midfh "\x90%c%c", $note, $velo;
+  usleep(9973);
+}
+usleep(79774);
+silence(0);
+sleep(2.671);
+
+# TODO in theory "123" is all notes off but either I'm inputting
+# that value wrong or my synth ignores that. So KLUGE loop notes and
+# turn them off manually.
+sub silence {
+  my $how_quick = shift // 64;
+  for ( 0 .. 127 ) { printf $midfh "\x80%c%c", $_, $how_quick }
+}
