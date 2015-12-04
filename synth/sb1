@@ -1,7 +1,8 @@
 #!/usr/bin/env perl
 #
-# Set synth to appropriate state, perhaps some drum mode, for example.
-# Timings may very well need to be adjusted, below.
+# Set synth to appropriate state, perhaps some drum mode, and adjust the
+# FIXME bits as necessary, below. Synth may need to be set to accept
+# remote control changes, or may need to be setup manually.
 #
 # Record on OpenBSD via:
 #   aucat -o rec.wav &; ./sb1 ; pkill aucat
@@ -10,9 +11,14 @@
 
 use strict;
 use warnings;
-use feature qw(say);
-
 use Time::HiRes qw(sleep usleep);
+
+my $CONTROL_CHANGE = 11 << 4;
+my $PROGRAM_CHANGE = 12 << 4;
+
+my $ALL_NOTES_OFF = 123;
+
+my $channel = 0;
 
 my $midi_dev = shift // '/dev/rmidi0';
 
@@ -23,25 +29,33 @@ $midfh->autoflush(1);
 
 my $x = 2;
 
-$SIG{INT}  = sub { silence(127); exit 1 };
-$SIG{TERM} = sub { silence(127); exit 1 };
+$SIG{INT} = $SIG{TERM} = sub { silence(); exit 1 };
+
+# FIXME synth specifics to select appropriate program
+printf $midfh "%c%c%c", $CONTROL_CHANGE | $channel, 0,  63;
+printf $midfh "%c%c%c", $CONTROL_CHANGE | $channel, 32, 32;
+printf $midfh "%c%c",   $PROGRAM_CHANGE | $channel, 31 - 1;
+
+# Main volume
+printf $midfh "%c%c%c", $CONTROL_CHANGE | $channel, 7, 100;
 
 sleep(0.1);    # time for aucat to get started?
 
 while ( $x++ < 9277 ) {
+  # select notes to play (drum instruments) via periodic function.
+  # Fiddling with these numbers (and possibly excluding specific
+  # numbers) likely required.
   my $note = int( cos( $x * 17 - 3 ) * 64 + 64 );
+  # randomize loudness a bit
   my $velo = int( 83 + rand(7) );
   printf $midfh "\x90%c%c", $note, $velo;
+  # slightly below a shelf which fills the synth with events. YMMV.
   usleep(9973);
 }
 usleep(79774);
-silence(0);
+silence();
 sleep(2.671);
 
-# TODO in theory "123" is all notes off but either I'm inputting
-# that value wrong or my synth ignores that. So KLUGE loop notes and
-# turn them off manually.
 sub silence {
-  my $how_quick = shift // 64;
-  for ( 0 .. 127 ) { printf $midfh "\x80%c%c", $_, $how_quick }
+  printf $midfh "%c%c%c", $CONTROL_CHANGE | $channel, $ALL_NOTES_OFF, 0;
 }
