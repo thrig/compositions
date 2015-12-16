@@ -1,0 +1,95 @@
+#!/usr/bin/env perl
+#
+# Equation eyeballed into a roughly appropriate shape via gnuplot:
+#
+#   set terminal postscript
+#   set output "foo.ps"
+#   set xrange [0:399]
+#   plot 68 + 5 * sin((x - 5) / (17 * pi)) + 5 * sin(x - 10) + sin(x/pi)
+#
+# Then the notes generated via:
+
+use 5.14.0;
+use strict;
+use warnings;
+
+use Math::Trig;
+
+# Minimize duplicated notes by fiddling with the equation
+my $off1 = -5;
+my $off2 = -10;
+my $off3 = 0;
+
+my $equation = sub {
+  my ($x) = @_;
+  sprintf "%d",
+    68 + 5 * sin( ( $x + $off1 ) / ( pi * 17 ) ) +
+    5 * sin( $x + $off2 ) +
+    sin( ( $x + $off3 ) / pi );
+};
+
+sub get_offsets {
+  return $off1, $off2, $off3;
+}
+
+sub stir_offsets {
+  $off1++;
+  if ( $off1 > 5 ) {
+    $off2++;
+    $off1 = -5;
+  }
+  if ( $off2 > 10 ) {
+    $off3++;
+    $off2 = -10;
+  }
+  if ( $off3 > 20 ) {
+    die;
+  }
+}
+
+sub set_offsets {
+  ( $off1, $off2, $off3 ) = @_;
+}
+
+my $best_fit = ~0;
+my @best_offsets;
+
+if (0) {
+  eval {
+    while (1) {
+      my $prev = ~0;
+      my $fit  = 0;
+      for my $x ( 0 .. 399 ) {
+        my $y = $equation->($x);
+        $fit++ if $y == $prev and $x % 8 < 5 or $x > 395;
+        $prev = $y;
+      }
+      if ( $fit < $best_fit ) {
+        @best_offsets = get_offsets();
+        $best_fit     = $fit;
+      }
+      stir_offsets();
+    }
+  };
+  warn "best @best_offsets\n";
+}
+
+@best_offsets = (-2, -8, 11);
+set_offsets(@best_offsets);
+
+for my $x ( 0 .. 397 ) {
+  # and the isorhythm, with some manual tweaks
+  if ( $x > 395 or ( $x % 8 < 5 and $x != 0 ) or $x == 37 ) {
+    if ( $x != 100 and $x != 164 ) {
+      say $equation->($x);
+    } else {
+      say "r";
+    }
+  } else {
+    say "r";
+  }
+}
+
+# and then with the known best offsets, notes generated via:
+#   perl emplotten | atonal-util pitch2ly --mode=absolute | ly-fu --tempo=88 --absolute --open -
+# and these then fed to synth
