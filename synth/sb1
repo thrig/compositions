@@ -5,7 +5,7 @@
 # remote control changes, or may need to be setup manually.
 #
 # Record on OpenBSD via:
-#   aucat -o rec.wav &; ./sb1 ; pkill aucat
+#   aucat -o rec.wav & ./sb1 ; pkill aucat
 #
 # Then trim/fade/fixup with sox(1) or the like.
 
