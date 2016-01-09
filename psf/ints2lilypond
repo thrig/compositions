@@ -1,0 +1,101 @@
+#!/usr/bin/env perl
+use 5.14.0;
+
+my $Flag_Transpose   = 75;
+my $Flute_Phrase_Max = 32;
+
+use Music::LilyPondUtil ();
+my $Lyu = Music::LilyPondUtil->new;
+$Lyu->mode('absolute');
+$Lyu->chrome('flats');
+
+my $Instrument = 'flute';
+my @Phrase;
+
+my %Instruments;
+
+for my $x (qw/flute harp/) {
+  my $filename = join '', 'out-', $x, '.ly';
+  open $Instruments{$x}, '>', $filename
+    or die "could not write '$filename': $!\n";
+}
+
+my $note_num   = 0;
+my $prev_pitch = ~0;
+
+NOTE: while ( my $line = readline *STDIN ) {
+  chomp $line;
+  if ( !defined $line or $line !~ m/^-?\d{1,3}$/ ) {
+    $line //= '';
+    die "not a small pitch integer: '$line' at -:$.\n";
+  }
+
+  my $pitch = $Flag_Transpose + $line;
+
+  if ( $pitch == $prev_pitch ) {
+    pick_instrument();
+    my $count = emit_phrase();
+    if ( $count > 0 ) {
+      $count += some_silence($note_num);
+      $note_num += $count;
+    }
+    next NOTE;
+  }
+
+  push @Phrase, $Lyu->p2ly($pitch);
+
+  $prev_pitch = $pitch;
+  $note_num++;
+}
+
+sub emit_phrase {
+  return unless @Phrase;
+
+  my $emitted = @Phrase;
+
+  if ( @Phrase < $Flute_Phrase_Max ) {
+    $Phrase[-1] = [ $Phrase[-1], 4 ];
+    $emitted += 4;
+  }
+
+  for my $x ( keys %Instruments ) {
+    my $joiner = '~ ';
+    for my $n (@Phrase) {
+      my ( $note, $how_many );
+      if ( ref $n eq 'ARRAY' ) {
+        ( $note, $how_many ) = @$n;
+      } else {
+        $note     = $n;
+        $how_many = 1;
+      }
+      if ( $x ne $Instrument ) {
+        $note   = 'r';
+        $joiner = ' ';
+      }
+      print { $Instruments{$x} } join( $joiner, ("${note}16 ") x $how_many ), " ";
+    }
+    print { $Instruments{$x} } "\n";
+  }
+
+  @Phrase = ();
+  return $emitted;
+}
+
+sub pick_instrument {
+  return unless @Phrase;
+  if ( $Instrument eq 'harp' ) {
+    $Instrument = 'flute';
+  } else {
+    $Instrument = 'harp';
+  }
+  return $Instrument;
+}
+
+sub some_silence {
+  my ($cur_note_num) = @_;
+  my $pad_by = 2;
+  for my $x ( keys %Instruments ) {
+    print { $Instruments{$x} } ("r16 ") x $pad_by;
+  }
+  return $pad_by;
+}

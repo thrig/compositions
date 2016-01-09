@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# requires Music::Canon, App::MusicTools.
+canonical modal \
+  --input=1,1,1,1,1,1,1,1,1,1,1 \
+ --output=2,2,2,2,2,2,2,2,2,2,2 --nos --sp=0 --ep=1 --raw - \
+  < numbers \
+| tr ' ' '\n' \
+| ./ints2lilypond
+
+lilypond -dno-point-and-click main.ly
