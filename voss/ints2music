@@ -1,0 +1,71 @@
+#!/usr/bin/env perl
+use 5.14.0;
+use Carp qw(carp);
+
+my $instrument = 'tubular bells';
+
+my %instruments = (
+  'piano'         => { midi_patch => 0,  transpose => 60, min => 20, max => 100 },
+  'celesta'       => { midi_patch => 8,  transpose => 60, min => 20, max => 100 },
+  'tubular bells' => { midi_patch => 14, transpose => 60, min => 60, max => 79 },
+  'dulcimer'      => { midi_patch => 15, transpose => 60, min => 20, max => 100 },
+  'harp'          => { midi_patch => 46, transpose => 60, min => 20, max => 100 },
+);
+# Short for "instrument metadata". Probably too short, as I fairly promptly
+# forgot what it stood for.
+sub imd { $instruments{$instrument}->{ $_[0] } // carp "dunno about $_[0]" }
+
+use MIDI;
+sub CHANNEL () { 0 }
+sub NO_VELO () { 0 }
+my $track = MIDI::Track->new;
+$track->new_event( 'set_tempo', 0, 500009 );
+$track->new_event( 'patch_change', 0, 0, imd('midi_patch') );
+
+my $transpose = imd('transpose');
+
+my $MIN_PITCH    = imd('min');
+my $MAX_PITCH    = imd('max');
+my $MIN_VELOCITY = 20;
+my $MAX_VELOCITY = 120;
+
+my $midi_filename = shift // 'out.midi';
+
+my $next_onset = 0;
+while ( my $line = readline *STDIN ) {
+  my @nums = split ' ', $line;
+
+  my $pitch    = $transpose + $nums[0];
+  my $duration = 157 + 157 * $nums[1];
+  my $velocity = 41 + $nums[2] * 11;
+
+  # warn sprintf "%d PITCH %d\tDUR %d %d\tVELO %d %d\n",
+  #   $., $pitch, $nums[1], $duration, $nums[2], $velocity;
+
+  # Add some noise
+  if ( $next_onset > 0 ) {
+    my $error  = sqrt($next_onset) / 3;
+    my $offset = rand($error) + rand($error);
+    $next_onset = sprintf ".f", $next_onset - $error + $offset;
+    $next_onset = 0 if $next_onset < 0;
+  }
+  $velocity += int rand 5;
+
+  # Sanity tests. Could also instead skip the note, or do other things.
+  if ( $pitch > $MAX_PITCH or $pitch < $MIN_PITCH ) {
+    die "pitch overflow $pitch at $.\n";
+  }
+  if ( $velocity > $MAX_VELOCITY or $velocity < $MIN_VELOCITY ) {
+    die "velo overflow $velocity at $.\n";
+  }
+
+  $track->new_event( 'note_on', $next_onset, CHANNEL, $pitch, $velocity );
+
+  my $note_sustain = int( $duration * 17 / 19 );
+  $next_onset = $duration - $note_sustain;
+
+  $track->new_event( 'note_off', $note_sustain, CHANNEL, $pitch, NO_VELO );
+}
+
+my $opus = MIDI::Opus->new( { ticks => 384, tracks => [$track] } );
+$opus->write_to_file($midi_filename);
