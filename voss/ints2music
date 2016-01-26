@@ -22,6 +22,11 @@ my $track = MIDI::Track->new;
 $track->new_event( 'set_tempo', 0, 500009 );
 $track->new_event( 'patch_change', 0, 0, imd('midi_patch') );
 
+use Music::LilyPondUtil ();
+my $lyu = Music::LilyPondUtil->new;
+$lyu->mode('absolute');
+$lyu->chrome('flats');
+
 my $transpose = imd('transpose');
 
 my $MIN_PITCH    = imd('min');
@@ -30,8 +35,22 @@ my $MIN_VELOCITY = 20;
 my $MAX_VELOCITY = 120;
 
 my $midi_filename = shift // 'out.midi';
+my $ly_filename   = shift // 'out-tb.ly';
+
+my $ly_duration = '16';
+my %velomap     = (
+  '0' => '\pp',
+  '1' => '\p',
+  '2' => '\mp',
+  '3' => '\mf',
+  '4' => '\f',
+);
+
+open my $lyfh, '>', $ly_filename or die "could not write '$ly_filename': $!\n";
 
 my $next_onset = 0;
+my $prev_velo  = -1;
+my $seen_note  = 0;
 while ( my $line = readline *STDIN ) {
   my @nums = split ' ', $line;
 
@@ -39,14 +58,16 @@ while ( my $line = readline *STDIN ) {
   my $duration = 157 + 157 * $nums[1];
   my $velocity = 41 + $nums[2] * 11;
 
-  # warn sprintf "%d PITCH %d\tDUR %d %d\tVELO %d %d\n",
-  #   $., $pitch, $nums[1], $duration, $nums[2], $velocity;
+  warn sprintf "%d PITCH %d\tDUR %d %d\tVELO %d %d\n",
+    $., $pitch, $nums[1], $duration, $nums[2], $velocity;
 
   # Add some noise
   if ( $next_onset > 0 ) {
     my $error  = sqrt($next_onset) / 3;
     my $offset = rand($error) + rand($error);
     $next_onset = sprintf ".f", $next_onset - $error + $offset;
+    # MIDI becomes unaccountably annoyed with negative time values, for
+    # some reason
     $next_onset = 0 if $next_onset < 0;
   }
   $velocity += int rand 5;
@@ -65,6 +86,22 @@ while ( my $line = readline *STDIN ) {
   $next_onset = $duration - $note_sustain;
 
   $track->new_event( 'note_off', $note_sustain, CHANNEL, $pitch, NO_VELO );
+
+  my $note = $lyu->p2ly($pitch);
+  print $lyfh $note;
+  if ( !$seen_note ) {
+    print $lyfh $ly_duration;
+  }
+  if ( $nums[2] != $prev_velo ) {
+    print $lyfh $velomap{ $nums[2] };
+    $prev_velo = $nums[2];
+  }
+  print $lyfh " ";
+  if ( $duration > 0 ) {
+    print $lyfh ("r ") x $nums[1];
+  }
+
+  $seen_note = 1;
 }
 
 my $opus = MIDI::Opus->new( { ticks => 384, tracks => [$track] } );

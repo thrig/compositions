@@ -4,6 +4,9 @@ play: out.midi
 out.midi: voss.lisp util.lisp playequation ints2music
 	clisp voss.lisp
 
+main.pdf: main.ly out.midi
+	lilypond main.ly
+
 silence:
 	pkill timidity
 
