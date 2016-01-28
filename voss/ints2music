@@ -65,7 +65,7 @@ while ( my $line = readline *STDIN ) {
   if ( $next_onset > 0 ) {
     my $error  = sqrt($next_onset) / 3;
     my $offset = rand($error) + rand($error);
-    $next_onset = sprintf ".f", $next_onset - $error + $offset;
+    $next_onset = sprintf "%.f", $next_onset - $error + $offset;
     # MIDI becomes unaccountably annoyed with negative time values, for
     # some reason
     $next_onset = 0 if $next_onset < 0;
