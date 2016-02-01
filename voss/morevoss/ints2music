@@ -1,0 +1,112 @@
+#!/usr/bin/env perl
+use 5.14.0;
+use Carp qw(carp);
+
+my $instrument = 'kalimba';
+
+my %instruments = (
+  'piano'         => { midi_patch => 0,  transpose => 60, min => 20, max => 100 },
+  'celesta'       => { midi_patch => 8,  transpose => 60, min => 20, max => 100 },
+  'vibraphone'    => { midi_patch => 11,  transpose => 72, min => 53, max => 120 },
+  'tubular bells' => { midi_patch => 14, transpose => 60, min => 20, max => 100 },
+  'dulcimer'      => { midi_patch => 15, transpose => 60, min => 20, max => 100 },
+  'harp'          => { midi_patch => 46, transpose => 60, min => 20, max => 100 },
+  'kalimba'       => { midi_patch => 108, transpose => 72, min => 20, max => 100 },
+  'steel drums'   => { midi_patch => 114, transpose => 72, min => 20, max => 100 },
+);
+# Short for "instrument metadata". Probably too short, as I fairly promptly
+# forgot what it stood for.
+sub imd { $instruments{$instrument}->{ $_[0] } // carp "dunno about $_[0]" }
+
+use MIDI;
+sub CHANNEL () { 0 }
+sub NO_VELO () { 0 }
+my $track = MIDI::Track->new;
+$track->new_event( 'set_tempo', 0, 500000 );
+$track->new_event( 'patch_change', 0, 0, imd('midi_patch') );
+
+use Music::LilyPondUtil ();
+my $lyu = Music::LilyPondUtil->new;
+$lyu->mode('absolute');
+$lyu->chrome('flats');
+
+my $transpose = imd('transpose');
+
+my $MIN_PITCH    = imd('min');
+my $MAX_PITCH    = imd('max');
+my $MIN_VELOCITY = 20;
+my $MAX_VELOCITY = 120;
+
+my $midi_filename = shift // 'out.midi';
+my $ly_filename   = shift // 'out.ly';
+
+my $ly_duration = 16;
+my %velomap     = (
+  '0' => '\p',
+  '1' => '\mf',
+  '2' => '\f',
+);
+
+open my $lyfh, '>', $ly_filename or die "could not write '$ly_filename': $!\n";
+
+my $next_onset = 0;
+my $prev_velo  = -1;
+my $seen_note  = 0;
+while ( my $line = readline *STDIN ) {
+  chomp $line;
+  #warn "LINE $line";
+  my @nums = split ' ', $line;
+
+  my $pitch    = $transpose + $nums[0];
+  my $duration = 100 + 100 * $nums[1];
+  my $velocity = 71 + $nums[2] * 11;
+
+# warn sprintf "%d PITCH %d\tDUR %d %d\tVELO %d %d\n",
+#   $., $pitch, $nums[1], $duration, $nums[2], $velocity;
+
+  # Add some noise
+  if ( $next_onset > 0 ) {
+    my $error  = sqrt($next_onset) / 3;
+    my $offset = rand($error) + rand($error);
+    $next_onset = sprintf "%.f", $next_onset - $error + $offset;
+    # MIDI becomes unaccountably annoyed with negative time values, for
+    # some reason
+    $next_onset = 0 if $next_onset < 0;
+  }
+  $velocity += int rand 5;
+
+  # Sanity tests. Could also instead skip the note, or do other things.
+  if ( $pitch > $MAX_PITCH or $pitch < $MIN_PITCH ) {
+    die "pitch overflow $pitch at $.\n";
+  }
+  if ( $velocity > $MAX_VELOCITY or $velocity < $MIN_VELOCITY ) {
+    die "velo overflow $velocity at $.\n";
+  }
+
+  $track->new_event( 'note_on', $next_onset, CHANNEL, $pitch, $velocity );
+
+  my $note_sustain = int( $duration * 18 / 19 );
+  $next_onset = $duration - $note_sustain;
+
+  $track->new_event( 'note_off', $note_sustain, CHANNEL, $pitch, NO_VELO );
+
+  my $note = $lyu->p2ly($pitch);
+  print $lyfh $note;
+  if ( !$seen_note ) {
+    print $lyfh $ly_duration;
+  }
+  if ( $nums[2] != $prev_velo ) {
+    die "no mapping for velocity $nums[2]" if !exists $velomap{ $nums[2] };
+    print $lyfh $velomap{ $nums[2] };
+    $prev_velo = $nums[2];
+  }
+  print $lyfh " ";
+  if ( $duration > 0 ) {
+    print $lyfh ("r ") x $nums[1];
+  }
+
+  $seen_note = 1;
+}
+
+my $opus = MIDI::Opus->new( { ticks => 384, tracks => [$track] } );
+$opus->write_to_file($midi_filename);

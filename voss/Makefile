@@ -5,10 +5,10 @@ out.midi: voss.lisp util.lisp playequation ints2music
 	clisp voss.lisp
 
 main.pdf: main.ly out.midi
-	lilypond main.ly
+	lilypond -dno-point-and-click main.ly
 
 silence:
 	pkill timidity
 
 clean:
-	@-rm -f out.* util.fas util.lib >/dev/null 2>&2
+	@-rm -f out* util.fas util.lib >/dev/null 2>&2

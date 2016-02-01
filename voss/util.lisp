@@ -22,11 +22,14 @@
 
 (defun plot-equations (min max equations)
   (loop for n from min to max by 1 do
-        (format t "~{~d ~}~%" (loop for c in equations collecting
-                                    (round (funcall c n))))))
+        (setf nums (loop for c in equations collecting
+                         (round (funcall c n))))
+;       (warnx "~{~d ~}~%" nums)        ; DBG
+        (format t "~{~d ~}~%" nums)))
 
 (defun silence ()
-    (run-shell-command "pkill timidity"))
+    (run-shell-command "pkill timidity")
+    (quit))
 
 ;;; Loops over a list of items with a return to beginning of list
 ;;; as the pointer falls off the end (ported from nexti method
@@ -42,3 +45,11 @@
            (incf ,curv)
            (if (>= ,curv (list-length ,values)) (setf ,curv 0))
            ret)))))
+
+;;; Lisp already has (warn) but I want something similar that emits to
+;;; stderr but without the WARNING prefix of (warn). So, copy a C
+;;; system call.
+(defmacro warnx (format &rest args)
+  `(progn
+     (format *error-output* ,format ,@args)
+     (fresh-line *error-output*)))
