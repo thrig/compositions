@@ -9,7 +9,7 @@
 \header {
   title       = "Chorale No. 13"
   composer    = "Jeremy Mates"
-  subsubtitle = "2016-02-21"
+  subsubtitle = "2016-02-24"
   copyright   = \markup { \with-color #grey \teeny {
     \char ##x00A9
     "2016 Jeremy Mates - Creative Commons Attribution 3.0 United States License"
@@ -126,7 +126,7 @@ tenora = \relative c' {
 
   d4 e16 d c8 d a d16 c b c
   a4 a8 a b c16 a e'4~
-  e16 d c8 d es16 d c8 d c c
+  e8 c d es16 d c8 d c c
   b4 c~ c8 b a b
 
   g4 g g g8 g
