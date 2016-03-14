@@ -6,8 +6,8 @@
 \include "articulate.ly"
 
 \header {
-  title       = "Fugue No. 2"
-  subsubtitle = "2016-03-13"
+  title       = "Fugue No. 2.0.1"
+  subsubtitle = "2016-03-14"
   composer    = "Jeremy Mates"
   copyright   = \markup { \with-color #grey \teeny {
     \char ##x00A9
@@ -93,7 +93,7 @@ middlevoice = \relative a' {
   c16( b) d( c) e8-. d-. f-. c-. e-. d-.
   bes8-. r8 d16( c d16--) r16 ees8( d8 c16--) r16 ees16 g
 
-  f8-. g( ees f4~) f16 g16 f8-. f
+  f8-. e4( f4~) f16 g16 f8-. f
   bes8--\sfz r8 r4 r2
 }
 
