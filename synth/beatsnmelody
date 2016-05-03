@@ -1,0 +1,199 @@
+#!/usr/bin/env perl
+#
+# Requires OpenBSD, synth on rmidi0. See login.conf(5) in the likely
+# event this program runs into OS-imposed memory limits.
+
+use 5.10.0;
+use strict;
+use warnings;
+
+use List::Util qw(sum0);
+use Music::VoiceGen;
+use Time::HiRes qw(sleep usleep);
+
+my %allowed_intervals;
+# Controlling the intervals has a huge effect on how the output sounds.
+# Also, limiting intervals limits possibilities and thus memory use.
+@allowed_intervals{qw/1 2 3 4 5 12 -12 0 -6 -4 -3 -2 -1 -29/} = ();
+
+my @pitches = qw/59 63 64 68 70 71 75 76 80 82 83 87 88/;
+
+my $midi_dev = shift // '/dev/rmidi0';
+
+my $NOTE_OFF       = 8 << 4;
+my $NOTE_ON        = 9 << 4;
+my $CONTROL_CHANGE = 11 << 4;
+my $PROGRAM_CHANGE = 12 << 4;
+my $ALL_SOUNDS_OFF = 120;
+my $ALL_NOTES_OFF  = 123;
+my $CHANNEL        = 0;
+open my $midfh, '>', $midi_dev
+  or die "could not open MIDI device '$midi_dev': $!\n";
+binmode $midfh;
+$midfh->autoflush(1);
+
+silence();
+$SIG{INT} = $SIG{TERM} = $SIG{PIPE} = sub { silence(); exit 1 };
+
+# Patch details for my synth
+my $BANKSEL_MSB = 0;
+my $BANKSEL_LSB = 32;
+printf $midfh "%c%c%c", $CONTROL_CHANGE | $CHANNEL, $BANKSEL_MSB, 0;
+printf $midfh "%c%c%c", $CONTROL_CHANGE | $CHANNEL, $BANKSEL_LSB, 0;
+printf $midfh "%c%c",   $PROGRAM_CHANGE | $CHANNEL, 108 - 1;
+
+# Main volume (velo)
+printf $midfh "%c%c%c", $CONTROL_CHANGE | $CHANNEL, 7, 60;
+
+my %possibles;
+
+my @ens = map { [ $_, 8 ] } @pitches;
+my @sns = map { [ $_, 16 ] } @pitches;
+
+my @beats;
+my $MAXBEAT = 2;
+
+# So we have two 8th notes, all the forms of 8th and 16th notes, and
+# 16th notes to fill out a quarter note, with memory-saving pruning of
+# disallowed intervals, as this is done over all available pitches.
+for my $e1 (@ens) {
+    for my $e2 (@ens) {
+        push @beats, [ $e1, $e2 ] if audit_intervals( $e1->[0], $e2->[0] );
+    }
+}
+for my $e1 (@ens) {
+    for my $s1 (@sns) {
+        for my $s2 (@sns) {
+            push @beats, [ $e1, $s1, $s2 ]
+              if audit_intervals( $e1->[0], $s1->[0], $s2->[0] );
+        }
+    }
+}
+for my $e1 (@ens) {
+    for my $s1 (@sns) {
+        for my $s2 (@sns) {
+            push @beats, [ $s1, $s2, $e1 ]
+              if audit_intervals( $s1->[0], $s2->[0], $e1->[0] );
+        }
+    }
+}
+for my $e1 (@ens) {
+    for my $s1 (@sns) {
+        for my $s2 (@sns) {
+            push @beats, [ $s1, $s2, $e1 ]
+              if audit_intervals( $s1->[0], $e1->[0], $s2->[0] );
+        }
+    }
+}
+for my $s1 (@sns) {
+    for my $s2 (@sns) {
+        for my $s3 (@sns) {
+            for my $s4 (@sns) {
+                push @beats, [ $s1, $s2, $s3, $s4 ]
+                  if audit_intervals( $s1->[0], $s2->[0], $s3->[0], $s4->[0] );
+            }
+        }
+    }
+}
+
+warn "beats ", scalar(@beats), "\n";
+
+# Score different combinations via some function and ready data
+# structure for voice generator.
+for my $beata ( 0 .. $MAXBEAT - 1 ) {
+    my $beatb    = ( $beata + 1 ) % $MAXBEAT;
+    my $beata_id = beatid($beata);
+    my $beatb_id = beatid($beatb);
+    for my $baa (@beats) {
+        my $baa_str = join ',', map { $_->[0] . '|' . $_->[1] } @$baa;
+        for my $bab (@beats) {
+            next unless audit_intervals( $baa->[-1][0], $bab->[0][0] );
+            my $isum = sum0(
+                map {
+                    ( $_->[0] - $pitches[0] + ( $beata ? 3 : 99 ) ) *
+                      $_->[1] *
+                      ( $beata ? 2 : 0.5 )
+                } @$bab
+            );
+            my $bab_str = join ',', map { $_->[0] . '|' . $_->[1] } @$bab;
+            $possibles{"$beata_id$baa_str"}{"$beatb_id$bab_str"} += 1 / $isum;
+        }
+    }
+}
+my $voice = Music::VoiceGen->new( possibles => \%possibles );
+
+warn "recording...\n";
+sleep(1);
+
+my $recorder_pid = fork() // die "could not fork: $!\n";
+if ( $recorder_pid == 0 ) {
+    # Reminder: mic jack on laptop a bit sketchy, plug will need to be a
+    # few mm out, and may require wiggling to activate both channels.
+    exec qw/aucat -o rec.wav/;
+}
+sleep(0.1);
+
+my $notes = 1001;
+while (1) {
+    my $choice = $voice->rand;
+    $choice =~ s/^\d+-//;
+    my @notes = split ',', $choice;
+    for my $n (@notes) {
+        my ( $pitch, $duration ) = split '\|', $n;
+
+        # easy on memory and decent results for koto
+        my $velo = 50 + int( rand 11 + rand 11 + rand 11 );
+        $velo = 80 if $notes == 0;
+
+        my $udur = 4096 * 888 / $duration;
+        # though no player is perfectly accurate, so some randomness
+        my $fdur = duration_fuzz($udur);
+
+        warn sprintf "N %d D %2d (%d %.2f) V %d\n", $pitch, $duration, $udur,
+          $fdur / $udur, $velo;
+        printf $midfh "%c%c%c", $NOTE_ON | $CHANNEL, $pitch, $velo;
+        usleep($udur);
+        printf $midfh "%c%c%c", $NOTE_OFF | $CHANNEL, $pitch, 0;
+
+        goto ALLDONE if $notes-- == 0;
+    }
+}
+ALLDONE:
+sleep(1.5);
+silence();
+sleep(0.5);
+kill 'INT' => $recorder_pid;
+exit(0);
+
+sub audit_intervals {
+    my @pitches = @_;
+    for my $i ( 0 .. $#pitches - 1 ) {
+        my $interval = $pitches[ $i + 1 ] - $pitches[$i];
+        if ( !exists $allowed_intervals{$interval} ) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+sub beatid {
+    my ($beatnum) = @_;
+    return '' if $beatnum == 0;
+    return "$beatnum-";
+}
+
+sub duration_fuzz {
+    my ($dur) = @_;
+    my $fuzz = 0.025;
+    int( $dur -
+          $dur * $fuzz * 2 +
+          rand( $dur * $fuzz ) +
+          rand( $dur * $fuzz ) +
+          rand( $dur * $fuzz ) +
+          rand( $dur * $fuzz ) );
+}
+
+sub silence {
+    printf $midfh "%c%c%c", $CONTROL_CHANGE | $CHANNEL, $ALL_NOTES_OFF,  0;
+    printf $midfh "%c%c%c", $CONTROL_CHANGE | $CHANNEL, $ALL_SOUNDS_OFF, 0;
+}
