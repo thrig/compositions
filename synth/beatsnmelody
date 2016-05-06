@@ -69,18 +69,18 @@ for my $e1 (@ens) {
         }
     }
 }
-for my $e1 (@ens) {
-    for my $s1 (@sns) {
-        for my $s2 (@sns) {
+for my $s1 (@sns) {
+    for my $s2 (@sns) {
+        for my $e1 (@ens) {
             push @beats, [ $s1, $s2, $e1 ]
               if audit_intervals( $s1->[0], $s2->[0], $e1->[0] );
         }
     }
 }
-for my $e1 (@ens) {
-    for my $s1 (@sns) {
+for my $s1 (@sns) {
+    for my $e1 (@ens) {
         for my $s2 (@sns) {
-            push @beats, [ $s1, $s2, $e1 ]
+            push @beats, [ $s1, $e1, $s2 ]
               if audit_intervals( $s1->[0], $e1->[0], $s2->[0] );
         }
     }
