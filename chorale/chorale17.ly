@@ -7,9 +7,9 @@
 \include  "articulate.ly"
 
 \header {
-  title       = "Chorale No. 17"
+  title       = "Chorale No. 17.0.1"
   composer    = "Jeremy Mates"
-  subsubtitle = "2016-06-16"
+  subsubtitle = "2016-06-21"
   copyright   = \markup { \with-color #grey \teeny {
     \char ##x00A9
     "2016 Jeremy Mates - Creative Commons Attribution 3.0 United States License"
@@ -62,7 +62,7 @@ sopa = \relative c'' {
   a8 g g f e4
   f4 g a
   h4 c8 c b4
-  a4 g \fermtempo f
+  a4 g \fermtempo f\fermata
 }
 
 altoa = \relative g' {
@@ -94,7 +94,7 @@ altoa = \relative g' {
   f8 e d4. c8
   c8 b e e f f
   g16 e d c e8 a d,8 c~
-  c8 b16 c~ c d c8 d4
+  c8 b16 c~ c d c8~ c4\fermata
 }
 
 tenora = \relative h {
@@ -126,7 +126,7 @@ tenora = \relative h {
   d8. c16 b4 g
   a4 b8 d c4
   g8 g a16 g f8 g4
-  a2 a4
+  a2 a4\fermata
 }
 
 bassa = \relative c {
@@ -158,7 +158,7 @@ bassa = \relative c {
   f8 g g, a e'4
   d4 c f8 d
   e4 a, b
-  f'8 d e4 d
+  f'8 d e4 f\fermata
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
