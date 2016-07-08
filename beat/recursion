@@ -1,0 +1,153 @@
+#!/usr/bin/env perl
+#
+# Rhythms within rhythms within rhythms. See FIXME for things to tweak.
+
+use 5.14.0;
+use warnings;
+use MIDI;
+use Scalar::Util qw(refaddr);
+sub VELO_OFF () { 0 }
+
+my $midi_filename = shift // 'out.midi';
+
+# A class for the rhythmic patterns and some associated routines for
+# validation, recursion, and other utility needs.
+package Music::RhythmSet {
+    use Moo;
+    use namespace::clean;
+    use List::Util qw(sum0);
+    use Scalar::Util qw(looks_like_number);
+
+    # for ->rebuild a.k.a. object cloning
+    with 'MooX::Rebuild';
+
+    # NOTE a Graph module may be more suitable if more complicated
+    # structures of rhythm sets need be built up, as this just allows
+    # for a simple hierarchy (or sequence, depending on how the results
+    # are mapped to time).
+    has next => ( is => 'rw', );
+
+    has set => (
+        is     => 'rw',
+        coerce => sub {
+            die "need a set of positive integers" if !Music::RhythmSet->validate( $_[0] );
+            for my $x ( @{ $_[0] } ) {
+                $x = int $x;
+            }
+            return $_[0];
+        },
+        trigger => sub {
+            my ( $self, $newset ) = @_;
+            $self->_set_sum( sum0(@$newset) );
+        },
+    );
+    has sum => ( is => 'rwp' );
+
+    has is_silent => ( is => 'rw', default => sub { 0 } );
+
+    sub BUILD {
+        my ( $self, $param ) = @_;
+        die "need a set of positive integers" if !exists $param->{set};
+    }
+
+    sub beatsum {
+        my ($self) = @_;
+        my $sum = 0;
+        while ($self) {
+            $sum += @{ $self->set } * $self->sum;
+            $self = $self->next;
+        }
+        return $sum;
+    }
+    # P.S. don't create loops with ->next calls, unless you want
+    #      infinite CPU burn after calling the above sub
+
+    sub validate {
+        my ( $class, $set ) = @_;
+        return 0 if !defined $set or ref $set ne 'ARRAY';
+        for my $x (@$set) {
+            return 0 if !defined $x or !looks_like_number $x or $x < 1;
+        }
+        return 1;
+    }
+}
+
+# FIXME or experiment with whatever
+my $ra1 = Music::RhythmSet->new( set => [qw/1 2/] );
+my $ra2 = Music::RhythmSet->new( set => [qw/1 2 1/] );
+my $ra3 = Music::RhythmSet->new( set => [qw/1 2 1 2/] );
+my $ra4 = Music::RhythmSet->new( set => [qw/1 2 1 2 2/] );
+
+my $rb1 = Music::RhythmSet->new( set => [qw/2 1/] );
+my $rb2 = Music::RhythmSet->new( set => [qw/2 1 2/] );
+my $rb3 = Music::RhythmSet->new( set => [qw/2 1 2 1/] );
+my $rb4 = Music::RhythmSet->new( set => [qw/2 1 2 1 2/] );
+
+# Wire up the connections...
+$ra1->next($ra2);
+$ra2->next($ra3);
+$ra3->next($ra4);
+
+$rb1->next($rb2);
+$rb2->next($rb3);
+$rb3->next($rb4);
+
+# Recurse building MIDI tracks (where there is a complete cycle of each
+# ->next under each rhythmic unit of the given set). Each track gets its
+# own channel; this may be problematical given MIDI limits if too many
+# tracks are built.
+my ( @atracks, @btracks );
+# FIXME multiplier may need fiddling with
+durify( $ra1, \@atracks, $ra1->beatsum * 800 );
+durify( $rb1, \@btracks, $rb1->beatsum * 800 );
+
+my $opus = MIDI::Opus->new(
+    { ticks => 384, tracks => [ grep defined, @atracks, @btracks ] } );
+$opus->write_to_file($midi_filename);
+
+sub durify {
+    my ( $rset, $tracks, $basetime, $level ) = @_;
+    $level //= 0;
+
+    my $sil = $rset->is_silent;
+    my ( $trackno, $channel );
+    if ( !$sil ) {
+        if ( !defined $tracks->[$level] ) {
+            $tracks->[$level] = new_track_on_the_block();
+        }
+    }
+    $channel = 0;    # new_channel();
+
+    my $units    = $rset->sum;
+    my $unittime = $basetime / $units;
+
+    for my $beat ( @{ $rset->set } ) {
+        my $duration = int( $unittime * $beat );
+        warn "l=$level dur=$duration\n";
+        if ( !$sil ) {
+            # FIXME could do post-MIDI filter to jazz up the pitch selection,
+            # or drag the tracks around in some fancy music editor, etc.
+            my $pitch = 36 + $level * 12;
+            my $velo  = 30 + int( rand 21 + rand 21 + rand 21 );
+
+            $tracks->[$level]->new_event( 'note_on', 0, $channel, $pitch, $velo );
+            $tracks->[$level]
+              ->new_event( 'note_off', $duration, $channel, $pitch, VELO_OFF );
+        }
+
+        my $next = $rset->next;
+        durify( $next, $tracks, $duration, $level + 1 ) if defined $next;
+    }
+}
+
+sub new_channel {
+    state $channel = 0;
+    return $channel++;
+}
+
+sub new_track_on_the_block {
+    my $track = MIDI::Track->new;
+    $track->new_event( 'set_tempo', 0, 500000 );
+    $track->new_event( 'patch_change', 0, 0, 0 );
+    return $track;
+}
