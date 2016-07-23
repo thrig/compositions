@@ -1,0 +1,117 @@
+#!/usr/bin/env perl
+#
+# Builds the voice*.ly files that are included in main.ly (and also a
+# notes.ly with the harmonic skeleton).
+
+use 5.14.0;
+use warnings;
+use Music::RecRhythm;
+
+my @notes = map { [ split ' ' ] } split /\n/, <<"NOTES";
+  a,  a,  b,   b,    c   d     e     a,   e    a   b,  c   d
+  a   d   a    d     a   a     a     d    d    d   r   r   a
+  e'  f'  gis' fis'  e'  d'    d'    c'   d'   e'  f'  e'  d'
+  a'  a'  b'   a'    g'  fis'  e'    e'   e'   g'  g'  g'  f'
+  c'' c'' b'   b'    b'  a'    gis'  gis' gis' e'  d'' c'' b'
+  e'' e'' d''  d''   c'' e''   d''   e''  e''  e'' d'' e'' f''
+  g'' f'' e''  d''   e'' fis'' gis'' a''  b''  a'' g'' e'' d''
+NOTES
+
+my @beats = (
+    [ [ 2, 2, 1, 2, 2, 2, 1 ], [ 7, 1, 1, 1, 1, 1 ] ],
+    [ [ 2, 1, 2, 2, 2, 1, 2 ], [ 1, 7, 1, 1, 1, 1 ] ],
+    [ [ 1, 2, 2, 2, 1, 2, 2 ], [ 1, 1, 7, 1, 1, 1 ] ],
+    [ [ 2, 2, 2, 1, 2, 2, 1 ], [ 1, 1, 1, 7, 1, 1 ] ],
+    [ [ 2, 2, 1, 2, 2, 1, 2 ], [ 1, 1, 1, 1, 7, 1 ] ],
+    [ [ 2, 1, 2, 2, 1, 2, 2 ], [ 1, 1, 1, 1, 1, 7 ] ],
+    [ [ 1, 2, 2, 1, 2, 2, 2 ], [ 7, 1, 1, 1, 1, 1 ] ]
+);
+
+# TODO cleanup (or autobeam?)
+my %Duration_Map = (
+    7  => '8F',
+    14 => '4F',
+    49 => '8~F x~ x~ x~ x r r',
+    98 => '4~F x~ x~ x~ x r r',
+);
+
+# TODO cleanup e.g. when f to p in single step
+my %Velo_Map = (
+    7  => '\f\>',
+    14 => '\f\>',
+    49 => '\!\p',
+    98 => '\!\p',
+);
+my $Prev_Velo;
+
+notes2ly( \@notes );
+
+for my $voice ( 0 .. $#notes ) {
+    $Prev_Velo = 'nope';
+    open my $fh, '>', "voice$voice.ly"
+      or die "could not write 'voice$voice.ly': $!\n";
+    for my $nn ( 0 .. $#{ $notes[$voice] } ) {
+        my $toprr = Music::RecRhythm->new( set => $beats[$voice][0], is_silent => 1 );
+        my $botrr = Music::RecRhythm->new( set => $beats[$voice][1] );
+        $toprr->next($botrr);
+
+        $toprr->recurse( \&voiceify, { fh => $fh, note => $notes[$voice][$nn] } );
+    }
+}
+
+sub notes2ly {
+    my ($notes) = @_;
+
+    open my $fh, '>', "notes.ly" or die "could not write 'notes.ly': $!\n";
+
+    my %voicenames = (
+        0 => "one",
+        1 => "two",
+        2 => "three",
+        3 => "four",
+        4 => "five",
+        5 => "six",
+        6 => "seven",
+    );
+
+    say $fh '\version "2.18.2"';
+
+    for my $voice ( 0 .. $#$notes ) {
+        say $fh "$voicenames{$voice} = {";
+        say $fh "  ", join " ", @{ $notes->[$voice] };
+        say $fh "}";
+    }
+
+    print $fh <<'TRAILER';
+thescore = {
+  \new StaffGroup <<
+    \new Staff << \seven >>
+    \new Staff << \six >>
+    \new Staff << \five >>
+    \new Staff << \four >>
+    \new Staff << \three >>
+    \new Staff << \clef bass \two >>
+    \new Staff << \clef bass \one >>
+  >>
+}
+\score {
+  \thescore
+  \layout { }
+  \midi { }
+}
+TRAILER
+}
+
+sub voiceify {
+    my ( $rset, $param, $extra ) = @_;
+    my $dur  = $Duration_Map{ $param->{duration} };
+    my $velo = $Velo_Map{ $param->{duration} };
+
+    $velo = '' if $Prev_Velo eq $velo or $extra->{note} =~ m/^[rs]/;
+    $Prev_Velo = $Velo_Map{ $param->{duration} };
+
+    $dur =~ s/x/$extra->{note}/g;
+    $dur =~ s/F/$velo/g;
+
+    $extra->{fh}->print( "  ", $extra->{note}, $dur, "\n" );
+}
