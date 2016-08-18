@@ -18,7 +18,7 @@
   tagline = #f
 }
 
-normtempo = { \tempo "Blippy" 4=96 }
+normtempo = { \tempo "Blippy" 4=100 }
 
 keytempoetc = {
   \accidentalStyle "neo-modern"
