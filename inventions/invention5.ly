@@ -86,7 +86,6 @@ altoa = \relative c' {
 
   f8-. ees-. g8( f16 ees d8) f8 g( f16 ees)
   bes'16( aes g8 f) d8( aes') f( ees4)
-  % TODO troublesome 19th measure
   r16 f16( g aes bes8 g8.) r16 des'8-. c16( bes c8)
   g8-. ees-. bes'( aes16 g aes4) g8-. f-.
 
