@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 #
-# Builds the voice*.ly files that are included in main.ly (and also a
-# notes.ly with the harmonic skeleton).
+# Builds the voice*.ly files that are included in mfsft18m.ly.ly (and
+# also a notes.ly with the harmonic skeleton).
 
 use 5.14.0;
 use warnings;
