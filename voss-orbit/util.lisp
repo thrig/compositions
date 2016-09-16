@@ -24,7 +24,6 @@
   (loop for n from min to max by 1 do
         (setf nums (loop for c in equations collecting
                          (round (funcall c n))))
-;       (warnx "~{~d ~}~%" nums)        ; DBG
         (format t "~{~d ~}~%" nums)))
 
 (defun silence ()

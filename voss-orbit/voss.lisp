@@ -1,7 +1,7 @@
 ;;;; Voss's Method
 ;;;;   Martin Gardner (1978) by way of "Musimathics, Vol 1" p.358
 
-(load (compile-file "util.lisp"))
+(load "util.lisp")
 
 (defun voss-method (calls)
   (let ((basis (loop for c in calls collecting 0)))
