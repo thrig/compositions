@@ -9,7 +9,7 @@ use 5.14.0;
 use warnings;
 use MIDI;
 use lib 'perl5/lib';
-use Music::RhythmSet;
+use Music::RecRhythm;
 
 sub VELO_OFF () { 0 }
 
@@ -19,7 +19,7 @@ my $midi_filename = shift // 'three-levels-of-the-standard-pattern.midi';
 # in "The Geometry of Musical Rhythm" p.79. Also, intervals of the
 # Major scale.
 my $stdpat =
-  Music::RhythmSet->new( set => [qw/2 2 1 2 2 2 1/], is_silent => 1 );
+  Music::RecRhythm->new( set => [qw/2 2 1 2 2 2 1/], is_silent => 1 );
 my ( $nextpat, $prevpat );
 $prevpat = $stdpat;
 for my $x ( 1 .. 3 ) {
@@ -35,7 +35,7 @@ my @tracks;
 # TODO this could just be a method call, with 1st level doing the beatsum
 # thing, and then tracks handled instead by a callback that does MIDI or
 # ly or whatever
-durify( $stdpat, \@tracks, $stdpat->beatsum * 2000 );
+durify( $stdpat, \@tracks, $stdpat->sum * 60000 );
 
 my $opus =
   MIDI::Opus->new( { ticks => 384, tracks => [ grep defined, @tracks ] } );
