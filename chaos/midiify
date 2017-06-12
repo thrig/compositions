@@ -1,0 +1,59 @@
+#!/usr/bin/env perl
+#
+# Converts axoneminusx output into MIDI, with some adjustments.
+
+use 5.14.0;
+use warnings;
+use MIDI;
+use Music::Canon ();
+
+my $filename = shift // 'out.midi';
+my $track = MIDI::Track->new;
+$track->new_event( 'set_tempo', 0, 500000 );
+$track->new_event( 'patch_change', 0, 0, 8 );
+my $channel = 0;
+my $velo    = 80;
+
+my $mc = Music::Canon->new;
+$mc->non_octave_scales(1);
+$mc->set_contrary(0);
+$mc->set_modal_pitches( 60, 60 );
+$mc->set_modal_scale_in(  [qw/1 1 1 1 1 1 1 1 1 1/] );
+$mc->set_modal_scale_out( [qw/2 2 1 2 2 2 1 2 2 1/] );
+
+my $base_pitch = 60;
+my $start_dur  = 0;
+
+while (readline) {
+    chomp;
+    my ( undef, $duration, $pitch ) = split;
+
+    $pitch = $base_pitch + int( $pitch * 10 );
+    my $new_pitch = ( $mc->modal_map($pitch) )[0];
+
+    $duration = int( 548 * ( 1 - $duration ) );
+    $duration = 132 if $duration < 132;
+
+    $duration -= 15;
+    $duration += int( rand 10 + rand 10 + rand 10 );
+
+    my $strike_dur = 40 + int( rand 4 + rand 4 + rand 4 );
+
+    $track->new_event( 'note_on', $start_dur, $channel, $new_pitch,
+        $velo + int( rand 7 + rand 7 + rand 7 ) );
+    $track->new_event( 'note_off', $strike_dur, $channel, $new_pitch, 0 );
+    $start_dur = $duration - $strike_dur;
+}
+
+# needs a coda note, possibly with a slight drag
+my $strike_dur = 40 + int( rand 4 + rand 4 + rand 4 );
+$track->new_event( 'note_on', $start_dur + 62,
+    $channel, 72, $velo + int( rand 7 + rand 7 + rand 7 ) );
+$track->new_event( 'note_off', $strike_dur, $channel, 72, 0 );
+
+# and some trailing silence
+$track->new_event( 'note_on', 0, $channel, 1, 0 );
+$track->new_event( 'note_off', 542 - $strike_dur, $channel, 1, 0 );
+
+my $opus = MIDI::Opus->new( { ticks => 384, tracks => [$track] } );
+$opus->write_to_file($filename);
