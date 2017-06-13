@@ -1,4 +1,8 @@
-/* ax(1-x) over an arbitrary range and to arbitrary precision */
+/* ax(1-x) over an arbitrary range and to arbitrary precision
+ *
+ * "CHAOS: An Introduction to Dynamical Systems" may help explain what
+ * this code is doing.
+ */
 
 #include <math.h>
 #include <stdio.h>
@@ -22,6 +26,12 @@ inline double functionof(double aaa, double value)
     return aaa * value * (1 - value);
 }
 
+/* Over the range 0.01 <= x < 1.0 look for attractors that are neither
+ * infinite nor not-a-number and if there is a change from the
+ * previous attractor print where in the range and what the resulting
+ * attractor is. The midiify code then uses these values to construct
+ * the MIDI output.
+ */
 void loop(double aaa)
 {
     double value = 0.01;
