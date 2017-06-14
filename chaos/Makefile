@@ -1,6 +1,6 @@
 CFLAGS += -lm
 
-out.midi: axoneminusx
+out.midi: axoneminusx midiify
 	./axoneminusx | perl midiify out.midi
 
 axoneminusx: axoneminusx.c
