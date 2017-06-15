@@ -1,0 +1,138 @@
+#!/usr/bin/env perl
+#
+# Converts axoneminusx output into MIDI, with some adjustments.
+
+use 5.14.0;
+use warnings;
+use List::Util 1.45 qw(uniq);
+use MIDI;
+use Music::Canon ();
+
+my $filename = shift // 'out.midi';
+my $channel = 0;
+
+my $base_pitch = 60;
+my $base_velo  = 57;
+
+my $track = new_track_on_the_block();
+my $mc    = new_canon();
+my $onset = 0;
+
+while (readline) {
+    chomp;
+    my ( undef, $base_duration, @pitches ) = split;
+
+    @pitches = $mc->modal_map( map { $base_pitch + int( $_ * 10 ) } uniq @pitches );
+    my $duration = int log( 1000 * ( 1 - $base_duration ) );
+    $duration = 1 if $duration < 1;
+
+    if ( @pitches > 1 ) {
+        alternate( $duration, @pitches );
+    } else {
+        sound( $duration, $pitches[0] );
+    }
+
+}
+
+chord( $onset, 384 * 6, [ 72, 53 ], [ 60, 29 ], [ 48, 31 ] );
+
+my $opus = MIDI::Opus->new( { ticks => 384, tracks => [$track] } );
+$opus->write_to_file($filename);
+
+########################################################################
+#
+# SUBROUTINES
+
+sub alternate {
+    my ( $duration, @pitches ) = @_;
+    my $ticks = 384;
+    my $pi    = 0;
+    my $velo  = velo();
+    for my $i ( 1 .. $duration ) {
+        my $strike_len = int( $ticks * 0.97 - rand( $ticks * 0.11 ) );
+
+        chord(
+            $onset, $strike_len,
+            [ $pitches[$pi],      $velo ],
+            [ $pitches[$pi] - 12, int( $velo / 2 ) ],
+            ( $i == 1 ? [ $pitches[$pi] - 24, int( $velo / 2 ) ] : () )
+        );
+
+        $onset = $ticks - $strike_len;
+        $velo -= int( rand 7 + rand 7 + rand 7 ) if rand() > 0.23;
+        $velo = 0 if $velo < 0;
+        $pi++;
+        $pi %= @pitches;
+    }
+}
+
+sub chord {
+    my ( $onset, $duration, @notes ) = @_;
+    for my $note (@notes) {
+        $track->new_event( 'note_on', $onset, $channel, @$note );
+        $onset = 0;         # subsequent note simultaneous
+        $note->[-1] = 0;    # for forthcoming silence of note
+    }
+    for my $note (@notes) {
+        $track->new_event( 'note_on', $duration, $channel, @$note );
+        $duration = 0;
+    }
+}
+
+sub new_canon {
+    my $mc = Music::Canon->new;
+    $mc->non_octave_scales(1);
+    $mc->set_contrary(0);
+    $mc->set_modal_pitches( $base_pitch, $base_pitch );
+    $mc->set_modal_scale_in(  [qw/1 1 1 1 1 1 1 1 1 1/] );
+    $mc->set_modal_scale_out( [qw/2 2 1 2 2 2 1 2 2 1/] );
+    return $mc;
+}
+
+sub new_track_on_the_block {
+    my $track = MIDI::Track->new;
+    $track->new_event( 'set_tempo', 0, 500000 );
+    $track->new_event( 'patch_change', 0, 0, 8 );
+    return $track;
+}
+
+sub sound {
+    my ( $duration, $pitch ) = @_;
+    state $first = 1;
+    if ($first) {
+        my $ticks      = 384 * $duration;
+        my $strike_len = int( $ticks * 0.97 - rand( $ticks * 0.11 ) );
+        my $velo       = velo();
+
+        chord(
+            $onset, $strike_len,
+            [ $pitch,          $velo ],
+            [ $pitch - 12,     $velo - 5 ],
+            [ $pitch - 12 * 2, $velo - 11 ],
+            [ $pitch - 12 * 3, $velo - 11 ]
+        );
+
+        $onset = $ticks - $strike_len;
+        $first = 0;
+    } else {
+        my $ticks = 384;
+        my $strike_len = int( $ticks * 0.97 - rand( $ticks * 0.11 ) );
+        my $velo  = velo();
+        for ( 1 .. 2 ) {
+            chord(
+                $onset, $strike_len,
+                [ $pitch,      $velo ],
+                [ $pitch - 12, $velo - 5 ],
+                [ $pitch - 24, $velo - 11 ],
+            );
+
+            $onset = $ticks - $strike_len;
+            $velo -= 29 + int( rand 7 + rand 7 + rand 7 );
+            $velo = 0 if $velo < 0;
+        }
+    }
+}
+
+sub velo {
+    $base_velo + int( rand 11 + rand 11 + rand 11 );
+}
