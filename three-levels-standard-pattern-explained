@@ -1,0 +1,101 @@
+Okay so the "standard pattern" is
+
+    2 2 1 2 2 2 1
+
+or in rhythmic form
+
+    [x.x.xx.x.x.x]
+
+or in lilypond notation
+
+    a4 a4 a8 a4 a4 a4 a8
+
+this is by the way the interval pattern of the Major Scale; that is C to
+D is 2 semitones, D to E also 2, E to F 1, etc. Rhythm however is our
+only concern here; "Three Levels of the Standard Pattern" only uses the
+standard pattern to form its beats.
+
+The levels are multiple instances of the same standard pattern; each of
+the "lower" levels are iterated through completely for each beat of the
+level or levels "above" it:
+
+    Level Beats
+    4     [x.x.xx.x.x.x]  (mute)
+           ^
+    3     [x.x.xx.x.x.x]  (mute)
+           ^
+    2     [x.x.xx.x.x.x]  (mute)
+           ^
+    1     [x.x.xx.x.x.x]  - lowest level, only this one is heard
+           ^
+
+That is, level 1 plays 2,2,1,2,2,1 and then level 2 advances a beat,
+level 1 plays again, level 2 advances another beat, etc and so on until
+level 4 reaches the end of its beats and the music stops.
+
+The main complication is the duration of the beats; these are based on
+what each level is playing, as a whole iteration of level 1 fits exactly
+into each beat of level 2, and so on up. Level 2 beats are short or
+long, so considering only level 2 with level 1 there will be two
+different duration patterns:
+
+    2     [x.x.xx.x.x.x] - duration 2
+           ^ ^  ^ ^ ^
+    1     [x.x.xx.x.x.x] - effective durations 4,4,2,4,4,4,2
+
+and
+
+    2     [x.x.xx.x.x.x] - duration 1
+               ^      ^
+    1     [x.x.xx.x.x.x] - effective durations 2,2,1,2,2,2,1
+
+Iterations of level 1 where level 2 is on a short beat will be half the
+length of when level 2 is on a long beat. Same story with more levels,
+only more numbers to cruch (hopefully by computer as such devices are
+fairly good at performing "least common multiple" and other such maths).
+
+The gist is that the work starts out slow--each level is on a long beat--
+and then there are various complications, and then things get really
+fast when the higher levels are all on or moving to the short beat:
+
+    Level Beats
+    4     [x.x.xx.x.x.x]  (mute)
+               ^
+    3     [x.x.xx.x.x.x]  (mute)
+               ^
+    2     [x.x.xx.x.x.x]  (mute)
+           ^
+    1     [x.x.xx.x.x.x]
+           ^
+
+and then things slow down again as the higher levels shift back to
+long beats:
+
+    Level Beats
+    4     [x.x.xx.x.x.x]  (mute)
+                ^
+    3     [x.x.xx.x.x.x]  (mute)
+                ^
+    2     [x.x.xx.x.x.x]  (mute)
+           ^     
+    1     [x.x.xx.x.x.x]
+           ^
+
+and much later after more complications things get really fast again:
+
+    Level Beats
+    4     [x.x.xx.x.x.x]  (mute)
+                      ^
+    3     [x.x.xx.x.x.x]  (mute)
+                      ^
+    2     [x.x.xx.x.x.x]  (mute)
+                      ^
+    1     [x.x.xx.x.x.x]
+           ^
+
+and then the music stops after the lowest level plays the last seven
+beats of the standard pattern (very quickly) (plus a final cadence).
+Listen to the first seven notes again, that's also the standard pattern
+(only slower).
+
+References: "The Geometry of Musical Rhythm" p.79
