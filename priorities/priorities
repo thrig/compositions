@@ -1,0 +1,109 @@
+#!/usr/bin/env perl
+#
+# a use(?) for a priority queue, or at least several of them
+
+use 5.14.0;
+use warnings;
+
+use lib qw(.);
+use PriqMin;
+
+#srand 640;
+warn "seed " . srand . "\n";
+
+use MIDI::Simple;
+new_score;
+set_tempo 280000;
+patch_change 0, 114;
+
+sub BASE_PITCH () { 59 }
+sub BASE_VELO ()  { 70 }
+sub MIN_VELO ()   { 30 }
+sub MAX_VELO ()   { 120 }
+
+sub MAX_MEASURE () { 1024 }
+sub MAX_BEAT ()    { 11 }
+my @bp = (
+    [qw/0 3 5 7 10 12 -2 -5/],
+    [qw/r/],
+    [qw/r/],
+    [qw/0 5 7 10 -5/],
+
+    [qw/r/],
+    [qw/r/],
+    [qw/0 3 5 7 10 12 -2 -5/],
+    [qw/r/],
+
+    [qw/r r r r 0 3 7 -5/],
+    [qw/r/],
+    [qw/0 3 5 7 10 -2 -5/],
+    [qw/r/],
+
+    [qw/r/],    # unused under 12 beat system
+    [qw/r/],
+    [qw/r/],
+    [qw/r/],
+);
+
+sub lowrand {
+    my $range = shift // 1;
+    my $r;
+    do {
+        $r = rand($range);
+    } while ( rand($range) < $r );
+    return $r;
+}
+
+sub highrand {
+    my $range = shift // 1;
+    my $r;
+    do {
+        $r = rand($range);
+    } while ( rand($range) > $r );
+    return $r;
+}
+
+sub allowed_pitches {
+    my ( $queue, $beat ) = @_;
+    for my $n ( @{ $bp[$beat] } ) {
+        $queue->insert( $n, highrand() );
+    }
+}
+
+sub some_noise { int rand 7 + int rand 7 + int rand 7 }
+
+sub velo {
+    my ( $base_velo, $beat ) = @_;
+    my $v = $base_velo + some_noise +( $beat == 0 ? 17 : 0 );
+    if ( $v < MIN_VELO ) {
+        $v = MIN_VELO;
+    } elsif ( $v > MAX_VELO ) {
+        $v = MAX_VELO;
+    }
+    "V" . $v;
+}
+
+my @pqueues;
+for my $beat ( 0 .. MAX_BEAT ) {
+    $pqueues[$beat] = PriqMin->new;
+    allowed_pitches( $pqueues[$beat], $beat );
+}
+
+for my $measure ( 0 .. MAX_MEASURE ) {
+    my $randfn = \&highrand;
+    for my $beat ( 0 .. MAX_BEAT ) {
+        $randfn = \&lowrand if $measure % 8 == 0 and $beat == MAX_BEAT;
+        my ( $n, $oldw ) = $pqueues[$beat]->pop;
+        my $w = $randfn->( 1 - $oldw );
+        $pqueues[$beat]->insert( $n, $w );
+        if ( $n eq 'r' ) {
+            r("sn");
+        } else {
+            my $t = BASE_PITCH + $n;
+            my $v = velo( BASE_VELO, $beat );
+            n( "n$t", "sn", $v );
+        }
+    }
+}
+
+write_score 'out.midi';
