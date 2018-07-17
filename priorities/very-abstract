@@ -1,0 +1,86 @@
+#!/usr/bin/env perl
+
+use 5.14.0;
+use warnings;
+use lib qw(.);
+use PriqMin;
+
+use MIDI::Simple;
+new_score;
+set_tempo 750000;
+
+my @queues = ( populate_pitches(42), populate_durs(), populate_queue(5) );
+
+my ( %seen_pitch, %seen_pcs, %seen_dur, %seen_velo );
+
+my %dmap = (
+    1  => 'wn',
+    2  => 'hn',
+    4  => 'qn',
+    8  => 'en',
+    16 => 'sn',
+);
+
+my $onset = 293;
+while ( $onset-- ) {
+    my ( $p, $d, $v ) = map { ( $_->pop )[0] } @queues;
+    my $pcs = $p % 12;
+
+    $seen_pitch{$p}++;
+    $seen_pcs{$pcs}++;
+    $seen_dur{$d}++;
+    $seen_velo{$v}++;
+
+    # so what we have here is all the different parameters (pitch,
+    # duration, velocity) influencing the weighting of the others in
+    # various random ways
+    $queues[0]->insert( $p, $v + $seen_pitch{$p} / 2 + $seen_pcs{$pcs} / 3 );
+    $queues[1]->insert( $d, sqrt($p) + $seen_pcs{$pcs} );
+    $queues[2]->insert( $v, $p + $seen_dur{$d} );
+
+    if ( $onset == 139 ) {
+        $queues[1]->insert( 2, $seen_pcs{$pcs} * 1.9 );
+    } elsif ( $onset == 0 ) {
+        $d = 1;
+    }
+
+    n( pitch($p), duration($d), velo($v) );
+}
+
+write_score 'out.midi';
+
+sub some_noise { int rand 3 + int rand 3 + int rand 3 }
+
+#sub pitch { "n" . ( 43 + $_[0] ) }
+sub pitch { "n" . ( 47 + $_[0] ) }
+
+sub duration { $dmap{ $_[0] } }
+
+sub velo { "V" . ( 41 + $_[0] * 7 + some_noise ) }
+
+sub populate_pitches {
+    my ($max) = @_;
+    my $q = PriqMin->new;
+    for my $v ( 0 .. $max ) {
+        next if $v % 2 == 0;
+        $q->insert( $v, 0 );
+    }
+    return $q;
+}
+
+sub populate_durs {
+    my $q = PriqMin->new;
+    for my $d (qw/4 8 8 16 16 16 16/) {
+        $q->insert( $d, 0 );
+    }
+    return $q;
+}
+
+sub populate_queue {
+    my ($max) = @_;
+    my $q = PriqMin->new;
+    for my $v ( 0 .. $max ) {
+        $q->insert( $v, 0 );
+    }
+    return $q;
+}
