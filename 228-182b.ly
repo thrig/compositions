@@ -43,15 +43,15 @@ tenora = \relative c' {
   d8 d c4
   c16 d e8 f8. e16
   d8 r8 d8 f
-  e8 r r r
+  bes,8 e16 d c bes d e
 
-  r4 r
-  r4 r
-  r4 r
-  r4 r
+  d8 e16 d c8 bes16 d
+  e16 f e8 d d
+  e16 d c8 d16 c d8
+  R2
 
-  r4 r
-  r4 r
+  R2
+  R2
 }
 
 bassa = \relative c {
@@ -66,12 +66,12 @@ bassa = \relative c {
   e8 c4 d8
 
   d8 d8 e16 f g8
-  c,4 r8 r8
-  r4 r
-  r4 r
+  c,4 f8 d8
+  g8 a4 d,8
+  d8 d16 e f8 e
 
-  r4 r
-  r4 r
+  g8 f4 r8
+  R2
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
