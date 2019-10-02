@@ -6,7 +6,7 @@
 
 \header {
   title       = "Chorale No. 21"
-  subsubtitle = "2019-10-01"
+  subsubtitle = "2019-10-02"
   copyright   = \markup { \with-color #grey \teeny {
     \char ##x00A9
     "2019 Jeremy Mates - Creative Commons Attribution 4.0 United States License"
@@ -18,7 +18,7 @@ tempoandetc = {
   \set Score.tempoHideNote = ##t
   \accidentalStyle "neo-modern"
   \time 4/2
-  \tempo 4=132
+  \tempo 4=168
 }
 
 %                                                                            %
@@ -66,22 +66,22 @@ altoa = \relative d' {
 }
 
 tenora = \relative c' {
-  r2 r2 f4 e d2
+  r1 f4 e d2
   c2. c4 b2 c2~
   c4 b b2 g4 b a4. g8
   f2 g a1
 
   g2. g4 fis2 g~
   g4 b a2 b2. b4
-  c2. a4 b a g2
-  a2. a2 g4 f2
+  c2. a4 b2 r2
+  r1 r2 f2
 
-  g2 g4 a b2. c4
+  g2. a4 b2. c4
   d2. c4 b2 a
   b2 b4 a d2 d4 c
   b2 c d c4 b
 
-  a2 bes4 c f, g a2
+  a2 bes4 c f, g a b
   c2 b a1
 }
 
@@ -93,8 +93,8 @@ bassa = \relative f {
 
   g2 a b g
   g'2 f g2 e4 d
-  c4 b c d g,2 g'
-  f4 e2 e e4 d2
+  c4 b c d g2 g
+  f4 e e2 d2 d2
 
   e2 e4 f g2 g~
   g4 f8 e d2 g f~
@@ -111,22 +111,22 @@ bassa = \relative f {
 % MIDI                                                                       %
 
 msop = \new Voice {
-  \set Staff.midiInstrument = #"harpsichord"
+% \set Staff.midiInstrument = #"harpsichord"
   \tempoandetc
   \sopa
 }
 malto = \new Voice {
-  \set Staff.midiInstrument = #"harpsichord"
+% \set Staff.midiInstrument = #"harpsichord"
   \tempoandetc
   \altoa
 }
 mtenor = \new Voice {
-  \set Staff.midiInstrument = #"harpsichord"
+% \set Staff.midiInstrument = #"harpsichord"
   \tempoandetc 
   \tenora
 }
 mbass = \new Voice {
-  \set Staff.midiInstrument = #"harpsichord"
+% \set Staff.midiInstrument = #"harpsichord"
   \tempoandetc 
   \bassa
 }
