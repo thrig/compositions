@@ -6,7 +6,7 @@
 
 \header {
   title       = "Chorale No. 21"
-  subsubtitle = "2019-10-02"
+  subsubtitle = "2019-10-03"
   copyright   = \markup { \with-color #grey \teeny {
     \char ##x00A9
     "2019 Jeremy Mates - Creative Commons Attribution 4.0 United States License"
@@ -61,7 +61,7 @@ altoa = \relative d' {
   g2. c4 bes a g2
   b4 b a2 g4 f e2~
 
-  e4 d d1 f2
+  e4 d d2. d4 f2
   e2. e4 c1
 }
 
@@ -81,7 +81,7 @@ tenora = \relative c' {
   b2 b4 a d2 d4 c
   b2 c d c4 b
 
-  a2 bes4 c f, g a b
+  a2 bes4 c f,2 a4 b
   c2 b a1
 }
 
