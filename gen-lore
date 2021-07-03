@@ -1,0 +1,76 @@
+#!/usr/bin/env perl
+#
+# gen-lore - text conversion to music, in a Guidonian fashion
+#
+#   cpanm App::MusicTools Music::Guidonian Music::PitchNum Music::Scales
+#   ./gen-lore | ly-fu --laytou --absolute -
+
+use 5.24.0;
+use warnings;
+use Music::Guidonian 0.03 'intervalize_scale_nums';
+use Music::Scales 'get_scale_nums';
+
+my $mg = Music::Guidonian->new(
+    key_set => {
+        intervals => intervalize_scale_nums( [ get_scale_nums('blues') ] ),
+        keys      => [qw(a e i o u)],
+        min       => 48,
+        max       => 84,
+    },
+    pitchstyle => 'Music::PitchNum::Dutch'
+);
+
+my $accent   = 0;
+my $distance = 0;
+my $velo     = 0;
+my @facts;
+my @velos = qw(\p \mp \mf \f);
+
+$_ = readline *DATA;
+chomp;
+LOOP: {
+    if (m/\G([aeiou])/cg) {
+        push @facts,
+          { accent => $accent, distance => $distance, velo => $velo, vowel => $1 };
+        $accent = $distance = $velo = 0;
+        redo LOOP;
+    }
+    if (m/\G([^aeiou]+)/cg) {
+        my $string = $1;
+
+        # derive accent and friends from features of the text
+        my $sum    = 0;
+        for my $c ( split //, $string ) {
+            $sum += ord $c;
+        }
+        $accent   = $sum & 1;
+
+        $distance = length $string;
+
+        $sum >>= 1;
+        $velo = $sum % @velos;
+
+        redo LOOP;
+    }
+}
+
+my $iter = $mg->iterator( [ map { $_->{vowel} } @facts ], renew => undef );
+my $pick;
+for my $try ( 1 .. 1000 ) {
+    my $phrase = $iter->() // last;
+    rand($try) < 1 and $pick = $phrase;
+}
+die "picked nothing??" unless defined $pick;
+
+my $prevvelo = -1;
+for my $i ( 0 .. $#facts ) {
+    my $velo = $velos[ $facts[$i]->{velo} // 0 ];
+    say "$pick->[$i]16"
+      . ( $facts[$i]->{accent} ? '-.'  : '' )
+      . ( $velo ne $prevvelo   ? $velo : '' )
+      . " r16" x $facts[$i]->{distance};
+    $prevvelo = $velo;
+}
+
+__DATA__
+lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum
