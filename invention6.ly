@@ -5,7 +5,7 @@
 \version "2.18.2"
 
 \header {
-  title       = "Invention No.6"
+  title       = "Invention No. 6"
   composer    = "Jeremy Mates"
   subsubtitle = "2019-04-07"
   copyright   = \markup { \with-color #grey \teeny {
